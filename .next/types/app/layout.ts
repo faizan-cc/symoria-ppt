@@ -1,4 +1,4 @@
-// File: /Users/Akmal/Desktop/projects/genesis/symoria-portfolio/src/app/layout.tsx
+// File: /home/faizan/work/symoria-ppt-web/src/app/layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
