@@ -4,6 +4,86 @@ type SlideComponentProps = {
   isActive: boolean;
 };
 
+const socialStats = [
+  { platform: "CoinMarketCap", handle: "@Symoria", audience: "38,100 Followers" },
+  { platform: "X", handle: "@symoriaio", audience: "97,000 Followers" },
+  { platform: "Telegram", handle: "@symoria", audience: "498,000 Subscribers" },
+  { platform: "YouTube", handle: "@symoriaAI", audience: "102,000 Subscribers" },
+  { platform: "Instagram", handle: "@symoriaai", audience: "153,000 Followers" },
+  { platform: "Facebook", handle: "@symoria", audience: "61,000 Followers" },
+  { platform: "TikTok", handle: "@symoriaai", audience: "34,500 Followers" },
+  { platform: "Medium", handle: "@symoria", audience: "2,800 Followers" },
+] as const;
+
+function SocialIcon({ platform }: { platform: (typeof socialStats)[number]["platform"] }) {
+  switch (platform) {
+    case "CoinMarketCap":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" strokeWidth="2.8" />
+          <path
+            d="M12 28.5v-6.5c0-2.1 2.5-3 3.8-1.4l4.2 5.1c.7.8 1.9.8 2.5-.1l5.2-8.2c1.3-2 4.3-1.1 4.3 1.3v10.3c0 1.1.9 2 2 2 1.1 0 2-.9 2-2v-9.3"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.8"
+          />
+        </svg>
+      );
+    case "X":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M12 12 36 36M34.5 12 22.5 24l-10.5 12" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="3.4" />
+        </svg>
+      );
+    case "Telegram":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M39 11 9.8 22.6c-1.6.6-1.5 2.9.2 3.4l7.3 2.2 2.8 8c.5 1.5 2.5 1.9 3.6.7L28 31l7.5 5.5c1.3 1 3.2.3 3.5-1.3L42 13.9C42.4 12.2 40.6 10.4 39 11Z" fill="currentColor" />
+        </svg>
+      );
+    case "YouTube":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="8" y="13" width="32" height="22" rx="7" fill="currentColor" />
+          <path d="m21 19 10 5-10 5Z" fill="#06110c" />
+        </svg>
+      );
+    case "Instagram":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="10" y="10" width="28" height="28" rx="8" fill="none" stroke="currentColor" strokeWidth="3" />
+          <circle cx="24" cy="24" r="6.4" fill="none" stroke="currentColor" strokeWidth="3" />
+          <circle cx="32.5" cy="15.5" r="1.9" fill="currentColor" />
+        </svg>
+      );
+    case "Facebook":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M27.8 14H31v-5.3c-.6-.1-2.5-.3-4.6-.3-4.6 0-7.7 2.8-7.7 8V21h-5v5.9h5V40h6.2V26.9h5.1l.8-5.9h-5.9v-3.8c0-1.8.5-3.2 2.9-3.2Z" fill="currentColor" />
+        </svg>
+      );
+    case "TikTok":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path
+            d="M27 10.5v15.4a6.4 6.4 0 1 1-4.7-6.2v4.8a2.2 2.2 0 1 0 1.9 2.2V10.5H27Zm3.9 0c.8 2.3 2.7 4.2 5.1 5v4.5a11.6 11.6 0 0 1-5.1-1.4v-8.1Z"
+            fill="currentColor"
+          />
+        </svg>
+      );
+    case "Medium":
+      return (
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="15" cy="24" r="8" fill="currentColor" />
+          <ellipse cx="28" cy="24" rx="5.5" ry="8.2" fill="currentColor" opacity="0.84" />
+          <rect x="36" y="16" width="4" height="16" rx="2" fill="currentColor" opacity="0.72" />
+        </svg>
+      );
+  }
+}
+
 function slideClassName(isActive: boolean) {
   return `deck-slide${isActive ? " deck-active" : ""}`;
 }
@@ -23,7 +103,7 @@ export function Slide00Cover({ isActive }: SlideComponentProps) {
       <div className="cover-grid" />
       <div className="cover-glow" />
       <div style={{ position: "relative", zIndex: 1 }}>
-        <div className="eyebrow">AUTONOMOUS AI · DEFI PLATFORM</div>
+        <div className="eyebrow">Autonomous AI Agentic TradeFi/DeFi ecosystem</div>
         <h1 className="title" data-split-chars>
           SYMORIA
         </h1>
@@ -888,9 +968,37 @@ export function Slide30Cta({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide31ThankYou({ isActive }: SlideComponentProps) {
+export function Slide31SocialStats({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={31} className={slideClassName(isActive)} id="s31">
+      <div className="socials-ribbon socials-ribbon-a" />
+      <div className="socials-ribbon socials-ribbon-b" />
+      <div className="socials-vignette" />
+      <div className="socials-shell">
+        <h2 className="title socials-title">
+          Connect with <span className="socials-title-accent">Symoria</span>
+        </h2>
+        <div className="sub socials-sub">Join our community and stay updated with the latest AI-driven DeFi insights</div>
+        <div className="socials-grid">
+          {socialStats.map((entry, index) => (
+            <div key={entry.platform} className="socials-card" data-stagger-item style={stagger(index)}>
+              <div className="socials-mark">
+                <SocialIcon platform={entry.platform} />
+              </div>
+              <div className="socials-platform">{entry.platform}</div>
+              <div className="socials-handle">{entry.handle}</div>
+              <div className="socials-audience">{entry.audience}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Slide31ThankYou({ isActive }: SlideComponentProps) {
+  return (
+    <section data-slide-idx={32} className={slideClassName(isActive)} id="s32">
       <div className="end-glow" />
       <div style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
         <div className="end-mark">
@@ -939,5 +1047,6 @@ export const slides = [
   Slide28TvlGrowth,
   Slide29Legal,
   Slide30Cta,
+  Slide31SocialStats,
   Slide31ThankYou,
 ] as const;

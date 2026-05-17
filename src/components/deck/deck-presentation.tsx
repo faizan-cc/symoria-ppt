@@ -43,11 +43,11 @@ export default function DeckPresentation() {
     setCurrent(i);
   }, []);
 
-  // Scale to fill screen
+  // Scale to fit screen
   useEffect(() => {
     const scale = () => {
       if (!stageRef.current) return;
-      const s = Math.max(window.innerWidth / 1920, window.innerHeight / 1080);
+      const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
       const x = (window.innerWidth - 1920 * s) / 2;
       const y = (window.innerHeight - 1080 * s) / 2;
       stageRef.current.style.transform = `translate(${x}px,${y}px) scale(${s})`;
