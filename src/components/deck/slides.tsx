@@ -494,6 +494,51 @@ const defiMarketCapAreaPath = getAreaPath(
 );
 const defiSectorLinePath = getLinePath(defiSectorPoints);
 
+const performanceSeries = [
+  { month: "NOV", value: "+18.4%", rate: 18.4 },
+  { month: "DEC", value: "+22.1%", rate: 22.1 },
+  { month: "JAN", value: "+31.7%", rate: 31.7 },
+  { month: "FEB", value: "+19.3%", rate: 19.3 },
+  { month: "MAR", value: "+27.8%", rate: 27.8 },
+  { month: "APR", value: "+24.6%", rate: 24.6 },
+] as const;
+
+const performanceMaxRate = Math.max(
+  ...performanceSeries.map(({ rate }) => rate),
+);
+const performanceAverageRate =
+  performanceSeries.reduce((sum, { rate }) => sum + rate, 0) /
+  performanceSeries.length;
+const performanceChartScale = {
+  min: 12,
+  max: 34,
+  ticks: [15, 20, 25, 30],
+} as const;
+const performanceChartFrame = {
+  width: 1320,
+  height: 300,
+  paddingX: 56,
+  paddingTop: 24,
+  paddingBottom: 46,
+};
+const performanceChartBaseline =
+  performanceChartFrame.height - performanceChartFrame.paddingBottom;
+const performanceChartPoints = createChartPoints(
+  performanceSeries.map(({ month, rate, value }) => ({
+    label: month,
+    value: rate,
+    displayValue: value,
+  })),
+  performanceChartFrame,
+  performanceChartScale.min,
+  performanceChartScale.max,
+);
+const performanceChartLinePath = getLinePath(performanceChartPoints);
+const performanceChartAreaPath = getAreaPath(
+  performanceChartPoints,
+  performanceChartBaseline,
+);
+
 function SocialIcon({
   platform,
 }: {
@@ -650,9 +695,7 @@ export function Slide00Cover({ isActive }: SlideComponentProps) {
           SYMORIA
         </h1>
         <div className="cover-line" />
-        <div className="title-sub">
-          AI-Powered Autonomous Trading 
-        </div>
+        <div className="title-sub">AI-Powered Autonomous Trading</div>
         <div className="title-meta">SYMORIA.IO · 2026</div>
       </div>
     </section>
@@ -663,7 +706,9 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={1} className={slideClassName(isActive)} id="s1">
       <div className="eyebrow">THE OPPORTUNITY</div>
-      <h2 className="title">TradeFi Is the Fastest-Growing Market in History</h2>
+      <h2 className="title">
+        TradeFi Is the Fastest-Growing Market in History
+      </h2>
       <div className="card-grid">
         <div className="card" data-stagger-item style={stagger(0)}>
           <div
@@ -704,8 +749,8 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
         </div>
       </div>
       <div className="market-quote">
-        &ldquo;TradeFi isn&apos;t a trend — it&apos;s the inevitable restructuring
-        of global finance.&rdquo;
+        &ldquo;TradeFi isn&apos;t a trend — it&apos;s the inevitable
+        restructuring of global finance.&rdquo;
       </div>
     </section>
   );
@@ -719,7 +764,6 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
       id="s2"
       style={{ alignItems: "flex-start" }}
     >
-    
       <h2 className="title narrative-title">
         DeFi market growth turned a niche experiment into a{" "}
         <span className="narrative-highlight">multi-trillion-dollar arena</span>
@@ -907,7 +951,6 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
 export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={3} className={slideClassName(isActive)} id="s3">
-    
       <h2 className="title narrative-title narrative-title-centered">
         A <span className="narrative-highlight">-75% drop</span> in just 4
         months
@@ -1061,7 +1104,9 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
         >
           <div className="narrative-stat-kicker">Peak TVL</div>
           <div className="narrative-stat-value">$180B</div>
-          <div className="narrative-stat-note">TradeFi summer liquidity peak</div>
+          <div className="narrative-stat-note">
+            TradeFi summer liquidity peak
+          </div>
         </div>
         <div
           className="narrative-stat-card"
@@ -1445,191 +1490,13 @@ export function Slide06AgentSwarms({ isActive }: SlideComponentProps) {
   );
 }
 
-
-
-export function Slide08YieldOptimizer({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={8} className={slideClassName(isActive)} id="s8">
-      <div className="eyebrow">CORE ENGINE 01</div>
-      <h2 className="title">Yield Optimizer</h2>
-      <div className="sub">
-        Continuously scans 200+ TradeFi protocols across 8 chains to compound your
-        capital at maximum safe yield — automatically rebalancing as conditions
-        shift.
-      </div>
-      <div className="card-grid">
-        {[
-          ["200+", "Protocols Monitored"],
-          ["8", "Chains Supported"],
-          ["< 2s", "Rebalance Speed"],
-        ].map(([value, label], index) => (
-          <div
-            key={label}
-            className="card card-green"
-            data-stagger-item
-            style={stagger(index, { textAlign: "center" })}
-          >
-            <div className="kpi-val">{value}</div>
-            <div className="kpi-label">{label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function Slide09Arbitrage({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={9} className={slideClassName(isActive)} id="s9">
-      <div className="eyebrow">CORE ENGINE 02</div>
-      <h2 className="title">Arbitrage Engine</h2>
-      <div className="sub">
-        Detects price inefficiencies across DEXes in real time. Executes
-        flash-loan-powered arbitrage with zero capital at risk — profits are
-        pure delta.
-      </div>
-      <div className="card-grid">
-        {[
-          ["50ms", "Execution Speed"],
-          ["0", "Capital at Risk"],
-          ["$2.4M", "Monthly Arb Volume"],
-        ].map(([value, label], index) => (
-          <div
-            key={label}
-            className="card card-green"
-            data-stagger-item
-            style={stagger(index, { textAlign: "center" })}
-          >
-            <div className="kpi-val">{value}</div>
-            <div className="kpi-label">{label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function Slide10PortfolioReplicator({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={10} className={slideClassName(isActive)} id="s10">
-      <div className="eyebrow">CORE ENGINE 03</div>
-      <h2 className="title">Portfolio Replicator</h2>
-      <div className="sub">
-        Mirror on-chain wallets of verified top traders with customizable lag,
-        risk limits, and position sizing — automated, non-custodial.
-      </div>
-      <div className="card-grid">
-        {[
-          ["500+", "Elite Wallets Tracked"],
-          ["Custom", "Risk Limits"],
-          ["Non-custodial", "Self-Sovereign"],
-        ].map(([value, label], index) => (
-          <div
-            key={label}
-            className="card card-green"
-            data-stagger-item
-            style={stagger(index, { textAlign: "center" })}
-          >
-            <div
-              className="kpi-val"
-              style={{ fontSize: index === 2 ? 42 : undefined }}
-            >
-              {value}
-            </div>
-            <div className="kpi-label">{label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function Slide11ZkVerification({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={11} className={slideClassName(isActive)} id="s11">
-      <div className="eyebrow">TRUSTLESS BY DESIGN</div>
-      <h2 className="title">Zero-Knowledge Proof on Every Trade</h2>
-      <div className="sub">
-        Every decision Symoria makes is cryptographically proven on-chain. You
-        never have to trust us — the math speaks for itself.
-      </div>
-      <div
-        style={{
-          marginTop: 48,
-          display: "grid",
-          gridTemplateColumns: "1fr auto",
-          gap: 60,
-          alignItems: "center",
-        }}
-      >
-        <div className="zk-diagram from-left">
-          <div className="zk-node">Agent Decision</div>
-          <div className="zk-arrow">→</div>
-          <div className="zk-node">ZK Circuit</div>
-          <div className="zk-arrow">→</div>
-          <div className="zk-node">On-Chain Proof</div>
-          <div className="zk-arrow">→</div>
-          <div className="zk-node">Verified Execution</div>
-        </div>
-        <div className="from-right" style={{ maxWidth: 380 }}>
-          <div className="zk-truth">
-            No black box.
-            <br />
-            No blind trust.
-            <br />
-            Full verifiability.
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Slide12MultiChain({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={12} className={slideClassName(isActive)} id="s12">
-      <div className="eyebrow">MULTI-CHAIN NATIVE</div>
-      <h2 className="title">One Platform. Eight Chains.</h2>
-      <div className="chain-grid">
-        {[
-          ["#627EEA", "Ethereum"],
-          ["#0052FF", "Base"],
-          ["#28A0F0", "Arbitrum"],
-          ["#FF0420", "Optimism"],
-          ["#8247E5", "Polygon"],
-          ["#E84142", "Avalanche"],
-          ["#F3BA2F", "BNB Chain"],
-          ["#9945FF", "Solana"],
-        ].map(([color, name], index) => (
-          <div
-            key={name}
-            className="chain-card"
-            data-stagger-item
-            style={stagger(index)}
-          >
-            <div className="chain-dot" style={{ background: color }} />
-            <div className="chain-name">{name}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export function Slide13Performance({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={13} className={slideClassName(isActive)} id="s13">
       <div className="eyebrow">TRACK RECORD</div>
       <h2 className="title">Six Months. Consistent Alpha.</h2>
       <div className="perf-grid">
-        {[
-          ["NOV", "+18.4%"],
-          ["DEC", "+22.1%"],
-          ["JAN", "+31.7%"],
-          ["FEB", "+19.3%"],
-          ["MAR", "+27.8%"],
-          ["APR", "+24.6%"],
-        ].map(([month, value], index) => (
+        {performanceSeries.map(({ month, value }, index) => (
           <div
             key={month}
             className="perf-card"
@@ -1682,45 +1549,121 @@ export function Slide14CapitalSimulation({ isActive }: SlideComponentProps) {
         </div>
       </div>
       <div
+        className="sim-performance-panel"
+        data-stagger-item
+        style={stagger(3)}
+      >
+        <div
+          className="sim-performance-chart"
+          aria-label="Recent monthly performance chart"
+        >
+          <div className="sim-performance-chart-head">
+            <div className="sim-performance-chart-label">
+              Monthly return trend
+            </div>
+            <div className="sim-performance-chart-range">
+              NOV → APR · NET PERFORMANCE
+            </div>
+          </div>
+          <svg
+            className="sim-performance-svg"
+            viewBox={`0 0 ${performanceChartFrame.width} ${performanceChartFrame.height}`}
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient
+                id="simPerformanceArea"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="1"
+              >
+                <stop offset="0%" stopColor="rgba(0,255,136,0.24)" />
+                <stop offset="60%" stopColor="rgba(0,255,136,0.08)" />
+                <stop offset="100%" stopColor="rgba(0,255,136,0)" />
+              </linearGradient>
+            </defs>
+            {performanceChartScale.ticks.map((tick) => (
+              <g key={tick}>
+                <line
+                  className="sim-performance-grid"
+                  x1={performanceChartFrame.paddingX}
+                  x2={
+                    performanceChartFrame.width - performanceChartFrame.paddingX
+                  }
+                  y1={getChartY(
+                    tick,
+                    performanceChartFrame,
+                    performanceChartScale.min,
+                    performanceChartScale.max,
+                  )}
+                  y2={getChartY(
+                    tick,
+                    performanceChartFrame,
+                    performanceChartScale.min,
+                    performanceChartScale.max,
+                  )}
+                />
+                <text
+                  className="sim-performance-y-label"
+                  x={14}
+                  y={
+                    getChartY(
+                      tick,
+                      performanceChartFrame,
+                      performanceChartScale.min,
+                      performanceChartScale.max,
+                    ) + 5
+                  }
+                >
+                  {tick}%
+                </text>
+              </g>
+            ))}
+            <path
+              className="sim-performance-area"
+              d={performanceChartAreaPath}
+              fill="url(#simPerformanceArea)"
+            />
+            <path
+              className="sim-performance-line"
+              d={performanceChartLinePath}
+            />
+            {performanceChartPoints.map((point) => (
+              <g key={point.label}>
+                <circle
+                  className="sim-performance-point"
+                  cx={point.x}
+                  cy={point.y}
+                  r={5}
+                />
+                <text
+                  className="sim-performance-point-label"
+                  x={point.x}
+                  y={point.y - 14}
+                  textAnchor="middle"
+                >
+                  {point.displayValue}
+                </text>
+                <text
+                  className="sim-performance-month"
+                  x={point.x}
+                  y={performanceChartFrame.height - 12}
+                  textAnchor="middle"
+                >
+                  {point.label}
+                </text>
+              </g>
+            ))}
+          </svg>
+        </div>
+      </div>
+      <div
         className="sub"
         style={{ marginTop: 28, fontSize: 16, opacity: 0.5 }}
       >
         Simulated projections based on historical performance. Not financial
         advice.
-      </div>
-    </section>
-  );
-}
-
-export function Slide15TimeFreedom({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={15} className={slideClassName(isActive)} id="s15">
-      <div className="eyebrow">PASSIVE INCOME</div>
-      <h2 className="title">Earn While You Live</h2>
-      <div className="two-col">
-        <div className="from-left">
-          <div className="col-label">Your time back</div>
-          <div className="col-body">
-            Symoria runs 24/7 so you don&apos;t have to. Set your risk
-            tolerance, deposit capital, and let the AI handle everything else.
-          </div>
-        </div>
-        <div className="from-right">
-          <div className="col-stat-list">
-            <div className="col-stat">
-              <div className="col-stat-val">24/7</div>
-              <div className="col-stat-label">Operation</div>
-            </div>
-            <div className="col-stat">
-              <div className="col-stat-val">0 Hours</div>
-              <div className="col-stat-label">Required from you</div>
-            </div>
-            <div className="col-stat">
-              <div className="col-stat-val">100%</div>
-              <div className="col-stat-label">Non-Custodial</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -1764,10 +1707,10 @@ export function Slide17Roadmap({ isActive }: SlideComponentProps) {
       <div className="roadmap-line">
         {[
           ["Q1 2026", "Core AI Agents Live"],
-          ["Q2 2026", "ZK Verification Layer"],
-          ["Q3 2026", "Multi-Chain Expansion"],
-          ["Q4 2026", "Portfolio Replicator Beta"],
-          ["Q1 2027", "Decentralized Governance"],
+          ["Q2 2026", "On Chain Verification Layer"],
+          ["Q3 2026", "AI Margin Trading Live"],
+          ["Q4 2026", "Multi-Chain Expansion"],
+          ["Q1 2027", "Prediction Markets"],
         ].map(([label, title], index) => (
           <div
             key={label}
@@ -1780,89 +1723,6 @@ export function Slide17Roadmap({ isActive }: SlideComponentProps) {
             <div className="rm-title">{title}</div>
           </div>
         ))}
-      </div>
-    </section>
-  );
-}
-
-export function Slide18Ecosystem({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={18} className={slideClassName(isActive)} id="s18">
-      <div className="eyebrow">ECOSYSTEM</div>
-      <h2 className="title">Integrated Across TradeFi</h2>
-      <div className="eco-row" data-stagger-item style={stagger(0)}>
-        <div className="eco-row-label">DEX Integrations</div>
-        {["Uniswap", "Curve", "Balancer", "dYdX", "GMX"].map((tag) => (
-          <div key={tag} className="eco-tag">
-            {tag}
-          </div>
-        ))}
-      </div>
-      <div className="eco-row" data-stagger-item style={stagger(1)}>
-        <div className="eco-row-label">Chain Infrastructure</div>
-        {["Chainlink", "The Graph", "Alchemy", "Infura"].map((tag) => (
-          <div key={tag} className="eco-tag">
-            {tag}
-          </div>
-        ))}
-      </div>
-      <div className="eco-row" data-stagger-item style={stagger(2)}>
-        <div className="eco-row-label">Security Auditors</div>
-        {["OpenZeppelin", "Trail of Bits", "Certik"].map((tag) => (
-          <div key={tag} className="eco-tag">
-            {tag}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function Slide19MembershipTiers({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={19} className={slideClassName(isActive)} id="s19">
-      <div className="eyebrow">ACCESS TIERS</div>
-      <h2 className="title">Choose Your Level</h2>
-      <div className="tier-grid">
-        <div className="tier-card" data-stagger-item style={stagger(0)}>
-          <div className="tier-name">SCOUT</div>
-          <div className="tier-price">Free</div>
-          <div className="tier-feat">
-            Paper trading
-            <br />
-            1 strategy
-            <br />
-            Community access
-          </div>
-        </div>
-        <div
-          className="tier-card tier-featured"
-          data-stagger-item
-          style={stagger(1)}
-        >
-          <div className="tier-name">SIGNAL</div>
-          <div className="tier-price">$99/mo</div>
-          <div className="tier-feat">
-            Live trading
-            <br />
-            3 strategies
-            <br />
-            Priority support
-          </div>
-        </div>
-        <div className="tier-card" data-stagger-item style={stagger(2)}>
-          <div className="tier-name">APEX</div>
-          <div className="tier-price">$299/mo</div>
-          <div className="tier-feat">
-            All engines
-            <br />
-            Unlimited strategies
-            <br />
-            Dedicated support
-            <br />
-            Early features
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -2222,103 +2082,6 @@ export function Slide22ReferralSharing({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide22Community({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={28} className={slideClassName(isActive)} id="s28">
-      <div className="eyebrow">JOIN THE MOVEMENT</div>
-      <h2 className="title">50,000+ Traders. One Mission.</h2>
-      <div className="comm-grid">
-        <div className="comm-card" data-stagger-item style={stagger(0)}>
-          <div
-            className="comm-val"
-            data-countup
-            data-cu-target="47"
-            data-cu-suffix="K+"
-            data-cu-decimals="0"
-          >
-            0K+
-          </div>
-          <div className="comm-label">Telegram Members</div>
-        </div>
-        <div className="comm-card" data-stagger-item style={stagger(1)}>
-          <div
-            className="comm-val"
-            data-countup
-            data-cu-target="31"
-            data-cu-suffix="K+"
-            data-cu-decimals="0"
-          >
-            0K+
-          </div>
-          <div className="comm-label">X Followers</div>
-        </div>
-        <div className="comm-card" data-stagger-item style={stagger(2)}>
-          <div
-            className="comm-val"
-            data-countup
-            data-cu-target="12"
-            data-cu-suffix="K+"
-            data-cu-decimals="0"
-          >
-            0K+
-          </div>
-          <div className="comm-label">Active Traders</div>
-        </div>
-      </div>
-      <div className="comm-cta">
-        <a
-          href="https://t.me/symoriaio"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="comm-btn"
-        >
-          Join Telegram
-        </a>
-        <a
-          href="https://x.com/symoriaio"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="comm-btn"
-        >
-          Follow on X
-        </a>
-      </div>
-    </section>
-  );
-}
-
-export function Slide23Security({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={29} className={slideClassName(isActive)} id="s29">
-      <div className="eyebrow">SECURITY FIRST</div>
-      <h2 className="title">Audited. Verified. Trustless.</h2>
-      <div className="sec-grid">
-        <div className="sec-card" data-stagger-item style={stagger(0)}>
-          <div className="sec-icon">🛡️</div>
-          <div className="sec-title">Smart Contract Audits</div>
-          <div className="sec-body">
-            OpenZeppelin certified. Every line reviewed, every function tested.
-          </div>
-        </div>
-        <div className="sec-card" data-stagger-item style={stagger(1)}>
-          <div className="sec-icon">🔐</div>
-          <div className="sec-title">ZK-Proof Engine</div>
-          <div className="sec-body">
-            Every trade cryptographically verified. No black box.
-          </div>
-        </div>
-        <div className="sec-card" data-stagger-item style={stagger(2)}>
-          <div className="sec-icon">🎯</div>
-          <div className="sec-title">Bug Bounty</div>
-          <div className="sec-body">
-            $500K active bounty program. We pay for your vigilance.
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function Slide25Tokenomics({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={31} className={slideClassName(isActive)} id="s31">
@@ -2646,7 +2409,6 @@ export function Slide31ThankYou({ isActive }: SlideComponentProps) {
 
 export const slides = [
   Slide00Cover,
-
   Slide01Market,
   Slide02Problem,
   Slide03WhyHumansFail,
@@ -2654,30 +2416,22 @@ export const slides = [
   Slide05Solution,
   Slide06AgentSwarms,
   Slide06Vs,
-
   Slide13Performance,
   Slide14CapitalSimulation,
-  Slide15TimeFreedom,
   Slide16AssetSovereignty,
   Slide17Roadmap,
-  Slide18Ecosystem,
-  Slide19MembershipTiers,
   Slide20NftOverview,
   Slide21NftWhyOwn,
   Slide21NftBenefits,
   Slide23NftRewardsSystem,
   Slide24NftTradingAccess,
-  Slide20Pricing,
   Slide21Referral,
   Slide22ReferralSharing,
-  Slide22Community,
-  Slide23Security,
-  Slide25Tokenomics,
-  Slide26WhyNow,
+
   Slide27Faq,
-  Slide28TvlGrowth,
+
   Slide29Legal,
-  Slide30Cta,
+
   Slide31SocialStats,
   Slide31ThankYou,
 ] as const;
