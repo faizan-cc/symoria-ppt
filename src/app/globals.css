@@ -1322,6 +1322,88 @@ h1.title .ch { display: inline-block; opacity: 0; }
 .deck-locale-btn.active { background: rgba(0,255,136,0.14); color: var(--green); }
 .deck-locale-btn:hover { color: var(--white); }
 
+/* ─── TEXT SCALE ─── */
+h1.title,
+.title-main,
+.app-intro-loader-wordmark {
+  font-size: 202px;
+}
+
+h2.title,
+#s21 .title,
+.socials-title {
+  font-size: 68px;
+}
+
+.end-mark {
+  font-size: 122px;
+}
+
+.stat-95 {
+  font-size: 222px;
+}
+
+.swarm-video-title-line {
+  font-size: 92px;
+}
+
+.why-window {
+  font-size: 66px;
+}
+
+
+.swarm-video-body-line,
+.nft-reward-detail-sub,
+.end-msg {
+  font-size: 36px;
+}
+
+.market-quote,
+.paradox-hook,
+.zk-truth,
+.cta-code-box {
+  font-size: 30px;
+}
+
+.ai-badge-role,
+.nft-access-label,
+.why-list li {
+  font-size: 26px;
+}
+
+.eyebrow,
+.title-meta,
+.app-intro-loader-kicker,
+.ai-badge-name,
+.rm-title,
+.consensus-msg,
+.deck-nav-btn,
+.legal-body,
+.end-meta,
+.ref-share-footnote {
+  font-size: 22px;
+}
+
+.narrative-insight-body,
+.app-intro-loader-status,
+.sim-performance-body,
+.deck-nav-counter,
+.comm-btn {
+  font-size: 18px;
+}
+
+.vs-head,
+.rm-label,
+.app-intro-enter,
+.app-intro-skip,
+.deck-locale-btn {
+  font-size: 18px;
+}
+
+.app-intro-loader-subtitle {
+  font-size: clamp(26px, 2.2vw, 40px);
+}
+
 /* ─── KEYFRAMES ─── */
 @keyframes qtraSlideIn   { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
 @keyframes qtraEyebrowIn { from { opacity:0; transform:translateX(-8px) } to { opacity:1; transform:translateX(0) } }
