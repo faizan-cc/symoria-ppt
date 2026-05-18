@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { slides } from "./slides";
 
+type Locale = "en" | "kr";
+
 const TOTAL = slides.length;
 
 function animateCountup(el: HTMLElement) {
@@ -35,6 +37,7 @@ function splitChars(el: Element) {
 
 export default function DeckPresentation() {
   const [current, setCurrent] = useState(0);
+  const [locale, setLocale] = useState<Locale>("en");
   const [introDismissed, setIntroDismissed] = useState(false);
   const [introReady, setIntroReady] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -162,7 +165,7 @@ export default function DeckPresentation() {
           <video
             ref={introVideoRef}
             className={`app-intro-video${introReady ? " app-intro-video-ready" : ""}`}
-            src="/assets/landing-video.mov"
+            src="/assets/landing-video.mp4"
             muted
             loop
             playsInline
@@ -200,7 +203,7 @@ export default function DeckPresentation() {
           <div className="stage-wrap">
             <div ref={stageRef} className="deck-stage">
               {slides.map((Slide, index) => (
-                <Slide key={index} isActive={current === index} />
+                <Slide key={index} isActive={current === index} locale={locale} />
               ))}
             </div>
           </div>

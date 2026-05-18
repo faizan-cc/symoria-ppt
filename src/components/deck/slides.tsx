@@ -12,6 +12,7 @@ import {
 
 type SlideComponentProps = {
   isActive: boolean;
+  locale?: "en" | "kr";
 };
 
 const socialStats = [
