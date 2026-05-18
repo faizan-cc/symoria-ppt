@@ -644,14 +644,14 @@ export function Slide00Cover({ isActive }: SlideComponentProps) {
       <div className="cover-glow" />
       <div style={{ position: "relative", zIndex: 1 }}>
         <div className="eyebrow">
-          Autonomous AI Agentic TradeFi/DeFi ecosystem
+          Autonomous AI Agentic TradeFi/AIFi ecosystem
         </div>
         <h1 className="title" data-split-chars>
           SYMORIA
         </h1>
         <div className="cover-line" />
         <div className="title-sub">
-          AI-Powered Autonomous Trading &amp; Yield Optimization
+          AI-Powered Autonomous Trading 
         </div>
         <div className="title-meta">SYMORIA.IO · 2026</div>
       </div>
@@ -663,7 +663,7 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={1} className={slideClassName(isActive)} id="s1">
       <div className="eyebrow">THE OPPORTUNITY</div>
-      <h2 className="title">DeFi Is the Fastest-Growing Market in History</h2>
+      <h2 className="title">TradeFi Is the Fastest-Growing Market in History</h2>
       <div className="card-grid">
         <div className="card" data-stagger-item style={stagger(0)}>
           <div
@@ -676,7 +676,7 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
           >
             $0.0T+
           </div>
-          <div className="kpi-label">Total DeFi TVL</div>
+          <div className="kpi-label">Total TVL</div>
         </div>
         <div className="card" data-stagger-item style={stagger(1)}>
           <div
@@ -688,7 +688,7 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
           >
             0M+
           </div>
-          <div className="kpi-label">Active DeFi Wallets</div>
+          <div className="kpi-label">Active Wallets</div>
         </div>
         <div className="card" data-stagger-item style={stagger(2)}>
           <div
@@ -704,7 +704,7 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
         </div>
       </div>
       <div className="market-quote">
-        &ldquo;DeFi isn&apos;t a trend — it&apos;s the inevitable restructuring
+        &ldquo;TradeFi isn&apos;t a trend — it&apos;s the inevitable restructuring
         of global finance.&rdquo;
       </div>
     </section>
@@ -719,7 +719,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
       id="s2"
       style={{ alignItems: "flex-start" }}
     >
-      <div className="eyebrow">THE DEFI GROWTH STORY</div>
+    
       <h2 className="title narrative-title">
         DeFi market growth turned a niche experiment into a{" "}
         <span className="narrative-highlight">multi-trillion-dollar arena</span>
@@ -728,7 +728,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
       <div className="sub narrative-sub">
         The early market was almost invisible in 2015. By 2021 it had its first
         real liquidity wave, and by 2025 the broader market was printing above
-        $4T while DeFi itself became a permanent capital destination.
+        $4T while TradeFi itself became a permanent capital destination.
       </div>
       <div
         className="narrative-chart-panel narrative-chart-panel-compact"
@@ -736,9 +736,9 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
         style={stagger(0)}
       >
         <div className="narrative-chart-head">
-          <div className="narrative-chart-label">DeFi Market Cap Chart</div>
+          <div className="narrative-chart-label">TradeFI Market Cap Chart</div>
           <div className="narrative-chart-range">
-            2014 → 2026 · MARKET CAP VS DEFI SECTOR
+            2014 → 2026 · MARKET CAP VS TradeFI SECTOR
           </div>
         </div>
         <div className="narrative-chart-legend">
@@ -748,7 +748,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
           </div>
           <div className="narrative-chart-legend-item">
             <span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" />{" "}
-            DeFi Sector
+            TradeFI Sector
           </div>
         </div>
         <svg
@@ -878,7 +878,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
           data-stagger-item
           style={stagger(2)}
         >
-          <div className="narrative-stat-kicker">First DeFi Breakout</div>
+          <div className="narrative-stat-kicker">First TradeFi Breakout</div>
           <div className="narrative-stat-value narrative-stat-value-accent">
             $2.45T
           </div>
@@ -896,7 +896,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
             $4.15T
           </div>
           <div className="narrative-stat-note">
-            2025 broad-market high with DeFi now structurally visible
+            2025 broad-market high with TradeFI now structurally visible
           </div>
         </div>
       </div>
@@ -907,7 +907,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
 export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={3} className={slideClassName(isActive)} id="s3">
-      <div className="eyebrow">THE VOLATILITY REALITY: DEFI EDITION</div>
+    
       <h2 className="title narrative-title narrative-title-centered">
         A <span className="narrative-highlight">-75% drop</span> in just 4
         months
@@ -921,7 +921,7 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
         style={stagger(0)}
       >
         <div className="narrative-chart-head">
-          <div className="narrative-chart-label">DeFi TVL Shock Chart</div>
+          <div className="narrative-chart-label">TradeFi TVL Shock Chart</div>
           <div className="narrative-chart-range">
             Sep 2025 → Mar 2026 · USD BILLIONS
           </div>
@@ -1061,7 +1061,7 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
         >
           <div className="narrative-stat-kicker">Peak TVL</div>
           <div className="narrative-stat-value">$180B</div>
-          <div className="narrative-stat-note">DeFi summer liquidity peak</div>
+          <div className="narrative-stat-note">TradeFi summer liquidity peak</div>
         </div>
         <div
           className="narrative-stat-card"
@@ -1097,7 +1097,7 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
     <section data-slide-idx={4} className={slideClassName(isActive)} id="s4">
       <div className="eyebrow">WHY MANUAL TRADING IS HARD</div>
       <h2 className="title narrative-title">
-        DeFi cycles move faster than humans do
+        TradeFi cycles move faster than humans do
       </h2>
       <div className="sub narrative-sub">
         The long-term market cap trend looks obvious after the fact. In real
@@ -1110,9 +1110,9 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
         style={stagger(0)}
       >
         <div className="narrative-chart-head">
-          <div className="narrative-chart-label">DeFi Market Cap Chart</div>
+          <div className="narrative-chart-label">TradeFi Market Cap Chart</div>
           <div className="narrative-chart-range">
-            2014 → 2026 · MARKET CAP VS DEFI SECTOR
+            2014 → 2026 · MARKET CAP VS TradeFI SECTOR
           </div>
         </div>
         <div className="narrative-chart-legend">
@@ -1122,7 +1122,7 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
           </div>
           <div className="narrative-chart-legend-item">
             <span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" />{" "}
-            DeFi Sector
+            TradeFi Sector
           </div>
         </div>
         <svg
@@ -1311,13 +1311,13 @@ export function Slide06Vs({ isActive }: SlideComponentProps) {
         <div className="vs-box vs-right from-right">
           <div className="vs-head">Symoria AI</div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> Multi-agent consensus
+            <span className="vs-check">✓</span> Multi-Model consensus
           </div>
           <div className="vs-item">
             <span className="vs-check">✓</span> Self-adapting models
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> ZK-verified on-chain
+            <span className="vs-check">✓</span> Verified on-chain
           </div>
           <div className="vs-item">
             <span className="vs-check">✓</span> Distributed architecture
@@ -1445,37 +1445,7 @@ export function Slide06AgentSwarms({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide07AiConsensus({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={7} className={slideClassName(isActive)} id="s7">
-      <div className="eyebrow">HOW IT WORKS</div>
-      <h2 className="title">Consensus Before Every Trade</h2>
-      <div className="sub">
-        No single agent controls capital. Every decision requires multi-agent
-        agreement — validated by zero-knowledge proof before execution.
-      </div>
-      <div className="card-grid" style={{ marginTop: 48 }}>
-        {[
-          ["01", "Signal Detected"],
-          ["02", "Agents Deliberate"],
-          ["03", "Consensus Reached"],
-          ["04", "ZK Proof Generated"],
-          ["05", "Executed On-Chain"],
-        ].map(([step, title], index) => (
-          <div
-            key={step}
-            className={`card${index === 4 ? " card-green" : ""}`}
-            data-stagger-item
-            style={stagger(index, { textAlign: "center" })}
-          >
-            <div className="card-label">Step {step}</div>
-            <div className="card-title">{title}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+
 
 export function Slide08YieldOptimizer({ isActive }: SlideComponentProps) {
   return (
@@ -1483,7 +1453,7 @@ export function Slide08YieldOptimizer({ isActive }: SlideComponentProps) {
       <div className="eyebrow">CORE ENGINE 01</div>
       <h2 className="title">Yield Optimizer</h2>
       <div className="sub">
-        Continuously scans 200+ DeFi protocols across 8 chains to compound your
+        Continuously scans 200+ TradeFi protocols across 8 chains to compound your
         capital at maximum safe yield — automatically rebalancing as conditions
         shift.
       </div>
@@ -1819,7 +1789,7 @@ export function Slide18Ecosystem({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={18} className={slideClassName(isActive)} id="s18">
       <div className="eyebrow">ECOSYSTEM</div>
-      <h2 className="title">Integrated Across DeFi</h2>
+      <h2 className="title">Integrated Across TradeFi</h2>
       <div className="eco-row" data-stagger-item style={stagger(0)}>
         <div className="eco-row-label">DEX Integrations</div>
         {["Uniswap", "Curve", "Balancer", "dYdX", "GMX"].map((tag) => (
@@ -2684,12 +2654,7 @@ export const slides = [
   Slide05Solution,
   Slide06AgentSwarms,
   Slide06Vs,
-  Slide07AiConsensus,
-  Slide08YieldOptimizer,
-  Slide09Arbitrage,
-  Slide10PortfolioReplicator,
-  Slide11ZkVerification,
-  Slide12MultiChain,
+
   Slide13Performance,
   Slide14CapitalSimulation,
   Slide15TimeFreedom,
