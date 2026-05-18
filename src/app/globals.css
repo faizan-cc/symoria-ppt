@@ -11,8 +11,8 @@
   --text: rgba(255,255,255,0.92);
   --faint: rgba(255,255,255,0.12);
   --red: #ef4444;
-  --serif: 'Cormorant Garamond', serif;
-  --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  --serif: 'Cormorant Garamond', 'Noto Serif KR', 'Nanum Myeongjo', serif;
+  --sans: 'IBM Plex Sans', 'Noto Sans KR', 'Pretendard', -apple-system, sans-serif;
   --mono: 'JetBrains Mono', monospace;
 }
 
@@ -1317,6 +1317,10 @@ h1.title .ch { display: inline-block; opacity: 0; }
 .deck-progress { height: 100%; background: var(--green); transition: width 0.4s ease; }
 .deck-nav-btn { background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer; font-size: 18px; padding: 4px 8px; font-family: var(--sans); }
 .deck-nav-btn:hover { color: var(--green); }
+.deck-locale-switch { display: flex; align-items: center; gap: 6px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); }
+.deck-locale-btn { min-width: 42px; padding: 6px 10px; border: none; border-radius: 999px; background: transparent; color: rgba(255,255,255,0.48); cursor: pointer; font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; }
+.deck-locale-btn.active { background: rgba(0,255,136,0.14); color: var(--green); }
+.deck-locale-btn:hover { color: var(--white); }
 
 /* ─── KEYFRAMES ─── */
 @keyframes qtraSlideIn   { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }

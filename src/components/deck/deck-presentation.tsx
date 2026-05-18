@@ -37,12 +37,29 @@ function splitChars(el: Element) {
 
 export default function DeckPresentation() {
   const [current, setCurrent] = useState(0);
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocale] = useState<Locale>("kr");
   const [introDismissed, setIntroDismissed] = useState(false);
   const [introReady, setIntroReady] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const introVideoRef = useRef<HTMLVideoElement>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const copy =
+    locale === "kr"
+      ? {
+          introKicker: "◆ 세일즈 · 2026",
+          loading: "불러오는 중...",
+          enter: "입장하기",
+          skip: "건너뛰기",
+          language: "언어",
+        }
+      : {
+          introKicker: "◆ Sales · 2026",
+          loading: "Loading...",
+          enter: "Click to enter",
+          skip: "Skip",
+          language: "Language",
+        };
 
   const goTo = useCallback((i: number) => {
     if (i < 0 || i >= TOTAL) return;
@@ -180,11 +197,11 @@ export default function DeckPresentation() {
           <div
             className={`app-intro-loader${introReady ? " app-intro-loader-hidden" : ""}`}
           >
-            <div className="app-intro-loader-kicker">◆ Sales · 2026</div>
+            <div className="app-intro-loader-kicker">{copy.introKicker}</div>
             <div className="app-intro-loader-center">
               <div className="app-intro-loader-subtitle"> SYMORIA </div>
             </div>
-            <div className="app-intro-loader-status">Loading...</div>
+            <div className="app-intro-loader-status">{copy.loading}</div>
           </div>
 
           {introReady && (
@@ -192,10 +209,10 @@ export default function DeckPresentation() {
               <div className="app-intro-shade" />
               <div className="app-intro-controls">
                 <button className="app-intro-enter" onClick={dismissIntro}>
-                  Click to enter
+                  {copy.enter}
                 </button>
                 <button className="app-intro-skip" onClick={dismissIntro}>
-                  Skip
+                  {copy.skip}
                 </button>
               </div>
             </>
@@ -233,6 +250,22 @@ export default function DeckPresentation() {
               {String(current + 1).padStart(2, "0")} /{" "}
               {String(TOTAL).padStart(2, "0")}
             </span>
+            <div className="deck-locale-switch" aria-label={copy.language}>
+              <button
+                className={`deck-locale-btn${locale === "en" ? " active" : ""}`}
+                onClick={() => setLocale("en")}
+                type="button"
+              >
+                EN
+              </button>
+              <button
+                className={`deck-locale-btn${locale === "kr" ? " active" : ""}`}
+                onClick={() => setLocale("kr")}
+                type="button"
+              >
+                KR
+              </button>
+            </div>
             <button className="deck-nav-btn" onClick={() => goTo(current + 1)}>
               →
             </button>

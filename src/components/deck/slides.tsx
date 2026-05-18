@@ -16,6 +16,12 @@ type SlideComponentProps = {
   onAdvance?: () => void;
 };
 
+type Locale = NonNullable<SlideComponentProps["locale"]>;
+
+function tr(locale: Locale | undefined, en: string, kr: string) {
+  return locale === "kr" ? kr : en;
+}
+
 const socialStats = [
   {
     platform: "CoinMarketCap",
@@ -268,6 +274,29 @@ const nftTradingAccessTiers = [
   },
 ] as const;
 
+const nftTradingAccessTiersKr = [
+  {
+    title: "엘리트 패키지",
+    holders: "레벨 1-4 홀더",
+    duration: "12개월",
+  },
+  {
+    title: "프로 패키지",
+    holders: "레벨 5-8 홀더",
+    duration: "9개월",
+  },
+  {
+    title: "베이직 패키지",
+    holders: "레벨 9-14 홀더",
+    duration: "6개월",
+  },
+  {
+    title: "스타터 패키지",
+    holders: "레벨 15-19 홀더",
+    duration: "3개월",
+  },
+] as const;
+
 const nftSubscriptionPlans = [
   {
     title: "Elite",
@@ -484,6 +513,248 @@ const nftAirdropBands = [
     ],
   },
 ] as const;
+
+const shortDateLabelsKr: Record<string, string> = {
+  "Sep '25": "25년 9월",
+  "Oct '25": "25년 10월",
+  "Nov '25": "25년 11월",
+  "Dec '25": "25년 12월",
+  "Jan '26": "26년 1월",
+  "Mar '26": "26년 3월",
+  NOV: "11월",
+  DEC: "12월",
+  JAN: "1월",
+  FEB: "2월",
+  MAR: "3월",
+  APR: "4월",
+};
+
+const nftWhyOwnKr = [
+  {
+    title: "직접 추천 보상",
+    description:
+      "직접 추천 보상의 구조, 대상 조건, 그리고 초대한 사용자가 가입했을 때 홀더가 보상을 받는 방식을 설명합니다.",
+  },
+  {
+    title: "무료 트레이딩 구독권",
+    description:
+      "어떤 NFT 티어가 무료 트레이딩 접근 권한을 제공하는지, 구독 기간은 얼마나 되는지, 포함되는 프리미엄 도구는 무엇인지 설명합니다.",
+  },
+  {
+    title: "추천 트레이딩 수수료 보상",
+    description:
+      "추천 구조를 통해 트레이딩 수수료가 어떻게 배분되는지, 홀더가 어떤 비율을 받는지, 보상이 시간이 지나며 어떻게 누적되는지 설명합니다.",
+  },
+  {
+    title: "토큰 에어드롭",
+    description:
+      "에어드롭 자격 요건, 배분 기준, 그리고 NFT 보유가 생태계 토큰 인센티브 노출을 어떻게 확대하는지 설명합니다.",
+  },
+] as const;
+
+const referralSharingBandsKr = [
+  {
+    title: "1-10 레벨",
+    suffix: "각 레벨",
+    note: "총 30%",
+  },
+  {
+    title: "11-14 레벨",
+    suffix: "각 레벨",
+    note: "고가치 4개 티어",
+  },
+  {
+    title: "15-30 레벨",
+    suffix: "각 레벨",
+    note: "장기 팀 확장 구간",
+  },
+] as const;
+
+const nftSubscriptionPlansKr = [
+  {
+    title: "엘리트",
+    levels: "NFT 레벨 1-4",
+    duration: "9-12개월",
+    detail: "최상위 NFT 티어를 위한 최대 구독 이용권",
+    benefits: [
+      "모의 트레이딩",
+      "현물 + 마진 트레이딩",
+      "모든 트레이딩 시그널",
+      "커스텀 페어 시그널",
+      "시그널 봇 알림",
+      "플랫폼 전체 이용권",
+    ],
+  },
+  {
+    title: "프로",
+    levels: "NFT 레벨 5-8",
+    duration: "6-9개월",
+    detail: "상위 티어 홀더를 위한 고급 트레이딩 툴킷",
+    benefits: [
+      "모의 트레이딩",
+      "현물 트레이딩",
+      "모든 트레이딩 시그널",
+      "시그널 봇 알림",
+    ],
+  },
+  {
+    title: "베이직",
+    levels: "NFT 레벨 9-14",
+    duration: "3-6개월",
+    detail: "중간 티어 홀더를 위한 장기 이용권",
+    benefits: ["모의 트레이딩", "현물 트레이딩 이용권", "모든 트레이딩 시그널"],
+  },
+  {
+    title: "스타터",
+    levels: "NFT 레벨 15-19",
+    duration: "3개월",
+    detail: "입문형 무료 트레이딩 구독권",
+    benefits: ["모의 트레이딩 이용권", "AI 트레이딩 시그널 제공"],
+  },
+] as const;
+
+const nftCommissionBandsKr = [
+  {
+    title: "엘리트",
+    detail: "상위 4개 NFT 레벨에 적용되는 최고 트레이딩 수수료 구간입니다.",
+    highlights: [
+      "최상위 트레이딩 수익 공유",
+      "초기 레벨에서 가장 강한 매칭 곡선",
+      "홀더 보너스 풀이 계속 활성화",
+    ],
+  },
+  {
+    title: "프로",
+    detail: "상위 중간 티어 NFT 홀더를 위한 고수익 수수료 구간입니다.",
+    highlights: [
+      "큰 폭의 추천 트레이딩 수익 구간",
+      "홀더 보너스 구조에 계속 참여",
+      "활발한 팀 확장에 최적화",
+    ],
+  },
+  {
+    title: "베이직",
+    detail: "6개 NFT 레벨에 걸쳐 적용되는 중간 티어 수수료 참여 구간입니다.",
+    highlights: [
+      "중간 레벨 전반에서 트레이딩 보상 유지",
+      "추천 깊이를 확장하는 홀더에 균형 잡힌 구조",
+      "연속된 6개 NFT 레벨을 커버",
+    ],
+  },
+  {
+    title: "스타터",
+    detail: "19레벨까지 보상 범위를 넓히는 입문형 트레이딩 수수료 구간입니다.",
+    highlights: [
+      "신규 홀더에게 트레이딩 수익 공유 제공",
+      "마지막 NFT 티어까지 보상 가시성 유지",
+      "1-19 전체 보상 구간 완성",
+    ],
+  },
+] as const;
+
+const nftAirdropBandsKr = [
+  { title: "엘리트", detail: "최대 SYM 배정" },
+  { title: "프로", detail: "수백만 SYM 보상" },
+  { title: "베이직", detail: "중간 티어 SYM 배정" },
+  { title: "스타터", detail: "입문형 SYM 보상" },
+] as const;
+
+function getShortDateLabel(label: string, locale?: Locale) {
+  return locale === "kr" ? shortDateLabelsKr[label] ?? label : label;
+}
+
+function getAudienceLabel(audience: string, locale?: Locale) {
+  if (locale !== "kr") return audience;
+
+  const match = audience.match(/^([\d,]+)\s(Followers|Subscribers)$/);
+  if (!match) return audience;
+
+  return `${match[1]}명 ${match[2] === "Followers" ? "팔로워" : "구독자"}`;
+}
+
+function getSocialStats(locale?: Locale) {
+  if (locale !== "kr") return socialStats;
+
+  return socialStats.map((entry) => ({
+    ...entry,
+    audience: getAudienceLabel(entry.audience, locale),
+  }));
+}
+
+function getNftWhyOwn(locale?: Locale) {
+  if (locale !== "kr") return nftWhyOwn;
+
+  return nftWhyOwn.map((entry, index) => ({
+    ...entry,
+    title: nftWhyOwnKr[index].title,
+    description: nftWhyOwnKr[index].description,
+  }));
+}
+
+function getReferralSharingBands(locale?: Locale) {
+  if (locale !== "kr") return referralSharingBands;
+
+  return referralSharingBands.map((entry, index) => ({
+    ...entry,
+    title: referralSharingBandsKr[index].title,
+    suffix: referralSharingBandsKr[index].suffix,
+    note: referralSharingBandsKr[index].note,
+  }));
+}
+
+function getNftSubscriptionPlans(locale?: Locale) {
+  if (locale !== "kr") return nftSubscriptionPlans;
+
+  return nftSubscriptionPlans.map((entry, index) => ({
+    ...entry,
+    title: nftSubscriptionPlansKr[index].title,
+    levels: nftSubscriptionPlansKr[index].levels,
+    duration: nftSubscriptionPlansKr[index].duration,
+    detail: nftSubscriptionPlansKr[index].detail,
+    benefits: nftSubscriptionPlansKr[index].benefits,
+  }));
+}
+
+function getNftCommissionBands(locale?: Locale) {
+  if (locale !== "kr") return nftCommissionBands;
+
+  return nftCommissionBands.map((entry, index) => ({
+    ...entry,
+    title: nftCommissionBandsKr[index].title,
+    detail: nftCommissionBandsKr[index].detail,
+    highlights: nftCommissionBandsKr[index].highlights,
+  }));
+}
+
+function getNftAirdropBands(locale?: Locale) {
+  if (locale !== "kr") return nftAirdropBands;
+
+  return nftAirdropBands.map((entry, index) => ({
+    ...entry,
+    title: nftAirdropBandsKr[index].title,
+    detail: nftAirdropBandsKr[index].detail,
+  }));
+}
+
+function getNftTradingAccessTiers(locale?: Locale) {
+  if (locale !== "kr") return nftTradingAccessTiers;
+
+  return nftTradingAccessTiers.map((entry, index) => ({
+    ...entry,
+    title: nftTradingAccessTiersKr[index].title,
+    holders: nftTradingAccessTiersKr[index].holders,
+    duration: nftTradingAccessTiersKr[index].duration,
+  }));
+}
+
+function translateRewardCell(locale: Locale | undefined, value: string) {
+  if (locale !== "kr") return value;
+
+  return value
+    .replace("UNLIMITED", "무제한")
+    .replace(/(\d+) GENERATIONS/, "$1세대")
+    .replace(/(\d+) MONTHS FREE/, "$1개월 무료");
+}
 
 const problemVolatilitySeries = [
   { month: "Sep '25", value: 180 },
@@ -914,7 +1185,7 @@ function stagger(index: number, extra?: CSSProperties) {
   return { "--i": index, ...extra } as CSSProperties;
 }
 
-export function Slide00Cover({ isActive }: SlideComponentProps) {
+export function Slide00Cover({ isActive, locale }: SlideComponentProps) {
   return (
     <section
       data-slide-idx={0}
@@ -926,25 +1197,35 @@ export function Slide00Cover({ isActive }: SlideComponentProps) {
       <div className="cover-glow" />
       <div style={{ position: "relative", zIndex: 1 }}>
         <div className="eyebrow">
-          Autonomous AI Agentic TradeFi/AIFi ecosystem
+          {tr(
+            locale,
+            "Autonomous AI Agentic TradeFi/AIFi ecosystem",
+            "자율형 AI 에이전트 기반 TradeFi/AIFi 생태계",
+          )}
         </div>
         <h1 className="title" data-split-chars>
           SYMORIA
         </h1>
         <div className="cover-line" />
-        <div className="title-sub">AI-Powered Autonomous Trading</div>
+        <div className="title-sub">
+          {tr(locale, "AI-Powered Autonomous Trading", "AI 기반 자율 트레이딩")}
+        </div>
         <div className="title-meta">SYMORIA.IO · 2026</div>
       </div>
     </section>
   );
 }
 
-export function Slide01Market({ isActive }: SlideComponentProps) {
+export function Slide01Market({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={1} className={slideClassName(isActive)} id="s1">
-      <div className="eyebrow">THE OPPORTUNITY</div>
+      <div className="eyebrow">{tr(locale, "THE OPPORTUNITY", "기회")}</div>
       <h2 className="title">
-        TradeFi Is the Fastest-Growing Market in History
+        {tr(
+          locale,
+          "TradeFi Is the Fastest-Growing Market in History",
+          "TradeFi는 역사상 가장 빠르게 성장하는 시장입니다",
+        )}
       </h2>
       <div className="card-grid">
         <div className="card" data-stagger-item style={stagger(0)}>
@@ -958,7 +1239,7 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
           >
             $0.0T+
           </div>
-          <div className="kpi-label">Total TVL</div>
+          <div className="kpi-label">{tr(locale, "Total TVL", "총 TVL")}</div>
         </div>
         <div className="card" data-stagger-item style={stagger(1)}>
           <div
@@ -970,7 +1251,7 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
           >
             0M+
           </div>
-          <div className="kpi-label">Active Wallets</div>
+          <div className="kpi-label">{tr(locale, "Active Wallets", "활성 지갑")}</div>
         </div>
         <div className="card" data-stagger-item style={stagger(2)}>
           <div
@@ -982,18 +1263,21 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
           >
             0%
           </div>
-          <div className="kpi-label">Annual Growth Rate</div>
+          <div className="kpi-label">{tr(locale, "Annual Growth Rate", "연간 성장률")}</div>
         </div>
       </div>
       <div className="market-quote">
-        &ldquo;TradeFi isn&apos;t a trend — it&apos;s the inevitable
-        restructuring of global finance.&rdquo;
+        {tr(
+          locale,
+          "\u201cTradeFi isn't a trend - it's the inevitable restructuring of global finance.\u201d",
+          "\u201cTradeFi는 일시적 유행이 아니라 글로벌 금융을 재편하는 필연적 흐름입니다.\u201d",
+        )}
       </div>
     </section>
   );
 }
 
-export function Slide02Problem({ isActive }: SlideComponentProps) {
+export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
   return (
     <section
       data-slide-idx={2}
@@ -1002,14 +1286,22 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
       style={{ alignItems: "flex-start" }}
     >
       <h2 className="title narrative-title">
-        TradeFi market growth turned a niche experiment into a{" "}
-        <span className="narrative-highlight">multi-trillion-dollar arena</span>
-        .
+        {tr(
+          locale,
+          "TradeFi market growth turned a niche experiment into a ",
+          "TradeFi 시장의 성장은 틈새 실험을 ",
+        )}
+        <span className="narrative-highlight">
+          {tr(locale, "multi-trillion-dollar arena", "수조 달러 규모의 시장")}
+        </span>
+        {tr(locale, ".", "으로 바꾸었습니다.")}
       </h2>
       <div className="sub narrative-sub">
-        The early market was almost invisible in 2015. By 2021 it had its first
-        real liquidity wave, and by 2025 the broader market was printing above
-        $4T while TradeFi itself became a permanent capital destination.
+        {tr(
+          locale,
+          "The early market was almost invisible in 2015. By 2021 it had its first real liquidity wave, and by 2025 the broader market was printing above $4T while TradeFi itself became a permanent capital destination.",
+          "초기 시장은 2015년에 거의 보이지 않을 정도로 미미했습니다. 2021년에 첫 실질적 유동성 파동이 형성됐고, 2025년에는 전체 시장 규모가 4조 달러를 넘어 TradeFi가 구조적인 자본 유입처로 자리 잡았습니다.",
+        )}
       </div>
       <div
         className="narrative-chart-panel narrative-chart-panel-compact"
@@ -1017,19 +1309,25 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
         style={stagger(0)}
       >
         <div className="narrative-chart-head">
-          <div className="narrative-chart-label">TradeFI Market Cap Chart</div>
+          <div className="narrative-chart-label">
+            {tr(locale, "TradeFI Market Cap Chart", "TradeFi 시가총액 차트")}
+          </div>
           <div className="narrative-chart-range">
-            2014 → 2026 · MARKET CAP VS TradeFI SECTOR
+            {tr(
+              locale,
+              "2014 → 2026 · MARKET CAP VS TradeFI SECTOR",
+              "2014 → 2026 · 전체 시총 vs TradeFi 섹터",
+            )}
           </div>
         </div>
         <div className="narrative-chart-legend">
           <div className="narrative-chart-legend-item">
             <span className="narrative-chart-legend-dot narrative-chart-legend-dot-gold" />{" "}
-            All Crypto
+            {tr(locale, "All Crypto", "전체 암호화폐")}
           </div>
           <div className="narrative-chart-legend-item">
             <span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" />{" "}
-            TradeFI Sector
+            {tr(locale, "TradeFI Sector", "TradeFi 섹터")}
           </div>
         </div>
         <svg
@@ -1096,7 +1394,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
                 y={defiGrowthNarrativeChartFrame.height - 18}
                 textAnchor="middle"
               >
-                {point.label}
+                {getShortDateLabel(point.label, locale)}
               </text>
             </g>
           ))}
@@ -1114,7 +1412,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
             x={defiGrowthNarrativePoints[1].x + 12}
             y={defiGrowthNarrativePoints[1].y - 18}
           >
-            2015 market still tiny
+            {tr(locale, "2015 market still tiny", "2015년 시장은 여전히 미미")}
           </text>
           <text
             className="narrative-chart-note"
@@ -1122,7 +1420,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
             y={defiGrowthNarrativePoints[7].y - 18}
             textAnchor="middle"
           >
-            2021 liquidity wave
+            {tr(locale, "2021 liquidity wave", "2021년 유동성 파동")}
           </text>
           <text
             className="narrative-chart-note"
@@ -1130,7 +1428,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
             y={defiGrowthNarrativePoints[11].y - 20}
             textAnchor="end"
           >
-            2025 cycle high
+            {tr(locale, "2025 cycle high", "2025년 사이클 고점")}
           </text>
           <text
             className="narrative-chart-note"
@@ -1138,7 +1436,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
             y={defiGrowthNarrativePoints[12].y - 16}
             textAnchor="end"
           >
-            2026 still above $2T
+            {tr(locale, "2026 still above $2T", "2026년에도 2조 달러 이상 유지")}
           </text>
         </svg>
       </div>
@@ -1148,10 +1446,16 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
           data-stagger-item
           style={stagger(1)}
         >
-          <div className="narrative-stat-kicker">Early Footprint</div>
+          <div className="narrative-stat-kicker">
+            {tr(locale, "Early Footprint", "초기 시장 규모")}
+          </div>
           <div className="narrative-stat-value">$3.9B</div>
           <div className="narrative-stat-note">
-            All crypto market cap snapshot in early 2015
+            {tr(
+              locale,
+              "All crypto market cap snapshot in early 2015",
+              "2015년 초 전체 암호화폐 시가총액 스냅샷",
+            )}
           </div>
         </div>
         <div
@@ -1159,12 +1463,18 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
           data-stagger-item
           style={stagger(2)}
         >
-          <div className="narrative-stat-kicker">First TradeFi Breakout</div>
+          <div className="narrative-stat-kicker">
+            {tr(locale, "First TradeFi Breakout", "첫 TradeFi 확장 국면")}
+          </div>
           <div className="narrative-stat-value narrative-stat-value-accent">
             $2.45T
           </div>
           <div className="narrative-stat-note">
-            2021 liquidity wave across the broader market
+            {tr(
+              locale,
+              "2021 liquidity wave across the broader market",
+              "2021년 전체 시장 전반의 유동성 파동",
+            )}
           </div>
         </div>
         <div
@@ -1172,12 +1482,18 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
           data-stagger-item
           style={stagger(3)}
         >
-          <div className="narrative-stat-kicker">Cycle Peak</div>
+          <div className="narrative-stat-kicker">
+            {tr(locale, "Cycle Peak", "사이클 정점")}
+          </div>
           <div className="narrative-stat-value narrative-stat-value-accent">
             $4.15T
           </div>
           <div className="narrative-stat-note">
-            2025 broad-market high with TradeFI now structurally visible
+            {tr(
+              locale,
+              "2025 broad-market high with TradeFI now structurally visible",
+              "2025년 전체 시장 고점으로, TradeFi가 구조적으로 가시화된 시점",
+            )}
           </div>
         </div>
       </div>
@@ -1185,15 +1501,22 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
+export function Slide03WhyHumansFail({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={3} className={slideClassName(isActive)} id="s3">
       <h2 className="title narrative-title narrative-title-centered">
-        A <span className="narrative-highlight">-75% drop</span> in just 4
-        months
+        {tr(locale, "A ", "단 ")}
+        <span className="narrative-highlight">
+          {tr(locale, "-75% drop", "-75% 급락")}
+        </span>{" "}
+        {tr(locale, "in just 4 months", "4개월 만에")}
       </h2>
       <div className="sub narrative-sub narrative-sub-centered">
-        $180 Billion Peak TVL → $45 Billion Reset Low → $75 Billion Recovery
+        {tr(
+          locale,
+          "$180 Billion Peak TVL → $45 Billion Reset Low → $75 Billion Recovery",
+          "$180B TVL 정점 → $45B 리셋 저점 → $75B 회복",
+        )}
       </div>
       <div
         className="narrative-chart-panel narrative-chart-panel-tight narrative-chart-panel-compact"
@@ -1201,9 +1524,11 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
         style={stagger(0)}
       >
         <div className="narrative-chart-head">
-          <div className="narrative-chart-label">TradeFi TVL Shock Chart</div>
+          <div className="narrative-chart-label">
+            {tr(locale, "TradeFi TVL Shock Chart", "TradeFi TVL 충격 차트")}
+          </div>
           <div className="narrative-chart-range">
-            Sep 2025 → Mar 2026 · USD BILLIONS
+            {tr(locale, "Sep 2025 → Mar 2026 · USD BILLIONS", "2025년 9월 → 2026년 3월 · 단위: 십억 달러")}
           </div>
         </div>
         <svg
@@ -1291,7 +1616,7 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
                 y={volatilityRealityChartFrame.height - 10}
                 textAnchor="middle"
               >
-                {point.label}
+                {getShortDateLabel(point.label, locale)}
               </text>
             </g>
           ))}
@@ -1300,14 +1625,14 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
             x={volatilityRealityPoints[0].x + 10}
             y={volatilityRealityPoints[0].y - 18}
           >
-            ATH $180B
+            {tr(locale, "ATH $180B", "사상 최고치 $180B")}
           </text>
           <text
             className="narrative-chart-note narrative-chart-note-danger"
             x={volatilityRealityPoints[2].x + 10}
             y={volatilityRealityPoints[2].y - 22}
           >
-            -$135B in 4 months
+            {tr(locale, "-$135B in 4 months", "4개월 만에 -$135B")}
           </text>
           <text
             className="narrative-chart-note narrative-chart-note-danger"
@@ -1321,7 +1646,7 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
             x={volatilityRealityPoints[4].x + 18}
             y={volatilityRealityPoints[4].y + 10}
           >
-            Reset low $45B
+            {tr(locale, "Reset low $45B", "리셋 저점 $45B")}
           </text>
           <text
             className="narrative-chart-note"
@@ -1329,7 +1654,7 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
             y={volatilityRealityPoints[5].y - 18}
             textAnchor="end"
           >
-            Now $75B
+            {tr(locale, "Now $75B", "현재 $75B")}
           </text>
         </svg>
       </div>
@@ -1339,10 +1664,10 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
           data-stagger-item
           style={stagger(1)}
         >
-          <div className="narrative-stat-kicker">Peak TVL</div>
+          <div className="narrative-stat-kicker">{tr(locale, "Peak TVL", "TVL 정점")}</div>
           <div className="narrative-stat-value">$180B</div>
           <div className="narrative-stat-note">
-            TradeFi summer liquidity peak
+            {tr(locale, "TradeFi summer liquidity peak", "TradeFi 여름 유동성 정점")}
           </div>
         </div>
         <div
@@ -1350,12 +1675,12 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
           data-stagger-item
           style={stagger(2)}
         >
-          <div className="narrative-stat-kicker">Reset Low</div>
+          <div className="narrative-stat-kicker">{tr(locale, "Reset Low", "리셋 저점")}</div>
           <div className="narrative-stat-value narrative-stat-value-danger">
             $45B
           </div>
           <div className="narrative-stat-note">
-            Forced liquidations and de-leveraging
+            {tr(locale, "Forced liquidations and de-leveraging", "강제 청산과 디레버리징")}
           </div>
         </div>
         <div
@@ -1363,10 +1688,10 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
           data-stagger-item
           style={stagger(3)}
         >
-          <div className="narrative-stat-kicker">Recovery</div>
+          <div className="narrative-stat-kicker">{tr(locale, "Recovery", "회복 구간")}</div>
           <div className="narrative-stat-value">$75B</div>
           <div className="narrative-stat-note">
-            Protocols stabilized, but still far from peak
+            {tr(locale, "Protocols stabilized, but still far from peak", "프로토콜은 안정화됐지만 아직 정점과는 큰 격차")}
           </div>
         </div>
       </div>
@@ -1374,17 +1699,19 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
+export function Slide04WhyBotsFail({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={4} className={slideClassName(isActive)} id="s4">
-      <div className="eyebrow">WHY MANUAL TRADING IS HARD</div>
+      <div className="eyebrow">{tr(locale, "WHY MANUAL TRADING IS HARD", "왜 수동 트레이딩은 어려운가")}</div>
       <h2 className="title narrative-title">
-        TradeFi cycles move faster than humans do
+        {tr(locale, "TradeFi cycles move faster than humans do", "TradeFi 사이클은 인간보다 빠르게 움직입니다")}
       </h2>
       <div className="sub narrative-sub">
-        The long-term market cap trend looks obvious after the fact. In real
-        time, traders have to process macro liquidity, cross-chain rotation, and
-        narrative shifts while the market trades 24/7.
+        {tr(
+          locale,
+          "The long-term market cap trend looks obvious after the fact. In real time, traders have to process macro liquidity, cross-chain rotation, and narrative shifts while the market trades 24/7.",
+          "장기 시가총액 추세는 지나고 나면 명확해 보입니다. 하지만 실전에서는 시장이 24시간 움직이는 동안 트레이더가 거시 유동성, 체인 간 자금 이동, 그리고 내러티브 전환을 동시에 처리해야 합니다.",
+        )}
       </div>
       <div
         className="narrative-chart-panel narrative-chart-panel-compact"
@@ -1392,19 +1719,21 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
         style={stagger(0)}
       >
         <div className="narrative-chart-head">
-          <div className="narrative-chart-label">TradeFi Market Cap Chart</div>
+          <div className="narrative-chart-label">
+            {tr(locale, "TradeFi Market Cap Chart", "TradeFi 시가총액 차트")}
+          </div>
           <div className="narrative-chart-range">
-            2014 → 2026 · MARKET CAP VS TradeFI SECTOR
+            {tr(locale, "2014 → 2026 · MARKET CAP VS TradeFI SECTOR", "2014 → 2026 · 전체 시총 vs TradeFi 섹터")}
           </div>
         </div>
         <div className="narrative-chart-legend">
           <div className="narrative-chart-legend-item">
             <span className="narrative-chart-legend-dot narrative-chart-legend-dot-gold" />{" "}
-            All Crypto
+            {tr(locale, "All Crypto", "전체 암호화폐")}
           </div>
           <div className="narrative-chart-legend-item">
             <span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" />{" "}
-            TradeFi Sector
+            {tr(locale, "TradeFI Sector", "TradeFi 섹터")}
           </div>
         </div>
         <svg
@@ -1470,7 +1799,7 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
                 y={narrativeCompactChartFrame.height - 14}
                 textAnchor="middle"
               >
-                {point.label}
+                {getShortDateLabel(point.label, locale)}
               </text>
             </g>
           ))}
@@ -1480,7 +1809,7 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
             y={defiMarketCapPoints[7].y - 18}
             textAnchor="middle"
           >
-            2021 liquidity wave
+            {tr(locale, "2021 liquidity wave", "2021년 유동성 파동")}
           </text>
           <text
             className="narrative-chart-note"
@@ -1488,7 +1817,7 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
             y={defiMarketCapPoints[11].y - 18}
             textAnchor="end"
           >
-            2025 risk-on return
+            {tr(locale, "2025 risk-on return", "2025년 리스크온 복귀")}
           </text>
         </svg>
       </div>
@@ -1496,18 +1825,30 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
         {[
           {
             icon: TrendingUp,
-            title: "Regimes Flip Fast",
-            body: "A trend can look unstoppable on Monday and broken by Friday. Manual conviction rarely survives that pace.",
+            title: tr(locale, "Regimes Flip Fast", "국면 전환이 매우 빠릅니다"),
+            body: tr(
+              locale,
+              "A trend can look unstoppable on Monday and broken by Friday. Manual conviction rarely survives that pace.",
+              "월요일에는 멈출 수 없어 보이던 추세가 금요일에는 무너질 수 있습니다. 인간의 확신은 그 속도를 버티기 어렵습니다.",
+            ),
           },
           {
             icon: Network,
-            title: "Capital Rotates Across Ecosystems",
-            body: "Liquidity jumps between chains, sectors, and narratives faster than most traders can detect and react.",
+            title: tr(locale, "Capital Rotates Across Ecosystems", "자금은 생태계 간 빠르게 이동합니다"),
+            body: tr(
+              locale,
+              "Liquidity jumps between chains, sectors, and narratives faster than most traders can detect and react.",
+              "유동성은 체인, 섹터, 내러티브 사이를 대부분의 트레이더가 감지하고 대응하는 속도보다 더 빠르게 이동합니다.",
+            ),
           },
           {
             icon: Bot,
-            title: "Too Many Signals, Too Little Time",
-            body: "Price, on-chain behavior, funding, news, and sentiment all matter simultaneously. Humans process them too slowly.",
+            title: tr(locale, "Too Many Signals, Too Little Time", "신호는 너무 많고 시간은 너무 적습니다"),
+            body: tr(
+              locale,
+              "Price, on-chain behavior, funding, news, and sentiment all matter simultaneously. Humans process them too slowly.",
+              "가격, 온체인 행동, 펀딩, 뉴스, 심리 지표가 모두 동시에 중요합니다. 인간은 이를 처리하기에 너무 느립니다.",
+            ),
           },
         ].map(({ icon: Icon, title, body }, index) => (
           <div
@@ -1528,84 +1869,92 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide05Solution({ isActive }: SlideComponentProps) {
+export function Slide05Solution({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={5} className={slideClassName(isActive)} id="s5">
-      <div className="eyebrow">THE SOLUTION</div>
-      <h2 className="title">Meet Symoria: AI That Never Sleeps</h2>
+      <div className="eyebrow">{tr(locale, "THE SOLUTION", "해결책")}</div>
+      <h2 className="title">
+        {tr(locale, "Meet Symoria: AI That Never Sleeps", "잠들지 않는 AI, Symoria")}
+      </h2>
       <div className="ai-row" data-stagger-item style={stagger(0)}>
         <div className="ai-badge">
           <div className="ai-badge-name">SCOUT</div>
-          <div className="ai-badge-role">Market Discovery</div>
+          <div className="ai-badge-role">{tr(locale, "Market Discovery", "시장 탐색")}</div>
         </div>
         <div className="ai-op">+</div>
         <div className="ai-badge">
           <div className="ai-badge-name">ANALYST</div>
-          <div className="ai-badge-role">Signal Processing</div>
+          <div className="ai-badge-role">{tr(locale, "Signal Processing", "시그널 분석")}</div>
         </div>
         <div className="ai-op">×</div>
         <div className="ai-badge">
           <div className="ai-badge-name">EXECUTOR</div>
-          <div className="ai-badge-role">Trade Execution</div>
+          <div className="ai-badge-role">{tr(locale, "Trade Execution", "거래 실행")}</div>
         </div>
         <div className="ai-op">∑</div>
         <div className="ai-badge">
           <div className="ai-badge-name">GUARDIAN</div>
-          <div className="ai-badge-role">Risk Management</div>
+          <div className="ai-badge-role">{tr(locale, "Risk Management", "리스크 관리")}</div>
         </div>
         <div className="ai-op">✓</div>
         <div className="ai-badge">
           <div className="ai-badge-name">ORACLE</div>
-          <div className="ai-badge-role">On Chain Verification</div>
+          <div className="ai-badge-role">{tr(locale, "On Chain Verification", "온체인 검증")}</div>
         </div>
       </div>
       <div className="consensus-msg">
-        ▸ MULTI-MODEL CONSENSUS · EVERY TRADE VERIFIED ON-CHAIN
+        {tr(
+          locale,
+          "▸ MULTI-MODEL CONSENSUS · EVERY TRADE VERIFIED ON-CHAIN",
+          "▸ 다중 모델 합의 · 모든 거래는 온체인에서 검증",
+        )}
       </div>
     </section>
   );
 }
 
-export function Slide06Vs({ isActive }: SlideComponentProps) {
+export function Slide06Vs({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={6} className={slideClassName(isActive)} id="s6">
-      <div className="eyebrow">SYMORIA VS THE REST</div>
-      <h2 className="title">Not Another Bot. A Different Paradigm.</h2>
+      <div className="eyebrow">{tr(locale, "SYMORIA VS THE REST", "SYMORIA VS 기존 솔루션")}</div>
+      <h2 className="title">
+        {tr(locale, "Not Another Bot. A Different Paradigm.", "또 하나의 봇이 아닙니다. 패러다임이 다릅니다.")}
+      </h2>
       <div className="vs-wrap">
         <div className="vs-box from-left">
-          <div className="vs-head">Traditional Bots</div>
+          <div className="vs-head">{tr(locale, "Traditional Bots", "전통적 봇")}</div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> Single strategy
+            <span className="vs-x">✗</span> {tr(locale, "Single strategy", "단일 전략")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> Manual updates required
+            <span className="vs-x">✗</span> {tr(locale, "Manual updates required", "수동 업데이트 필요")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> No on-chain proof
+            <span className="vs-x">✗</span> {tr(locale, "No on-chain proof", "온체인 증명 부재")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> Centralized risk
+            <span className="vs-x">✗</span> {tr(locale, "Centralized risk", "중앙화 리스크")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> Opaque decisions
+            <span className="vs-x">✗</span> {tr(locale, "Opaque decisions", "불투명한 의사결정")}
           </div>
         </div>
         <div className="vs-box vs-right from-right">
           <div className="vs-head">Symoria AI</div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> Multi-Model consensus
+            <span className="vs-check">✓</span> {tr(locale, "Multi-Model consensus", "다중 모델 합의")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> Self-adapting models
+            <span className="vs-check">✓</span> {tr(locale, "Self-adapting models", "자기 적응형 모델")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> Verified on-chain
+            <span className="vs-check">✓</span> {tr(locale, "Verified on-chain", "온체인 검증")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> Distributed architecture
+            <span className="vs-check">✓</span> {tr(locale, "Distributed architecture", "분산형 아키텍처")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> Full decision transparency
+            <span className="vs-check">✓</span> {tr(locale, "Full decision transparency", "완전한 의사결정 투명성")}
           </div>
         </div>
       </div>
@@ -1615,6 +1964,7 @@ export function Slide06Vs({ isActive }: SlideComponentProps) {
 
 export function Slide06AgentSwarms({
   isActive,
+  locale,
   onAdvance,
 }: SlideComponentProps) {
   const firstVideoRef = useRef<HTMLVideoElement>(null);
@@ -1713,26 +2063,26 @@ export function Slide06AgentSwarms({
           <div className="swarm-video-shade" />
           <div className="swarm-video-copy-wrap">
             <div className="eyebrow swarm-video-kicker">
-              AUTONOMOUS SWARM OPERATIONS
+              {tr(locale, "AUTONOMOUS SWARM OPERATIONS", "자율형 스웜 운영")}
             </div>
             <div className="swarm-video-text-stack">
               <h2
                 className="swarm-video-line swarm-video-title-line"
                 style={stagger(0)}
               >
-                Symoria AI Agents Swarms
+                {tr(locale, "Symoria AI Agents Swarms", "Symoria AI 에이전트 스웜")}
               </h2>
               <div
                 className="swarm-video-line swarm-video-body-line"
                 style={stagger(1)}
               >
-                that trade. Negotiate. Create. Execute.
+                {tr(locale, "that trade. Negotiate. Create. Execute.", "거래하고, 협상하고, 만들고, 실행합니다.")}
               </div>
               <div
                 className="swarm-video-line swarm-video-body-line"
                 style={stagger(2)}
               >
-                No sleep. No salary. No mercy.
+                {tr(locale, "No sleep. No salary. No mercy.", "쉬지 않고. 급여도 없이. 망설임도 없이.")}
               </div>
             </div>
           </div>
@@ -1744,6 +2094,7 @@ export function Slide06AgentSwarms({
 
 export function Slide06HowNftWorks({
   isActive,
+  locale,
   onAdvance,
 }: SlideComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -1809,13 +2160,15 @@ export function Slide06HowNftWorks({
           <div
             className={`swarm-video-copy-wrap${showOverlay ? "" : " swarm-video-overlay-hidden"}`}
           >
-            <div className="eyebrow swarm-video-kicker">NFT EXPLAINER</div>
+            <div className="eyebrow swarm-video-kicker">
+              {tr(locale, "NFT EXPLAINER", "NFT 설명")}
+            </div>
             <div className="swarm-video-text-stack">
               <h2
                 className="swarm-video-line swarm-video-title-line"
                 style={stagger(0)}
               >
-                How NFT Works
+                {tr(locale, "How NFT Works", "NFT 작동 방식")}
               </h2>
             </div>
           </div>
@@ -1826,6 +2179,7 @@ export function Slide06HowNftWorks({
 }
 export function Slide06HowTradingWorks({
   isActive,
+  locale,
   onAdvance,
 }: SlideComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -1891,13 +2245,15 @@ export function Slide06HowTradingWorks({
           <div
             className={`swarm-video-copy-wrap${showOverlay ? "" : " swarm-video-overlay-hidden"}`}
           >
-            <div className="eyebrow swarm-video-kicker">NFT EXPLAINER</div>
+            <div className="eyebrow swarm-video-kicker">
+              {tr(locale, "TRADING EXPLAINER", "트레이딩 설명")}
+            </div>
             <div className="swarm-video-text-stack">
               <h2
                 className="swarm-video-line swarm-video-title-line"
                 style={stagger(0)}
               >
-                How Trading Works
+                {tr(locale, "How Trading Works", "트레이딩 작동 방식")}
               </h2>
             </div>
           </div>
@@ -1907,11 +2263,11 @@ export function Slide06HowTradingWorks({
   );
 }
 
-export function Slide13Performance({ isActive }: SlideComponentProps) {
+export function Slide13Performance({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={13} className={slideClassName(isActive)} id="s13">
-      <div className="eyebrow">TRACK RECORD</div>
-      <h2 className="title">Six Months. Consistent Alpha.</h2>
+      <div className="eyebrow">{tr(locale, "TRACK RECORD", "트랙 레코드")}</div>
+      <h2 className="title">{tr(locale, "Six Months. Consistent Alpha.", "6개월, 일관된 알파.")}</h2>
       <div className="perf-grid">
         {performanceSeries.map(({ month, value }, index) => (
           <div
@@ -1920,30 +2276,33 @@ export function Slide13Performance({ isActive }: SlideComponentProps) {
             data-stagger-item
             style={stagger(index)}
           >
-            <div className="perf-month">{month}</div>
+            <div className="perf-month">{getShortDateLabel(month, locale)}</div>
             <div className="perf-val">{value}</div>
           </div>
         ))}
       </div>
       <div className="sub" style={{ marginTop: 32, fontSize: 18 }}>
-        All figures net of fees. Past performance does not guarantee future
-        results.
+        {tr(
+          locale,
+          "All figures net of fees. Past performance does not guarantee future results.",
+          "모든 수치는 수수료 차감 후 기준입니다. 과거 성과가 미래 수익을 보장하지는 않습니다.",
+        )}
       </div>
     </section>
   );
 }
 
-export function Slide14CapitalSimulation({ isActive }: SlideComponentProps) {
+export function Slide14CapitalSimulation({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={14} className={slideClassName(isActive)} id="s14">
-      <div className="eyebrow">CAPITAL SIMULATION</div>
-      <h2 className="title">What $10,000 Becomes</h2>
+      <div className="eyebrow">{tr(locale, "CAPITAL SIMULATION", "자본 시뮬레이션")}</div>
+      <h2 className="title">{tr(locale, "What $10,000 Becomes", "$10,000의 12개월 후")}</h2>
       <div className="sim-grid">
         <div className="sim-card" data-stagger-item style={stagger(0)}>
-          <div className="sim-label">CONSERVATIVE</div>
-          <div className="sim-rate">15% avg/month</div>
+          <div className="sim-label">{tr(locale, "CONSERVATIVE", "보수적")}</div>
+          <div className="sim-rate">{tr(locale, "15% avg/month", "월평균 15%")}</div>
           <div className="sim-val">$10K → $44K</div>
-          <div className="sim-desc">in 12 months</div>
+          <div className="sim-desc">{tr(locale, "in 12 months", "12개월 후")}</div>
         </div>
         <div
           className="sim-card"
@@ -1953,16 +2312,16 @@ export function Slide14CapitalSimulation({ isActive }: SlideComponentProps) {
             background: "rgba(0,255,136,0.04)",
           })}
         >
-          <div className="sim-label">MODERATE</div>
-          <div className="sim-rate">22% avg/month</div>
+          <div className="sim-label">{tr(locale, "MODERATE", "중립적")}</div>
+          <div className="sim-rate">{tr(locale, "22% avg/month", "월평균 22%")}</div>
           <div className="sim-val">$10K → $87K</div>
-          <div className="sim-desc">in 12 months</div>
+          <div className="sim-desc">{tr(locale, "in 12 months", "12개월 후")}</div>
         </div>
         <div className="sim-card" data-stagger-item style={stagger(2)}>
-          <div className="sim-label">AGGRESSIVE</div>
-          <div className="sim-rate">30% avg/month</div>
+          <div className="sim-label">{tr(locale, "AGGRESSIVE", "공격적")}</div>
+          <div className="sim-rate">{tr(locale, "30% avg/month", "월평균 30%")}</div>
           <div className="sim-val">$10K → $137K</div>
-          <div className="sim-desc">in 12 months</div>
+          <div className="sim-desc">{tr(locale, "in 12 months", "12개월 후")}</div>
         </div>
       </div>
       <div
@@ -1972,14 +2331,14 @@ export function Slide14CapitalSimulation({ isActive }: SlideComponentProps) {
       >
         <div
           className="sim-performance-chart"
-          aria-label="Recent monthly performance chart"
+          aria-label={tr(locale, "Recent monthly performance chart", "최근 월별 성과 차트")}
         >
           <div className="sim-performance-chart-head">
             <div className="sim-performance-chart-label">
-              Monthly return trend
+              {tr(locale, "Monthly return trend", "월별 수익률 추이")}
             </div>
             <div className="sim-performance-chart-range">
-              NOV → APR · NET PERFORMANCE
+              {tr(locale, "NOV → APR · NET PERFORMANCE", "11월 → 4월 · 순성과")}
             </div>
           </div>
           <svg
@@ -2068,7 +2427,7 @@ export function Slide14CapitalSimulation({ isActive }: SlideComponentProps) {
                   y={performanceChartFrame.height - 12}
                   textAnchor="middle"
                 >
-                  {point.label}
+                  {getShortDateLabel(point.label, locale)}
                 </text>
               </g>
             ))}
@@ -2079,27 +2438,38 @@ export function Slide14CapitalSimulation({ isActive }: SlideComponentProps) {
         className="sub"
         style={{ marginTop: 28, fontSize: 16, opacity: 0.5 }}
       >
-        Simulated projections based on historical performance. Not financial
-        advice.
+        {tr(
+          locale,
+          "Simulated projections based on historical performance. Not financial advice.",
+          "과거 성과를 기반으로 한 시뮬레이션 추정치이며, 투자 자문이 아닙니다.",
+        )}
       </div>
     </section>
   );
 }
 
-export function Slide16AssetSovereignty({ isActive }: SlideComponentProps) {
+export function Slide16AssetSovereignty({
+  isActive,
+  locale,
+}: SlideComponentProps) {
   return (
     <section data-slide-idx={16} className={slideClassName(isActive)} id="s16">
-      <div className="eyebrow">SELF-CUSTODY</div>
-      <h2 className="title">Your Keys. Your Capital. Always.</h2>
+      <div className="eyebrow">{tr(locale, "SELF-CUSTODY", "셀프 커스터디")}</div>
+      <h2 className="title">
+        {tr(locale, "Your Keys. Your Capital. Always.", "당신의 키. 당신의 자본. 언제나.")}
+      </h2>
       <div className="sub">
-        Symoria never holds your assets. Smart contracts execute trades on your
-        behalf, but ownership never leaves your wallet.
+        {tr(
+          locale,
+          "Symoria never holds your assets. Smart contracts execute trades on your behalf, but ownership never leaves your wallet.",
+          "Symoria는 사용자의 자산을 보유하지 않습니다. 스마트컨트랙트가 사용자를 대신해 거래를 실행하지만, 소유권은 언제나 사용자의 지갑에 남아 있습니다.",
+        )}
       </div>
       <div className="card-grid">
         {[
-          ["🔑", "Non-Custodial"],
-          ["⚡", "Permission-less"],
-          ["🔍", "On-Chain Verifiable"],
+          ["🔑", tr(locale, "Non-Custodial", "비수탁형")],
+          ["⚡", tr(locale, "Permission-less", "무허가형")],
+          ["🔍", tr(locale, "On-Chain Verifiable", "온체인 검증 가능")],
         ].map(([icon, title], index) => (
           <div
             key={title}
@@ -2116,18 +2486,20 @@ export function Slide16AssetSovereignty({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide17Roadmap({ isActive }: SlideComponentProps) {
+export function Slide17Roadmap({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={17} className={slideClassName(isActive)} id="s17">
-      <div className="eyebrow">ROADMAP</div>
-      <h2 className="title">Building the Autonomous Finance Layer</h2>
+      <div className="eyebrow">{tr(locale, "ROADMAP", "로드맵")}</div>
+      <h2 className="title">
+        {tr(locale, "Building the Autonomous Finance Layer", "자율 금융 레이어를 구축합니다")}
+      </h2>
       <div className="roadmap-line">
         {[
-          ["Q1 2026", "Core AI Agents Live"],
-          ["Q2 2026", "On Chain Verification Layer"],
-          ["Q3 2026", "AI Margin Trading Live"],
-          ["Q4 2026", "Multi-Chain Expansion"],
-          ["Q1 2027", "Prediction Markets"],
+          ["Q1 2026", tr(locale, "Core AI Agents Live", "핵심 AI 에이전트 출시")],
+          ["Q2 2026", tr(locale, "On Chain Verification Layer", "온체인 검증 레이어 출시")],
+          ["Q3 2026", tr(locale, "AI Margin Trading Live", "AI 마진 트레이딩 출시")],
+          ["Q4 2026", tr(locale, "Multi-Chain Expansion", "멀티체인 확장")],
+          ["Q1 2027", tr(locale, "Prediction Markets", "예측 시장")],
         ].map(([label, title], index) => (
           <div
             key={label}
@@ -2145,24 +2517,26 @@ export function Slide17Roadmap({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide20NftOverview({ isActive }: SlideComponentProps) {
+export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={20} className={slideClassName(isActive)} id="s20">
-      <div className="eyebrow">NFT UTILITY</div>
+      <div className="eyebrow">{tr(locale, "NFT UTILITY", "NFT 유틸리티")}</div>
       <div className="nft-intro-layout">
         <div className="nft-visual-panel from-left">
           <div className="nft-visual-frame">
             <img
               src="/assets/nfts.png"
-              alt="Symoria AI NFT cards"
+              alt={tr(locale, "Symoria AI NFT cards", "Symoria AI NFT 카드")}
               className="nft-hero-image"
             />
           </div>
         </div>
         <div className="nft-copy-panel">
-          <h2 className="title">What Are Symoria AI NFTs?</h2>
+          <h2 className="title">
+            {tr(locale, "What Are Symoria AI NFTs?", "Symoria AI NFT란 무엇인가?")}
+          </h2>
           <div className="nft-kicker">
-            Powering AI Trading Through NFT Utility
+            {tr(locale, "Powering AI Trading Through NFT Utility", "NFT 유틸리티로 AI 트레이딩을 강화")}
           </div>
           <div className="nft-overview-list">
             <div
@@ -2174,10 +2548,13 @@ export function Slide20NftOverview({ isActive }: SlideComponentProps) {
                 <ShieldCheck size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
-                <div className="nft-overview-title">Access More</div>
+                <div className="nft-overview-title">{tr(locale, "Access More", "더 넓은 접근")}</div>
                 <div className="nft-overview-body">
-                  Unlock deeper platform utilities, premium features, and
-                  holder-only advantages across the Symoria ecosystem.
+                  {tr(
+                    locale,
+                    "Unlock deeper platform utilities, premium features, and holder-only advantages across the Symoria ecosystem.",
+                    "Symoria 생태계 전반에서 더 깊은 플랫폼 유틸리티, 프리미엄 기능, 그리고 홀더 전용 혜택을 해제합니다.",
+                  )}
                 </div>
               </div>
             </div>
@@ -2190,10 +2567,13 @@ export function Slide20NftOverview({ isActive }: SlideComponentProps) {
                 <Coins size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
-                <div className="nft-overview-title">Earn More</div>
+                <div className="nft-overview-title">{tr(locale, "Earn More", "더 큰 보상")}</div>
                 <div className="nft-overview-body">
-                  Participate in referrals, profit-linked rewards, and ecosystem
-                  upside through a single utility asset.
+                  {tr(
+                    locale,
+                    "Participate in referrals, profit-linked rewards, and ecosystem upside through a single utility asset.",
+                    "하나의 유틸리티 자산으로 추천 보상, 수익 연동 리워드, 그리고 생태계 성장 이익에 참여할 수 있습니다.",
+                  )}
                 </div>
               </div>
             </div>
@@ -2206,10 +2586,13 @@ export function Slide20NftOverview({ isActive }: SlideComponentProps) {
                 <Bot size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
-                <div className="nft-overview-title">Automate More</div>
+                <div className="nft-overview-title">{tr(locale, "Automate More", "더 강한 자동화")}</div>
                 <div className="nft-overview-body">
-                  Higher NFT tiers unlock stronger AI trading capabilities,
-                  smarter tooling, and greater platform advantage.
+                  {tr(
+                    locale,
+                    "Higher NFT tiers unlock stronger AI trading capabilities, smarter tooling, and greater platform advantage.",
+                    "상위 NFT 티어는 더 강력한 AI 트레이딩 역량, 더 스마트한 툴, 그리고 더 큰 플랫폼 우위를 제공합니다.",
+                  )}
                 </div>
               </div>
             </div>
@@ -2219,9 +2602,11 @@ export function Slide20NftOverview({ isActive }: SlideComponentProps) {
             data-stagger-item
             style={stagger(0)}
           >
-            NFT ownership combines platform access, AI tooling, reward
-            participation, and compounding ecosystem upside in a single utility
-            layer.
+            {tr(
+              locale,
+              "NFT ownership combines platform access, AI tooling, reward participation, and compounding ecosystem upside in a single utility layer.",
+              "NFT 보유는 플랫폼 접근권, AI 툴링, 보상 참여, 그리고 누적되는 생태계 상승 효과를 하나의 유틸리티 레이어로 결합합니다.",
+            )}
           </div>
         </div>
       </div>
@@ -2229,13 +2614,17 @@ export function Slide20NftOverview({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide21NftWhyOwn({ isActive }: SlideComponentProps) {
+export function Slide21NftWhyOwn({ isActive, locale }: SlideComponentProps) {
+  const rewards = getNftWhyOwn(locale);
+
   return (
     <section data-slide-idx={21} className={slideClassName(isActive)} id="s21">
-      <div className="eyebrow">NFT HOLDER VALUE</div>
-      <h2 className="title">Why Hold Symoria NFT</h2>
+      <div className="eyebrow">{tr(locale, "NFT HOLDER VALUE", "NFT 홀더 가치")}</div>
+      <h2 className="title">
+        {tr(locale, "Why Hold Symoria NFT", "왜 Symoria NFT를 보유해야 하는가")}
+      </h2>
       <div className="nft-why-reward-grid">
-        {nftWhyOwn.map(({ title, icon: Icon }, index) => (
+        {rewards.map(({ title, icon: Icon }, index) => (
           <div
             key={title}
             className="nft-why-reward-card"
@@ -2253,9 +2642,12 @@ export function Slide21NftWhyOwn({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide21ReferralDirectReward({ isActive }: SlideComponentProps) {
-  const reward = nftWhyOwn[0];
-  const Icon = reward.icon;
+export function Slide21ReferralDirectReward({
+  isActive,
+  locale,
+}: SlideComponentProps) {
+  const reward = getNftWhyOwn(locale)[0];
+  const sharingBands = getReferralSharingBands(locale);
 
   return (
     <section
@@ -2263,14 +2655,17 @@ export function Slide21ReferralDirectReward({ isActive }: SlideComponentProps) {
       className={slideClassName(isActive)}
       id="s21-reward-1"
     >
-      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub ref-share-sub">
-        Deep 30-level sharing structure for platform revenue and referral
-        matching.
+        {tr(
+          locale,
+          "Deep 30-level sharing structure for platform revenue and referral matching.",
+          "플랫폼 수익과 추천 매칭을 위한 30레벨 심층 공유 구조입니다.",
+        )}
       </div>
       <div className="ref-share-grid">
-        {referralSharingBands.map((band, index) => (
+        {sharingBands.map((band, index) => (
           <div
             key={band.title}
             className="ref-share-card"
@@ -2290,7 +2685,11 @@ export function Slide21ReferralDirectReward({ isActive }: SlideComponentProps) {
         ))}
       </div>
       <div className="ref-share-footnote">
-        Calculated based on referrals across 30 total tiers.
+        {tr(
+          locale,
+          "Calculated based on referrals across 30 total tiers.",
+          "총 30개 티어의 추천 구조를 기준으로 계산되었습니다.",
+        )}
       </div>
     </section>
   );
@@ -2298,8 +2697,10 @@ export function Slide21ReferralDirectReward({ isActive }: SlideComponentProps) {
 
 export function Slide21FreeTradingSubscription({
   isActive,
+  locale,
 }: SlideComponentProps) {
-  const reward = nftWhyOwn[1];
+  const reward = getNftWhyOwn(locale)[1];
+  const plans = getNftSubscriptionPlans(locale);
 
   return (
     <section
@@ -2307,14 +2708,17 @@ export function Slide21FreeTradingSubscription({
       className={slideClassName(isActive)}
       id="s21-reward-2"
     >
-      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub nft-reward-detail-sub">
-        NFT purchase level unlocks one of four subscription packages. Higher
-        levels receive broader trading access and longer subscription periods.
+        {tr(
+          locale,
+          "NFT purchase level unlocks one of four subscription packages. Higher levels receive broader trading access and longer subscription periods.",
+          "NFT 구매 레벨에 따라 4가지 구독 패키지 중 하나가 해제됩니다. 상위 레벨일수록 더 넓은 트레이딩 권한과 더 긴 구독 기간을 받습니다.",
+        )}
       </div>
       <div className="nft-subscription-grid">
-        {nftSubscriptionPlans.map((plan, index) => {
+        {plans.map((plan, index) => {
           const PlanIcon = plan.icon;
 
           return (
@@ -2346,8 +2750,10 @@ export function Slide21FreeTradingSubscription({
 
 export function Slide21ReferralCommissionReward({
   isActive,
+  locale,
 }: SlideComponentProps) {
-  const reward = nftWhyOwn[2];
+  const reward = getNftWhyOwn(locale)[2];
+  const commissionBands = getNftCommissionBands(locale);
 
   return (
     <section
@@ -2355,15 +2761,18 @@ export function Slide21ReferralCommissionReward({
       className={slideClassName(isActive)}
       id="s21-reward-3"
     >
-      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub nft-reward-detail-sub">
-        The shared commission model totals 30%. Rewards now span every NFT level
-        from 1 through 19, with higher tiers unlocking larger commission bands.
+        {tr(
+          locale,
+          "The shared commission model totals 30%. Rewards now span every NFT level from 1 through 19, with higher tiers unlocking larger commission bands.",
+          "공유 수수료 모델의 총합은 30%입니다. 보상은 이제 1레벨부터 19레벨까지 모든 NFT 레벨에 적용되며, 상위 티어일수록 더 큰 수수료 구간이 열립니다.",
+        )}
       </div>
 
       <div className="nft-commission-band-grid">
-        {nftCommissionBands.map((band, index) => {
+        {commissionBands.map((band, index) => {
           const BandIcon = band.icon;
 
           return (
@@ -2377,7 +2786,7 @@ export function Slide21ReferralCommissionReward({
                 <div>
                   <div className="nft-commission-band-title">{band.title}</div>
                   <div className="nft-commission-band-meta">
-                    NFT Levels {band.levels[0]}-
+                    {tr(locale, "NFT Levels", "NFT 레벨")} {band.levels[0]}-
                     {band.levels[band.levels.length - 1]}
                   </div>
                 </div>
@@ -2407,8 +2816,12 @@ export function Slide21ReferralCommissionReward({
   );
 }
 
-export function Slide21TokenAirdrop({ isActive }: SlideComponentProps) {
-  const reward = nftWhyOwn[3];
+export function Slide21TokenAirdrop({
+  isActive,
+  locale,
+}: SlideComponentProps) {
+  const reward = getNftWhyOwn(locale)[3];
+  const airdropBands = getNftAirdropBands(locale);
 
   return (
     <section
@@ -2416,16 +2829,18 @@ export function Slide21TokenAirdrop({ isActive }: SlideComponentProps) {
       className={slideClassName(isActive)}
       id="s21-reward-4"
     >
-      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub nft-reward-detail-sub">
-        SYM airdrop allocations span every NFT level from 1 through 19. Higher
-        tiers receive larger token rewards, but every level keeps a defined SYM
-        allocation inside the full distribution curve.
+        {tr(
+          locale,
+          "SYM airdrop allocations span every NFT level from 1 through 19. Higher tiers receive larger token rewards, but every level keeps a defined SYM allocation inside the full distribution curve.",
+          "SYM 에어드롭 물량은 1레벨부터 19레벨까지 모든 NFT 레벨에 배정됩니다. 상위 티어일수록 더 큰 토큰 보상을 받지만, 모든 레벨에 전체 분배 곡선 내의 고정 SYM 물량이 유지됩니다.",
+        )}
       </div>
 
       <div className="nft-airdrop-band-grid">
-        {nftAirdropBands.map((band, index) => {
+        {airdropBands.map((band, index) => {
           return (
             <div
               key={band.title}
@@ -2455,26 +2870,34 @@ export function Slide21TokenAirdrop({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide23NftRewardsSystem({ isActive }: SlideComponentProps) {
+export function Slide23NftRewardsSystem({
+  isActive,
+  locale,
+}: SlideComponentProps) {
   return (
     <section data-slide-idx={23} className={slideClassName(isActive)} id="s23">
-      <div className="eyebrow">NFT REWARD SYSTEM</div>
-      <h2 className="title">NFT Holders Reward System</h2>
+      <div className="eyebrow">{tr(locale, "NFT REWARD SYSTEM", "NFT 보상 시스템")}</div>
+      <h2 className="title">
+        {tr(locale, "NFT Holders Reward System", "NFT 홀더 보상 시스템")}
+      </h2>
       <div className="sub nft-reward-sub">
-        NFT level determines referral recommendation, downline sharing depth,
-        and trading subscription rewards across the Symoria ecosystem.
+        {tr(
+          locale,
+          "NFT level determines referral recommendation, downline sharing depth, and trading subscription rewards across the Symoria ecosystem.",
+          "NFT 레벨에 따라 Symoria 생태계 전반의 추천 보상, 하위 조직 공유 깊이, 그리고 트레이딩 구독 보상이 결정됩니다.",
+        )}
       </div>
       <div className="nft-reward-panel">
         <table className="nft-reward-table">
           <thead>
             <tr>
-              <th>NFT Level</th>
-              <th>Quantity</th>
-              <th>$ Price</th>
-              <th>Price Subtotal</th>
-              <th>1. Recommendation</th>
-              <th>2. Downline Sharing</th>
-              <th>3. Trading Subscription</th>
+              <th>{tr(locale, "NFT Level", "NFT 레벨")}</th>
+              <th>{tr(locale, "Quantity", "수량")}</th>
+              <th>{tr(locale, "$ Price", "$ 가격")}</th>
+              <th>{tr(locale, "Price Subtotal", "가격 소계")}</th>
+              <th>{tr(locale, "1. Recommendation", "1. 추천 보상")}</th>
+              <th>{tr(locale, "2. Downline Sharing", "2. 하위 조직 공유")}</th>
+              <th>{tr(locale, "3. Trading Subscription", "3. 트레이딩 구독")}</th>
             </tr>
           </thead>
           <tbody>
@@ -2490,12 +2913,12 @@ export function Slide23NftRewardsSystem({ isActive }: SlideComponentProps) {
               ]) => (
                 <tr key={level}>
                   <td>{level}</td>
-                  <td>{quantity}</td>
+                  <td>{translateRewardCell(locale, quantity)}</td>
                   <td>{price}</td>
                   <td>{subtotal}</td>
                   <td>{recommendation}</td>
-                  <td>{downline}</td>
-                  <td>{trading}</td>
+                  <td>{translateRewardCell(locale, downline)}</td>
+                  <td>{translateRewardCell(locale, trading)}</td>
                 </tr>
               ),
             )}
@@ -2506,23 +2929,30 @@ export function Slide23NftRewardsSystem({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide24NftTradingAccess({ isActive }: SlideComponentProps) {
+export function Slide24NftTradingAccess({
+  isActive,
+  locale,
+}: SlideComponentProps) {
+  const tiers = getNftTradingAccessTiers(locale);
+
   return (
     <section data-slide-idx={24} className={slideClassName(isActive)} id="s24">
       <div className="nft-access-mesh" aria-hidden="true" />
-      <div className="eyebrow">AI TRADING ACCESS</div>
+      <div className="eyebrow">{tr(locale, "AI TRADING ACCESS", "AI 트레이딩 접근권")}</div>
       <h2 className="title nft-access-title">
-        Unlock AI Trading with{" "}
+        {tr(locale, "Unlock AI Trading with", "AI 트레이딩을 여는 열쇠,")} {" "}
         <span className="nft-access-accent">Symoria NFTs</span>
       </h2>
       <div className="sub nft-access-sub">
-        Hold Symoria NFTs to gain exclusive access to Symoria&apos;s AI-powered
-        trading platform, with premium subscription benefits based on your NFT
-        level.
+        {tr(
+          locale,
+          "Hold Symoria NFTs to gain exclusive access to Symoria's AI-powered trading platform, with premium subscription benefits based on your NFT level.",
+          "Symoria NFT를 보유하면 NFT 레벨에 따라 프리미엄 구독 혜택과 함께 Symoria의 AI 기반 트레이딩 플랫폼에 독점적으로 접근할 수 있습니다.",
+        )}
       </div>
-      <div className="nft-access-label">Holder Benefits</div>
+      <div className="nft-access-label">{tr(locale, "Holder Benefits", "홀더 혜택")}</div>
       <div className="nft-access-grid">
-        {nftTradingAccessTiers.map((tier, index) => (
+        {tiers.map((tier, index) => (
           <div
             key={tier.title}
             className="nft-access-card"
@@ -2536,7 +2966,7 @@ export function Slide24NftTradingAccess({ isActive }: SlideComponentProps) {
             <div className="nft-access-card-meta">{tier.holders}</div>
             <div className="nft-access-duration">{tier.duration}</div>
             <div className="nft-access-duration-label">
-              premium subscription access
+              {tr(locale, "premium subscription access", "프리미엄 구독 이용권")}
             </div>
           </div>
         ))}
@@ -2545,82 +2975,102 @@ export function Slide24NftTradingAccess({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide20Pricing({ isActive }: SlideComponentProps) {
+export function Slide20Pricing({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={25} className={slideClassName(isActive)} id="s25">
-      <div className="eyebrow">TRANSPARENT PRICING</div>
-      <h2 className="title">No Hidden Fees. Ever.</h2>
+      <div className="eyebrow">{tr(locale, "TRANSPARENT PRICING", "투명한 가격 정책")}</div>
+      <h2 className="title">{tr(locale, "No Hidden Fees. Ever.", "숨겨진 수수료는 없습니다.")}</h2>
       <div className="pricing-grid">
         <div className="pricing-box from-left">
-          <div className="pricing-type">SUBSCRIPTION</div>
-          <div className="pricing-headline">Flat monthly fee.</div>
+          <div className="pricing-type">{tr(locale, "SUBSCRIPTION", "구독형")}</div>
+          <div className="pricing-headline">{tr(locale, "Flat monthly fee.", "고정 월 구독료.")}</div>
           <div className="pricing-body">
-            No percentage of profits taken. Pay once, access everything in your
-            tier.
+            {tr(
+              locale,
+              "No percentage of profits taken. Pay once, access everything in your tier.",
+              "수익의 일정 비율을 가져가지 않습니다. 한 번 결제하면 해당 티어의 모든 기능을 이용할 수 있습니다.",
+            )}
           </div>
         </div>
         <div className="pricing-box from-right">
-          <div className="pricing-type">PERFORMANCE</div>
-          <div className="pricing-headline">0% performance fee.</div>
+          <div className="pricing-type">{tr(locale, "PERFORMANCE", "성과형")}</div>
+          <div className="pricing-headline">{tr(locale, "0% performance fee.", "성과 수수료 0%.")}</div>
           <div className="pricing-body">
-            Your gains are yours. We don&apos;t profit from your success.
+            {tr(
+              locale,
+              "Your gains are yours. We don't profit from your success.",
+              "수익은 전적으로 사용자 몫입니다. 고객의 성공에서 저희가 추가 이익을 취하지 않습니다.",
+            )}
           </div>
         </div>
       </div>
       <div className="sub" style={{ marginTop: 32, fontSize: 18 }}>
-        Symoria earns through subscriptions, not by skimming your alpha.
+        {tr(
+          locale,
+          "Symoria earns through subscriptions, not by skimming your alpha.",
+          "Symoria는 알파를 가져가는 구조가 아니라 구독 모델로 수익을 창출합니다.",
+        )}
       </div>
     </section>
   );
 }
 
-export function Slide21Referral({ isActive }: SlideComponentProps) {
+export function Slide21Referral({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={26} className={slideClassName(isActive)} id="s26">
-      <div className="eyebrow">REFERRAL PROGRAM</div>
-      <h2 className="title">Grow Together. Earn Together.</h2>
+      <div className="eyebrow">{tr(locale, "REFERRAL PROGRAM", "추천 프로그램")}</div>
+      <h2 className="title">{tr(locale, "Grow Together. Earn Together.", "함께 성장하고 함께 보상받습니다.")}</h2>
       <div className="ref-steps">
         <div className="ref-step" data-stagger-item style={stagger(0)}>
           <div className="ref-num">01</div>
-          <div className="ref-title">Share your link</div>
+          <div className="ref-title">{tr(locale, "Share your link", "링크를 공유하세요")}</div>
           <div className="ref-body">
-            Get your unique referral URL from the dashboard
+            {tr(locale, "Get your unique referral URL from the dashboard", "대시보드에서 나만의 추천 URL을 받습니다")}
           </div>
         </div>
         <div className="ref-arrow">→</div>
         <div className="ref-step" data-stagger-item style={stagger(1)}>
           <div className="ref-num">02</div>
-          <div className="ref-title">Friend signs up</div>
-          <div className="ref-body">They subscribe to any paid plan</div>
+          <div className="ref-title">{tr(locale, "Friend signs up", "지인이 가입합니다")}</div>
+          <div className="ref-body">{tr(locale, "They subscribe to any paid plan", "유료 플랜 중 하나를 구독합니다")}</div>
         </div>
         <div className="ref-arrow">→</div>
         <div className="ref-step" data-stagger-item style={stagger(2)}>
           <div className="ref-num">03</div>
-          <div className="ref-title">You earn 20%</div>
-          <div className="ref-body">Recurring monthly commission, forever</div>
+          <div className="ref-title">{tr(locale, "You earn 20%", "20%를 적립합니다")}</div>
+          <div className="ref-body">{tr(locale, "Recurring monthly commission, forever", "매월 반복 수수료가 계속 지급됩니다")}</div>
         </div>
       </div>
       <div className="consensus-msg" style={{ marginTop: 40 }}>
-        ▸ UNLIMITED REFERRALS · PAID IN USDC · MONTHLY
+        {tr(locale, "▸ UNLIMITED REFERRALS · PAID IN USDC · MONTHLY", "▸ 무제한 추천 · USDC 지급 · 매월 정산")}
       </div>
     </section>
   );
 }
 
-export function Slide22ReferralSharing({ isActive }: SlideComponentProps) {
+export function Slide22ReferralSharing({
+  isActive,
+  locale,
+}: SlideComponentProps) {
+  const sharingBands = getReferralSharingBands(locale);
+
   return (
     <section data-slide-idx={27} className={slideClassName(isActive)} id="s27">
       <div className="ref-share-mesh" aria-hidden="true" />
-      <div className="eyebrow">REFERRAL LEVEL SHARING</div>
+      <div className="eyebrow">{tr(locale, "REFERRAL LEVEL SHARING", "추천 레벨 공유")}</div>
       <h2 className="title ref-share-title">
-        Referral <span className="ref-share-accent">Level Sharing</span>
+        {tr(locale, "Referral ", "추천 ")}
+        <span className="ref-share-accent">{tr(locale, "Level Sharing", "레벨 공유")}</span>
       </h2>
       <div className="sub ref-share-sub">
-        Deep 30-level sharing structure for platform revenue and referral
-        matching.
+        {tr(
+          locale,
+          "Deep 30-level sharing structure for platform revenue and referral matching.",
+          "플랫폼 수익과 추천 매칭을 위한 30레벨 심층 공유 구조입니다.",
+        )}
       </div>
       <div className="ref-share-grid">
-        {referralSharingBands.map((band, index) => (
+        {sharingBands.map((band, index) => (
           <div
             key={band.title}
             className="ref-share-card"
@@ -2640,27 +3090,34 @@ export function Slide22ReferralSharing({ isActive }: SlideComponentProps) {
         ))}
       </div>
       <div className="ref-share-footnote">
-        Calculated based on referrals across 30 total tiers.
+        {tr(
+          locale,
+          "Calculated based on referrals across 30 total tiers.",
+          "총 30개 티어의 추천 구조를 기준으로 계산되었습니다.",
+        )}
       </div>
     </section>
   );
 }
 
-export function Slide25Tokenomics({ isActive }: SlideComponentProps) {
+export function Slide25Tokenomics({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={31} className={slideClassName(isActive)} id="s31">
-      <div className="eyebrow">SYM TOKEN</div>
-      <h2 className="title">The Fuel of Autonomous Finance</h2>
+      <div className="eyebrow">{tr(locale, "SYM TOKEN", "SYM 토큰")}</div>
+      <h2 className="title">{tr(locale, "The Fuel of Autonomous Finance", "자율 금융을 구동하는 연료")}</h2>
       <div className="sub">
-        SYM powers fee discounts, governance voting, and staking rewards within
-        the Symoria ecosystem.
+        {tr(
+          locale,
+          "SYM powers fee discounts, governance voting, and staking rewards within the Symoria ecosystem.",
+          "SYM은 Symoria 생태계 내에서 수수료 할인, 거버넌스 투표, 그리고 스테이킹 보상의 핵심 역할을 합니다.",
+        )}
       </div>
       <div className="token-grid">
         {[
-          ["40%", "Community & Ecosystem"],
-          ["20%", "Team (4yr vesting)"],
-          ["20%", "Treasury"],
-          ["20%", "Early Investors"],
+          ["40%", tr(locale, "Community & Ecosystem", "커뮤니티 및 생태계")],
+          ["20%", tr(locale, "Team (4yr vesting)", "팀 (4년 베스팅)")],
+          ["20%", tr(locale, "Treasury", "트레저리")],
+          ["20%", tr(locale, "Early Investors", "초기 투자자")],
         ].map(([percent, label], index) => (
           <div
             key={label}
@@ -2677,18 +3134,18 @@ export function Slide25Tokenomics({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide26WhyNow({ isActive }: SlideComponentProps) {
+export function Slide26WhyNow({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={32} className={slideClassName(isActive)} id="s32">
-      <div className="eyebrow">TIMING</div>
-      <h2 className="title">The Perfect Convergence</h2>
+      <div className="eyebrow">{tr(locale, "TIMING", "타이밍")}</div>
+      <h2 className="title">{tr(locale, "The Perfect Convergence", "완벽한 수렴의 시점")}</h2>
       <div className="two-col" style={{ marginTop: 56 }}>
         <div className="from-left">
           <ul className="why-list">
-            <li>DeFi TVL rebounds to $3T+</li>
-            <li>AI models hit inflection point</li>
-            <li>ZK tech now viable at scale</li>
-            <li>Retail demands smarter tools</li>
+            <li>{tr(locale, "DeFi TVL rebounds to $3T+", "DeFi TVL이 $3T+ 수준으로 회복")}</li>
+            <li>{tr(locale, "AI models hit inflection point", "AI 모델이 변곡점에 도달")}</li>
+            <li>{tr(locale, "ZK tech now viable at scale", "ZK 기술이 대규모 적용 가능한 단계에 진입")}</li>
+            <li>{tr(locale, "Retail demands smarter tools", "리테일 투자자가 더 스마트한 도구를 요구")}</li>
           </ul>
         </div>
         <div
@@ -2696,9 +3153,9 @@ export function Slide26WhyNow({ isActive }: SlideComponentProps) {
           style={{ display: "flex", alignItems: "center" }}
         >
           <div className="why-window">
-            The window is open.
+            {tr(locale, "The window is open.", "지금이 바로")}
             <br />
-            For now.
+            {tr(locale, "For now.", "기회의 창입니다.")}
           </div>
         </div>
       </div>
@@ -2706,28 +3163,44 @@ export function Slide26WhyNow({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide27Faq({ isActive }: SlideComponentProps) {
+export function Slide27Faq({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={33} className={slideClassName(isActive)} id="s33">
       <div className="eyebrow">FAQ</div>
-      <h2 className="title">Common Questions</h2>
+      <h2 className="title">{tr(locale, "Common Questions", "자주 묻는 질문")}</h2>
       <div className="faq-grid">
         {[
           [
-            "Is my capital safe?",
-            "Symoria is non-custodial. Your keys, your assets. We never hold your funds.",
+            tr(locale, "Is my capital safe?", "내 자본은 안전한가요?"),
+            tr(
+              locale,
+              "Symoria is non-custodial. Your keys, your assets. We never hold your funds.",
+              "Symoria는 비수탁형 구조입니다. 키도 자산도 모두 사용자에게 있습니다. 저희는 고객 자금을 보유하지 않습니다.",
+            ),
           ],
           [
-            "What are the risks?",
-            "DeFi involves smart contract and market risk. Start small and understand what you're deploying.",
+            tr(locale, "What are the risks?", "어떤 리스크가 있나요?"),
+            tr(
+              locale,
+              "DeFi involves smart contract and market risk. Start small and understand what you're deploying.",
+              "DeFi에는 스마트컨트랙트 리스크와 시장 리스크가 포함됩니다. 소액으로 시작하고, 투입하는 구조를 충분히 이해한 뒤 참여해야 합니다.",
+            ),
           ],
           [
-            "Which wallets work?",
-            "MetaMask, WalletConnect, Ledger, and all EVM-compatible wallets are fully supported.",
+            tr(locale, "Which wallets work?", "어떤 지갑을 사용할 수 있나요?"),
+            tr(
+              locale,
+              "MetaMask, WalletConnect, Ledger, and all EVM-compatible wallets are fully supported.",
+              "MetaMask, WalletConnect, Ledger를 포함한 모든 EVM 호환 지갑을 지원합니다.",
+            ),
           ],
           [
-            "Can I withdraw anytime?",
-            "Yes. No lockups. Full liquidity, always. Your capital is never locked.",
+            tr(locale, "Can I withdraw anytime?", "언제든 출금할 수 있나요?"),
+            tr(
+              locale,
+              "Yes. No lockups. Full liquidity, always. Your capital is never locked.",
+              "예. 락업이 없으며 언제나 완전한 유동성을 유지합니다. 사용자의 자본은 잠기지 않습니다.",
+            ),
           ],
         ].map(([question, answer], index) => (
           <div
@@ -2745,11 +3218,11 @@ export function Slide27Faq({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide28TvlGrowth({ isActive }: SlideComponentProps) {
+export function Slide28TvlGrowth({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={34} className={slideClassName(isActive)} id="s34">
-      <div className="eyebrow">GROWTH</div>
-      <h2 className="title">Symoria TVL: 0 → $48M in 6 Months</h2>
+      <div className="eyebrow">{tr(locale, "GROWTH", "성장")}</div>
+      <h2 className="title">{tr(locale, "Symoria TVL: 0 → $48M in 6 Months", "Symoria TVL: 6개월 만에 0 → $48M")}</h2>
       <div className="bar-grid">
         {[
           ["$0.8M", 40],
@@ -2767,56 +3240,61 @@ export function Slide28TvlGrowth({ isActive }: SlideComponentProps) {
           >
             <div className="bar-val">{value}</div>
             <div className="bar-bar" style={{ height }} />
-            <div className="bar-label">Month {index + 1}</div>
+            <div className="bar-label">{tr(locale, "Month", "월")} {index + 1}</div>
           </div>
         ))}
       </div>
       <div className="sub" style={{ marginTop: 28, fontSize: 18 }}>
-        Organic growth. No VCs. No paid TVL.
+        {tr(locale, "Organic growth. No VCs. No paid TVL.", "자생적 성장입니다. VC 자금도, 유료 TVL도 없습니다.")}
       </div>
     </section>
   );
 }
 
-export function Slide29Legal({ isActive }: SlideComponentProps) {
+export function Slide29Legal({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={35} className={slideClassName(isActive)} id="s35">
-      <div className="eyebrow">LEGAL</div>
-      <h2 className="title">Important Disclosures</h2>
+      <div className="eyebrow">{tr(locale, "LEGAL", "법률 고지")}</div>
+      <h2 className="title">{tr(locale, "Important Disclosures", "중요 고지 사항")}</h2>
       <div className="legal-body">
         <p>
-          Symoria is a non-custodial AI-powered DeFi automation platform. We do
-          not hold, manage, or control user assets at any time. All trade
-          execution occurs via smart contracts deployed on public blockchains,
-          initiated by user-authorized transactions.
+          {tr(
+            locale,
+            "Symoria is a non-custodial AI-powered DeFi automation platform. We do not hold, manage, or control user assets at any time. All trade execution occurs via smart contracts deployed on public blockchains, initiated by user-authorized transactions.",
+            "Symoria는 비수탁형 AI 기반 DeFi 자동화 플랫폼입니다. 당사는 어떠한 시점에도 사용자 자산을 보유, 관리 또는 통제하지 않습니다. 모든 거래 실행은 공개 블록체인에 배포된 스마트컨트랙트를 통해 이루어지며, 사용자 승인 거래로 시작됩니다.",
+          )}
         </p>
         <p>
-          Nothing in this presentation constitutes financial, investment, legal,
-          or tax advice. All performance data presented is historical or
-          simulated and does not guarantee future results. DeFi markets are
-          highly volatile and may result in partial or total loss of capital.
+          {tr(
+            locale,
+            "Nothing in this presentation constitutes financial, investment, legal, or tax advice. All performance data presented is historical or simulated and does not guarantee future results. DeFi markets are highly volatile and may result in partial or total loss of capital.",
+            "본 자료의 어떠한 내용도 금융, 투자, 법률 또는 세무 자문에 해당하지 않습니다. 제시된 모든 성과 데이터는 과거 실적 또는 시뮬레이션 결과이며 미래 성과를 보장하지 않습니다. DeFi 시장은 높은 변동성을 가지며 자본의 일부 또는 전부 손실이 발생할 수 있습니다.",
+          )}
         </p>
         <p>
-          Users are responsible for complying with applicable laws and
-          regulations in their jurisdiction. Symoria does not offer services in
-          jurisdictions where such services are prohibited by law, including but
-          not limited to the United States of America.
+          {tr(
+            locale,
+            "Users are responsible for complying with applicable laws and regulations in their jurisdiction. Symoria does not offer services in jurisdictions where such services are prohibited by law, including but not limited to the United States of America.",
+            "사용자는 자신의 관할권에서 적용되는 법률과 규제를 준수할 책임이 있습니다. Symoria는 미국을 포함하되 이에 한정되지 않는, 관련 서비스가 법률상 금지된 지역에서는 서비스를 제공하지 않습니다.",
+          )}
         </p>
         <p>
-          Smart contract risk, market risk, liquidity risk, and regulatory risk
-          are inherent to all DeFi activities. Please conduct independent due
-          diligence before using any financial protocol.
+          {tr(
+            locale,
+            "Smart contract risk, market risk, liquidity risk, and regulatory risk are inherent to all DeFi activities. Please conduct independent due diligence before using any financial protocol.",
+            "스마트컨트랙트 리스크, 시장 리스크, 유동성 리스크, 규제 리스크는 모든 DeFi 활동에 내재되어 있습니다. 어떤 금융 프로토콜을 이용하기 전에도 반드시 독립적인 실사를 수행하시기 바랍니다.",
+          )}
         </p>
       </div>
     </section>
   );
 }
 
-export function Slide30Cta({ isActive }: SlideComponentProps) {
+export function Slide30Cta({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={36} className={slideClassName(isActive)} id="s36">
-      <div className="eyebrow">GET STARTED</div>
-      <h2 className="title">Your Portfolio. Running Itself.</h2>
+      <div className="eyebrow">{tr(locale, "GET STARTED", "시작하기")}</div>
+      <h2 className="title">{tr(locale, "Your Portfolio. Running Itself.", "당신의 포트폴리오, 스스로 운용됩니다.")}</h2>
       <div className="two-col">
         <div className="from-left">
           <div className="col-stat-list">
@@ -2831,7 +3309,7 @@ export function Slide30Cta({ isActive }: SlideComponentProps) {
               >
                 $0M TVL
               </div>
-              <div className="col-stat-label">Total Value Locked</div>
+              <div className="col-stat-label">{tr(locale, "Total Value Locked", "총 예치 자산")}</div>
             </div>
             <div className="col-stat">
               <div
@@ -2843,7 +3321,7 @@ export function Slide30Cta({ isActive }: SlideComponentProps) {
               >
                 0 Users
               </div>
-              <div className="col-stat-label">Active Traders</div>
+              <div className="col-stat-label">{tr(locale, "Active Traders", "활성 트레이더")}</div>
             </div>
             <div className="col-stat">
               <div
@@ -2856,7 +3334,7 @@ export function Slide30Cta({ isActive }: SlideComponentProps) {
               >
                 $0.0M/mo
               </div>
-              <div className="col-stat-label">Monthly Volume</div>
+              <div className="col-stat-label">{tr(locale, "Monthly Volume", "월간 거래량")}</div>
             </div>
           </div>
         </div>
@@ -2889,7 +3367,7 @@ export function Slide30Cta({ isActive }: SlideComponentProps) {
               marginBottom: 32,
             }}
           >
-            Autonomous AI · DeFi · 2026
+            {tr(locale, "Autonomous AI · DeFi · 2026", "자율형 AI · DeFi · 2026")}
           </div>
           <div style={{ display: "flex", gap: 16 }}>
             <a
@@ -2916,7 +3394,9 @@ export function Slide30Cta({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide31SocialStats({ isActive }: SlideComponentProps) {
+export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
+  const stats = getSocialStats(locale);
+
   return (
     <section data-slide-idx={37} className={slideClassName(isActive)} id="s37">
       <div className="socials-ribbon socials-ribbon-a" />
@@ -2924,14 +3404,18 @@ export function Slide31SocialStats({ isActive }: SlideComponentProps) {
       <div className="socials-vignette" />
       <div className="socials-shell">
         <h2 className="title socials-title">
-          Connect with <span className="socials-title-accent">Symoria</span>
+          {tr(locale, "Connect with ", "함께하세요, ")}
+          <span className="socials-title-accent">Symoria</span>
         </h2>
         <div className="sub socials-sub">
-          Join our community and stay updated with the latest AI-driven DeFi
-          insights
+          {tr(
+            locale,
+            "Join our community and stay updated with the latest AI-driven DeFi insights",
+            "커뮤니티에 참여하고 최신 AI 기반 DeFi 인사이트를 가장 먼저 받아보세요",
+          )}
         </div>
         <div className="socials-grid">
-          {socialStats.map((entry, index) => (
+          {stats.map((entry, index) => (
             <div
               key={entry.platform}
               className="socials-card"
@@ -2952,7 +3436,10 @@ export function Slide31SocialStats({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide31ThankYou({ isActive }: SlideComponentProps) {
+export function Slide31ThankYou({
+  isActive,
+  locale,
+}: SlideComponentProps) {
   return (
     <section data-slide-idx={38} className={slideClassName(isActive)} id="s38">
       <div className="end-glow" />
@@ -2961,11 +3448,13 @@ export function Slide31ThankYou({ isActive }: SlideComponentProps) {
           SYMORIA <em>AI</em>
         </div>
         <div className="end-msg">
-          Your portfolio.
+          {tr(locale, "Your portfolio.", "당신의 포트폴리오.")}
           <br />
-          Running itself.
+          {tr(locale, "Running itself.", "스스로 운용됩니다.")}
         </div>
-        <div className="end-meta">THANK YOU · SYMORIA.IO · 2026</div>
+        <div className="end-meta">
+          {tr(locale, "THANK YOU · SYMORIA.IO · 2026", "감사합니다 · SYMORIA.IO · 2026")}
+        </div>
       </div>
     </section>
   );
