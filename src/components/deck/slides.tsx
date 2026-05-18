@@ -1,16 +1,37 @@
-import type { CSSProperties } from "react";
-import { Bot, Coins, Crown, Gift, Network, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  Bot,
+  Coins,
+  Crown,
+  Gift,
+  Network,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react";
 
 type SlideComponentProps = {
   isActive: boolean;
 };
 
 const socialStats = [
-  { platform: "CoinMarketCap", handle: "@Symoria", audience: "38,100 Followers" },
+  {
+    platform: "CoinMarketCap",
+    handle: "@Symoria",
+    audience: "38,100 Followers",
+  },
   { platform: "X", handle: "@symoriaio", audience: "97,000 Followers" },
   { platform: "Telegram", handle: "@symoria", audience: "498,000 Subscribers" },
-  { platform: "YouTube", handle: "@symoriaAI", audience: "102,000 Subscribers" },
-  { platform: "Instagram", handle: "@symoriaai", audience: "153,000 Followers" },
+  {
+    platform: "YouTube",
+    handle: "@symoriaAI",
+    audience: "102,000 Subscribers",
+  },
+  {
+    platform: "Instagram",
+    handle: "@symoriaai",
+    audience: "153,000 Followers",
+  },
   { platform: "Facebook", handle: "@symoria", audience: "61,000 Followers" },
   { platform: "TikTok", handle: "@symoriaai", audience: "34,500 Followers" },
   { platform: "Medium", handle: "@symoria", audience: "2,800 Followers" },
@@ -59,19 +80,115 @@ const nftBenefitCards = [
 
 const nftRewardRows = [
   ["1", "70", "60,000", "4,200,000", "12%", "30 GENERATIONS", "12 MONTHS FREE"],
-  ["2", "140", "50,000", "7,000,000", "12%", "30 GENERATIONS", "12 MONTHS FREE"],
-  ["3", "200", "30,000", "6,000,000", "12%", "30 GENERATIONS", "12 MONTHS FREE"],
-  ["4", "400", "20,000", "8,000,000", "12%", "30 GENERATIONS", "12 MONTHS FREE"],
+  [
+    "2",
+    "140",
+    "50,000",
+    "7,000,000",
+    "12%",
+    "30 GENERATIONS",
+    "12 MONTHS FREE",
+  ],
+  [
+    "3",
+    "200",
+    "30,000",
+    "6,000,000",
+    "12%",
+    "30 GENERATIONS",
+    "12 MONTHS FREE",
+  ],
+  [
+    "4",
+    "400",
+    "20,000",
+    "8,000,000",
+    "12%",
+    "30 GENERATIONS",
+    "12 MONTHS FREE",
+  ],
   ["5", "600", "15,000", "9,000,000", "11%", "20 GENERATIONS", "9 MONTHS FREE"],
-  ["6", "1,000", "10,000", "10,000,000", "11%", "20 GENERATIONS", "9 MONTHS FREE"],
-  ["7", "1,500", "8,000", "12,000,000", "11%", "20 GENERATIONS", "9 MONTHS FREE"],
-  ["8", "3,000", "5,000", "15,000,000", "11%", "20 GENERATIONS", "9 MONTHS FREE"],
-  ["9", "5,000", "4,000", "20,000,000", "10%", "10 GENERATIONS", "6 MONTHS FREE"],
-  ["10", "7,000", "3,000", "21,000,000", "10%", "10 GENERATIONS", "6 MONTHS FREE"],
-  ["11", "10,000", "2,000", "20,000,000", "10%", "10 GENERATIONS", "6 MONTHS FREE"],
-  ["12", "12,000", "1,500", "18,000,000", "10%", "10 GENERATIONS", "6 MONTHS FREE"],
-  ["13", "15,000", "1,000", "15,000,000", "10%", "10 GENERATIONS", "6 MONTHS FREE"],
-  ["14", "18,000", "800", "14,400,000", "10%", "10 GENERATIONS", "6 MONTHS FREE"],
+  [
+    "6",
+    "1,000",
+    "10,000",
+    "10,000,000",
+    "11%",
+    "20 GENERATIONS",
+    "9 MONTHS FREE",
+  ],
+  [
+    "7",
+    "1,500",
+    "8,000",
+    "12,000,000",
+    "11%",
+    "20 GENERATIONS",
+    "9 MONTHS FREE",
+  ],
+  [
+    "8",
+    "3,000",
+    "5,000",
+    "15,000,000",
+    "11%",
+    "20 GENERATIONS",
+    "9 MONTHS FREE",
+  ],
+  [
+    "9",
+    "5,000",
+    "4,000",
+    "20,000,000",
+    "10%",
+    "10 GENERATIONS",
+    "6 MONTHS FREE",
+  ],
+  [
+    "10",
+    "7,000",
+    "3,000",
+    "21,000,000",
+    "10%",
+    "10 GENERATIONS",
+    "6 MONTHS FREE",
+  ],
+  [
+    "11",
+    "10,000",
+    "2,000",
+    "20,000,000",
+    "10%",
+    "10 GENERATIONS",
+    "6 MONTHS FREE",
+  ],
+  [
+    "12",
+    "12,000",
+    "1,500",
+    "18,000,000",
+    "10%",
+    "10 GENERATIONS",
+    "6 MONTHS FREE",
+  ],
+  [
+    "13",
+    "15,000",
+    "1,000",
+    "15,000,000",
+    "10%",
+    "10 GENERATIONS",
+    "6 MONTHS FREE",
+  ],
+  [
+    "14",
+    "18,000",
+    "800",
+    "14,400,000",
+    "10%",
+    "10 GENERATIONS",
+    "6 MONTHS FREE",
+  ],
   ["15", "20,000", "500", "10,000,000", "8%", "5 GENERATIONS", "3 MONTHS FREE"],
   ["16", "23,000", "400", "9,200,000", "8%", "5 GENERATIONS", "3 MONTHS FREE"],
   ["17", "26,000", "300", "7,800,000", "8%", "5 GENERATIONS", "3 MONTHS FREE"],
@@ -147,14 +264,20 @@ const problemChartFrame = {
   paddingBottom: 56,
 };
 
-const problemChartBaseline = problemChartFrame.height - problemChartFrame.paddingBottom;
-const problemChartUsableHeight = problemChartBaseline - problemChartFrame.paddingTop;
+const problemChartBaseline =
+  problemChartFrame.height - problemChartFrame.paddingBottom;
+const problemChartUsableHeight =
+  problemChartBaseline - problemChartFrame.paddingTop;
 const problemChartMaxValue = 180;
 const problemChartPoints = problemVolatilitySeries.map((point, index) => {
   const x =
     problemChartFrame.paddingX +
-    index * ((problemChartFrame.width - problemChartFrame.paddingX * 2) / (problemVolatilitySeries.length - 1));
-  const y = problemChartFrame.paddingTop + (1 - point.value / problemChartMaxValue) * problemChartUsableHeight;
+    index *
+      ((problemChartFrame.width - problemChartFrame.paddingX * 2) /
+        (problemVolatilitySeries.length - 1));
+  const y =
+    problemChartFrame.paddingTop +
+    (1 - point.value / problemChartMaxValue) * problemChartUsableHeight;
 
   return {
     ...point,
@@ -163,7 +286,9 @@ const problemChartPoints = problemVolatilitySeries.map((point, index) => {
   };
 });
 
-const problemChartLinePath = problemChartPoints.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
+const problemChartLinePath = problemChartPoints
+  .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
+  .join(" ");
 const problemChartAreaPath = `${problemChartLinePath} L ${problemChartPoints[problemChartPoints.length - 1].x} ${problemChartBaseline} L ${problemChartPoints[0].x} ${problemChartBaseline} Z`;
 
 const narrativeChartFrame = {
@@ -174,7 +299,8 @@ const narrativeChartFrame = {
   paddingBottom: 54,
 };
 
-const narrativeChartBaseline = narrativeChartFrame.height - narrativeChartFrame.paddingBottom;
+const narrativeChartBaseline =
+  narrativeChartFrame.height - narrativeChartFrame.paddingBottom;
 
 const narrativeCompactChartFrame = {
   width: 1260,
@@ -184,12 +310,20 @@ const narrativeCompactChartFrame = {
   paddingBottom: 42,
 };
 
-const narrativeCompactChartBaseline = narrativeCompactChartFrame.height - narrativeCompactChartFrame.paddingBottom;
+const narrativeCompactChartBaseline =
+  narrativeCompactChartFrame.height - narrativeCompactChartFrame.paddingBottom;
 
-function getChartY(value: number, frame: typeof narrativeChartFrame, min: number, max: number, scale: "linear" | "log" = "linear") {
+function getChartY(
+  value: number,
+  frame: typeof narrativeChartFrame,
+  min: number,
+  max: number,
+  scale: "linear" | "log" = "linear",
+) {
   const normalized =
     scale === "log"
-      ? (Math.log10(value) - Math.log10(min)) / (Math.log10(max) - Math.log10(min))
+      ? (Math.log10(value) - Math.log10(min)) /
+        (Math.log10(max) - Math.log10(min))
       : (value - min) / (max - min);
 
   const baseline = frame.height - frame.paddingBottom;
@@ -207,16 +341,23 @@ function createChartPoints<T extends { label: string; value: number }>(
 ) {
   return series.map((point, index) => ({
     ...point,
-    x: frame.paddingX + index * ((frame.width - frame.paddingX * 2) / (series.length - 1)),
+    x:
+      frame.paddingX +
+      index * ((frame.width - frame.paddingX * 2) / (series.length - 1)),
     y: getChartY(point.value, frame, min, max, scale),
   }));
 }
 
 function getLinePath(points: readonly { x: number; y: number }[]) {
-  return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
+  return points
+    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
+    .join(" ");
 }
 
-function getAreaPath(points: readonly { x: number; y: number }[], baseline: number) {
+function getAreaPath(
+  points: readonly { x: number; y: number }[],
+  baseline: number,
+) {
   return `${getLinePath(points)} L ${points[points.length - 1].x} ${baseline} L ${points[0].x} ${baseline} Z`;
 }
 
@@ -236,7 +377,9 @@ const volatilityRealityScale = {
 } as const;
 
 const volatilityRealityChartFrame = narrativeCompactChartFrame;
-const volatilityRealityChartBaseline = volatilityRealityChartFrame.height - volatilityRealityChartFrame.paddingBottom;
+const volatilityRealityChartBaseline =
+  volatilityRealityChartFrame.height -
+  volatilityRealityChartFrame.paddingBottom;
 
 const volatilityRealityPoints = createChartPoints(
   volatilityRealitySeries,
@@ -244,10 +387,19 @@ const volatilityRealityPoints = createChartPoints(
   volatilityRealityScale.min,
   volatilityRealityScale.max,
 );
-const volatilityRealityAreaPath = getAreaPath(volatilityRealityPoints, volatilityRealityChartBaseline);
-const volatilityRealityLeadPath = getLinePath(volatilityRealityPoints.slice(0, 2));
-const volatilityRealityDropPath = getLinePath(volatilityRealityPoints.slice(0, 5));
-const volatilityRealityRecoveryPath = getLinePath(volatilityRealityPoints.slice(4));
+const volatilityRealityAreaPath = getAreaPath(
+  volatilityRealityPoints,
+  volatilityRealityChartBaseline,
+);
+const volatilityRealityLeadPath = getLinePath(
+  volatilityRealityPoints.slice(0, 2),
+);
+const volatilityRealityDropPath = getLinePath(
+  volatilityRealityPoints.slice(0, 5),
+);
+const volatilityRealityRecoveryPath = getLinePath(
+  volatilityRealityPoints.slice(4),
+);
 
 const defiMarketCapSeries = [
   { label: "2014", value: 0.01 },
@@ -298,25 +450,66 @@ const defiGrowthNarrativeSeries = [
 ] as const;
 
 const defiGrowthNarrativeChartFrame = narrativeCompactChartFrame;
-const defiGrowthNarrativeChartBaseline = defiGrowthNarrativeChartFrame.height - defiGrowthNarrativeChartFrame.paddingBottom;
-const defiGrowthNarrativePoints = createChartPoints(defiGrowthNarrativeSeries, defiGrowthNarrativeChartFrame, 0, 5);
-const defiGrowthNarrativeSectorPoints = createChartPoints(defiSectorSeries, defiGrowthNarrativeChartFrame, 0, 5);
+const defiGrowthNarrativeChartBaseline =
+  defiGrowthNarrativeChartFrame.height -
+  defiGrowthNarrativeChartFrame.paddingBottom;
+const defiGrowthNarrativePoints = createChartPoints(
+  defiGrowthNarrativeSeries,
+  defiGrowthNarrativeChartFrame,
+  0,
+  5,
+);
+const defiGrowthNarrativeSectorPoints = createChartPoints(
+  defiSectorSeries,
+  defiGrowthNarrativeChartFrame,
+  0,
+  5,
+);
 const defiGrowthNarrativeLinePath = getLinePath(defiGrowthNarrativePoints);
-const defiGrowthNarrativeAreaPath = getAreaPath(defiGrowthNarrativePoints, defiGrowthNarrativeChartBaseline);
-const defiGrowthNarrativeSectorLinePath = getLinePath(defiGrowthNarrativeSectorPoints);
+const defiGrowthNarrativeAreaPath = getAreaPath(
+  defiGrowthNarrativePoints,
+  defiGrowthNarrativeChartBaseline,
+);
+const defiGrowthNarrativeSectorLinePath = getLinePath(
+  defiGrowthNarrativeSectorPoints,
+);
 
-const defiMarketCapPoints = createChartPoints(defiMarketCapSeries, narrativeCompactChartFrame, 0, 4.5);
-const defiSectorPoints = createChartPoints(defiSectorSeries, narrativeCompactChartFrame, 0, 4.5);
+const defiMarketCapPoints = createChartPoints(
+  defiMarketCapSeries,
+  narrativeCompactChartFrame,
+  0,
+  4.5,
+);
+const defiSectorPoints = createChartPoints(
+  defiSectorSeries,
+  narrativeCompactChartFrame,
+  0,
+  4.5,
+);
 const defiMarketCapLinePath = getLinePath(defiMarketCapPoints);
-const defiMarketCapAreaPath = getAreaPath(defiMarketCapPoints, narrativeCompactChartBaseline);
+const defiMarketCapAreaPath = getAreaPath(
+  defiMarketCapPoints,
+  narrativeCompactChartBaseline,
+);
 const defiSectorLinePath = getLinePath(defiSectorPoints);
 
-function SocialIcon({ platform }: { platform: (typeof socialStats)[number]["platform"] }) {
+function SocialIcon({
+  platform,
+}: {
+  platform: (typeof socialStats)[number]["platform"];
+}) {
   switch (platform) {
     case "CoinMarketCap":
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" strokeWidth="2.8" />
+          <circle
+            cx="24"
+            cy="24"
+            r="19"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.8"
+          />
           <path
             d="M12 28.5v-6.5c0-2.1 2.5-3 3.8-1.4l4.2 5.1c.7.8 1.9.8 2.5-.1l5.2-8.2c1.3-2 4.3-1.1 4.3 1.3v10.3c0 1.1.9 2 2 2 1.1 0 2-.9 2-2v-9.3"
             fill="none"
@@ -330,34 +523,69 @@ function SocialIcon({ platform }: { platform: (typeof socialStats)[number]["plat
     case "X":
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M12 12 36 36M34.5 12 22.5 24l-10.5 12" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="3.4" />
+          <path
+            d="M12 12 36 36M34.5 12 22.5 24l-10.5 12"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="3.4"
+          />
         </svg>
       );
     case "Telegram":
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M39 11 9.8 22.6c-1.6.6-1.5 2.9.2 3.4l7.3 2.2 2.8 8c.5 1.5 2.5 1.9 3.6.7L28 31l7.5 5.5c1.3 1 3.2.3 3.5-1.3L42 13.9C42.4 12.2 40.6 10.4 39 11Z" fill="currentColor" />
+          <path
+            d="M39 11 9.8 22.6c-1.6.6-1.5 2.9.2 3.4l7.3 2.2 2.8 8c.5 1.5 2.5 1.9 3.6.7L28 31l7.5 5.5c1.3 1 3.2.3 3.5-1.3L42 13.9C42.4 12.2 40.6 10.4 39 11Z"
+            fill="currentColor"
+          />
         </svg>
       );
     case "YouTube":
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect x="8" y="13" width="32" height="22" rx="7" fill="currentColor" />
+          <rect
+            x="8"
+            y="13"
+            width="32"
+            height="22"
+            rx="7"
+            fill="currentColor"
+          />
           <path d="m21 19 10 5-10 5Z" fill="#06110c" />
         </svg>
       );
     case "Instagram":
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect x="10" y="10" width="28" height="28" rx="8" fill="none" stroke="currentColor" strokeWidth="3" />
-          <circle cx="24" cy="24" r="6.4" fill="none" stroke="currentColor" strokeWidth="3" />
+          <rect
+            x="10"
+            y="10"
+            width="28"
+            height="28"
+            rx="8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+          />
+          <circle
+            cx="24"
+            cy="24"
+            r="6.4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+          />
           <circle cx="32.5" cy="15.5" r="1.9" fill="currentColor" />
         </svg>
       );
     case "Facebook":
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M27.8 14H31v-5.3c-.6-.1-2.5-.3-4.6-.3-4.6 0-7.7 2.8-7.7 8V21h-5v5.9h5V40h6.2V26.9h5.1l.8-5.9h-5.9v-3.8c0-1.8.5-3.2 2.9-3.2Z" fill="currentColor" />
+          <path
+            d="M27.8 14H31v-5.3c-.6-.1-2.5-.3-4.6-.3-4.6 0-7.7 2.8-7.7 8V21h-5v5.9h5V40h6.2V26.9h5.1l.8-5.9h-5.9v-3.8c0-1.8.5-3.2 2.9-3.2Z"
+            fill="currentColor"
+          />
         </svg>
       );
     case "TikTok":
@@ -373,8 +601,23 @@ function SocialIcon({ platform }: { platform: (typeof socialStats)[number]["plat
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
           <circle cx="15" cy="24" r="8" fill="currentColor" />
-          <ellipse cx="28" cy="24" rx="5.5" ry="8.2" fill="currentColor" opacity="0.84" />
-          <rect x="36" y="16" width="4" height="16" rx="2" fill="currentColor" opacity="0.72" />
+          <ellipse
+            cx="28"
+            cy="24"
+            rx="5.5"
+            ry="8.2"
+            fill="currentColor"
+            opacity="0.84"
+          />
+          <rect
+            x="36"
+            y="16"
+            width="4"
+            height="16"
+            rx="2"
+            fill="currentColor"
+            opacity="0.72"
+          />
         </svg>
       );
   }
@@ -399,12 +642,16 @@ export function Slide00Cover({ isActive }: SlideComponentProps) {
       <div className="cover-grid" />
       <div className="cover-glow" />
       <div style={{ position: "relative", zIndex: 1 }}>
-        <div className="eyebrow">Autonomous AI Agentic TradeFi/DeFi ecosystem</div>
+        <div className="eyebrow">
+          Autonomous AI Agentic TradeFi/DeFi ecosystem
+        </div>
         <h1 className="title" data-split-chars>
           SYMORIA
         </h1>
         <div className="cover-line" />
-        <div className="title-sub">AI-Powered Autonomous Trading &amp; Yield Optimization</div>
+        <div className="title-sub">
+          AI-Powered Autonomous Trading &amp; Yield Optimization
+        </div>
         <div className="title-meta">SYMORIA.IO · 2026</div>
       </div>
     </section>
@@ -418,26 +665,46 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
       <h2 className="title">DeFi Is the Fastest-Growing Market in History</h2>
       <div className="card-grid">
         <div className="card" data-stagger-item style={stagger(0)}>
-          <div className="kpi-val" data-countup data-cu-target="3.2" data-cu-prefix="$" data-cu-suffix="T+" data-cu-decimals="1">
+          <div
+            className="kpi-val"
+            data-countup
+            data-cu-target="3.2"
+            data-cu-prefix="$"
+            data-cu-suffix="T+"
+            data-cu-decimals="1"
+          >
             $0.0T+
           </div>
           <div className="kpi-label">Total DeFi TVL</div>
         </div>
         <div className="card" data-stagger-item style={stagger(1)}>
-          <div className="kpi-val" data-countup data-cu-target="420" data-cu-suffix="M+" data-cu-decimals="0">
+          <div
+            className="kpi-val"
+            data-countup
+            data-cu-target="420"
+            data-cu-suffix="M+"
+            data-cu-decimals="0"
+          >
             0M+
           </div>
           <div className="kpi-label">Active DeFi Wallets</div>
         </div>
         <div className="card" data-stagger-item style={stagger(2)}>
-          <div className="kpi-val" data-countup data-cu-target="67" data-cu-suffix="%" data-cu-decimals="0">
+          <div
+            className="kpi-val"
+            data-countup
+            data-cu-target="67"
+            data-cu-suffix="%"
+            data-cu-decimals="0"
+          >
             0%
           </div>
           <div className="kpi-label">Annual Growth Rate</div>
         </div>
       </div>
       <div className="market-quote">
-        &ldquo;DeFi isn&apos;t a trend — it&apos;s the inevitable restructuring of global finance.&rdquo;
+        &ldquo;DeFi isn&apos;t a trend — it&apos;s the inevitable restructuring
+        of global finance.&rdquo;
       </div>
     </section>
   );
@@ -445,24 +712,49 @@ export function Slide01Market({ isActive }: SlideComponentProps) {
 
 export function Slide02Problem({ isActive }: SlideComponentProps) {
   return (
-    <section data-slide-idx={2} className={slideClassName(isActive)} id="s2" style={{ alignItems: "flex-start" }}>
+    <section
+      data-slide-idx={2}
+      className={slideClassName(isActive)}
+      id="s2"
+      style={{ alignItems: "flex-start" }}
+    >
       <div className="eyebrow">THE DEFI GROWTH STORY</div>
       <h2 className="title narrative-title">
-        DeFi market growth turned a niche experiment into a <span className="narrative-highlight">multi-trillion-dollar arena</span>.
+        DeFi market growth turned a niche experiment into a{" "}
+        <span className="narrative-highlight">multi-trillion-dollar arena</span>
+        .
       </h2>
       <div className="sub narrative-sub">
-        The early market was almost invisible in 2015. By 2021 it had its first real liquidity wave, and by 2025 the broader market was printing above $4T while DeFi itself became a permanent capital destination.
+        The early market was almost invisible in 2015. By 2021 it had its first
+        real liquidity wave, and by 2025 the broader market was printing above
+        $4T while DeFi itself became a permanent capital destination.
       </div>
-      <div className="narrative-chart-panel narrative-chart-panel-compact" data-stagger-item style={stagger(0)}>
+      <div
+        className="narrative-chart-panel narrative-chart-panel-compact"
+        data-stagger-item
+        style={stagger(0)}
+      >
         <div className="narrative-chart-head">
           <div className="narrative-chart-label">DeFi Market Cap Chart</div>
-          <div className="narrative-chart-range">2014 → 2026 · MARKET CAP VS DEFI SECTOR</div>
+          <div className="narrative-chart-range">
+            2014 → 2026 · MARKET CAP VS DEFI SECTOR
+          </div>
         </div>
         <div className="narrative-chart-legend">
-          <div className="narrative-chart-legend-item"><span className="narrative-chart-legend-dot narrative-chart-legend-dot-gold" /> All Crypto</div>
-          <div className="narrative-chart-legend-item"><span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" /> DeFi Sector</div>
+          <div className="narrative-chart-legend-item">
+            <span className="narrative-chart-legend-dot narrative-chart-legend-dot-gold" />{" "}
+            All Crypto
+          </div>
+          <div className="narrative-chart-legend-item">
+            <span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" />{" "}
+            DeFi Sector
+          </div>
         </div>
-        <svg className="narrative-chart-svg" viewBox={`0 0 ${defiGrowthNarrativeChartFrame.width} ${defiGrowthNarrativeChartFrame.height}`} aria-hidden="true">
+        <svg
+          className="narrative-chart-svg"
+          viewBox={`0 0 ${defiGrowthNarrativeChartFrame.width} ${defiGrowthNarrativeChartFrame.height}`}
+          aria-hidden="true"
+        >
           <defs>
             <linearGradient id="defiGrowthArea" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stopColor="rgba(0,255,136,0.26)" />
@@ -470,55 +762,141 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
               <stop offset="100%" stopColor="rgba(0,255,136,0)" />
             </linearGradient>
           </defs>
-          {[0, 1, 2, 3, 4, 5].map(tick => (
+          {[0, 1, 2, 3, 4, 5].map((tick) => (
             <g key={tick}>
               <line
                 className="narrative-chart-grid"
                 x1={defiGrowthNarrativeChartFrame.paddingX}
-                x2={defiGrowthNarrativeChartFrame.width - defiGrowthNarrativeChartFrame.paddingX}
+                x2={
+                  defiGrowthNarrativeChartFrame.width -
+                  defiGrowthNarrativeChartFrame.paddingX
+                }
                 y1={getChartY(tick, defiGrowthNarrativeChartFrame, 0, 5)}
                 y2={getChartY(tick, defiGrowthNarrativeChartFrame, 0, 5)}
               />
-              <text className="narrative-chart-y-label" x={18} y={getChartY(tick, defiGrowthNarrativeChartFrame, 0, 5) + 6}>
+              <text
+                className="narrative-chart-y-label"
+                x={18}
+                y={getChartY(tick, defiGrowthNarrativeChartFrame, 0, 5) + 6}
+              >
                 {tick === 0 ? "$0" : `$${tick}T`}
               </text>
             </g>
           ))}
-          <path className="narrative-chart-area" fill="url(#defiGrowthArea)" d={defiGrowthNarrativeAreaPath} />
-          <path className="narrative-chart-line narrative-chart-line-gold" d={defiGrowthNarrativeLinePath} />
-          <path className="narrative-chart-line narrative-chart-line-orange" d={defiGrowthNarrativeSectorLinePath} />
+          <path
+            className="narrative-chart-area"
+            fill="url(#defiGrowthArea)"
+            d={defiGrowthNarrativeAreaPath}
+          />
+          <path
+            className="narrative-chart-line narrative-chart-line-gold"
+            d={defiGrowthNarrativeLinePath}
+          />
+          <path
+            className="narrative-chart-line narrative-chart-line-orange"
+            d={defiGrowthNarrativeSectorLinePath}
+          />
           {defiGrowthNarrativePoints.map((point, index) => (
-            <g key={point.label} className="narrative-chart-point-wrap" style={{ "--i": index } as CSSProperties}>
-              <circle className={`narrative-chart-point${index === 7 || index === 11 ? " narrative-chart-point-accent" : ""}`} cx={point.x} cy={point.y} r={index === 11 ? 6 : 4} />
-              <text className="narrative-chart-axis-label" x={point.x} y={defiGrowthNarrativeChartFrame.height - 18} textAnchor="middle">
+            <g
+              key={point.label}
+              className="narrative-chart-point-wrap"
+              style={{ "--i": index } as CSSProperties}
+            >
+              <circle
+                className={`narrative-chart-point${index === 7 || index === 11 ? " narrative-chart-point-accent" : ""}`}
+                cx={point.x}
+                cy={point.y}
+                r={index === 11 ? 6 : 4}
+              />
+              <text
+                className="narrative-chart-axis-label"
+                x={point.x}
+                y={defiGrowthNarrativeChartFrame.height - 18}
+                textAnchor="middle"
+              >
                 {point.label}
               </text>
             </g>
           ))}
           {defiGrowthNarrativeSectorPoints.map((point, index) => (
-            <circle key={`${point.label}-sector`} className="narrative-chart-point narrative-chart-point-accent" cx={point.x} cy={point.y} r={index >= 7 ? 3 : 2.5} />
+            <circle
+              key={`${point.label}-sector`}
+              className="narrative-chart-point narrative-chart-point-accent"
+              cx={point.x}
+              cy={point.y}
+              r={index >= 7 ? 3 : 2.5}
+            />
           ))}
-          <text className="narrative-chart-note" x={defiGrowthNarrativePoints[1].x + 12} y={defiGrowthNarrativePoints[1].y - 18}>2015 market still tiny</text>
-          <text className="narrative-chart-note" x={defiGrowthNarrativePoints[7].x} y={defiGrowthNarrativePoints[7].y - 18} textAnchor="middle">2021 liquidity wave</text>
-          <text className="narrative-chart-note" x={defiGrowthNarrativePoints[11].x - 8} y={defiGrowthNarrativePoints[11].y - 20} textAnchor="end">2025 cycle high</text>
-          <text className="narrative-chart-note" x={defiGrowthNarrativePoints[12].x - 8} y={defiGrowthNarrativePoints[12].y - 16} textAnchor="end">2026 still above $2T</text>
+          <text
+            className="narrative-chart-note"
+            x={defiGrowthNarrativePoints[1].x + 12}
+            y={defiGrowthNarrativePoints[1].y - 18}
+          >
+            2015 market still tiny
+          </text>
+          <text
+            className="narrative-chart-note"
+            x={defiGrowthNarrativePoints[7].x}
+            y={defiGrowthNarrativePoints[7].y - 18}
+            textAnchor="middle"
+          >
+            2021 liquidity wave
+          </text>
+          <text
+            className="narrative-chart-note"
+            x={defiGrowthNarrativePoints[11].x - 8}
+            y={defiGrowthNarrativePoints[11].y - 20}
+            textAnchor="end"
+          >
+            2025 cycle high
+          </text>
+          <text
+            className="narrative-chart-note"
+            x={defiGrowthNarrativePoints[12].x - 8}
+            y={defiGrowthNarrativePoints[12].y - 16}
+            textAnchor="end"
+          >
+            2026 still above $2T
+          </text>
         </svg>
       </div>
       <div className="narrative-stat-grid">
-        <div className="narrative-stat-card" data-stagger-item style={stagger(1)}>
+        <div
+          className="narrative-stat-card"
+          data-stagger-item
+          style={stagger(1)}
+        >
           <div className="narrative-stat-kicker">Early Footprint</div>
           <div className="narrative-stat-value">$3.9B</div>
-          <div className="narrative-stat-note">All crypto market cap snapshot in early 2015</div>
+          <div className="narrative-stat-note">
+            All crypto market cap snapshot in early 2015
+          </div>
         </div>
-        <div className="narrative-stat-card" data-stagger-item style={stagger(2)}>
+        <div
+          className="narrative-stat-card"
+          data-stagger-item
+          style={stagger(2)}
+        >
           <div className="narrative-stat-kicker">First DeFi Breakout</div>
-          <div className="narrative-stat-value narrative-stat-value-accent">$2.45T</div>
-          <div className="narrative-stat-note">2021 liquidity wave across the broader market</div>
+          <div className="narrative-stat-value narrative-stat-value-accent">
+            $2.45T
+          </div>
+          <div className="narrative-stat-note">
+            2021 liquidity wave across the broader market
+          </div>
         </div>
-        <div className="narrative-stat-card narrative-stat-card-highlight" data-stagger-item style={stagger(3)}>
+        <div
+          className="narrative-stat-card narrative-stat-card-highlight"
+          data-stagger-item
+          style={stagger(3)}
+        >
           <div className="narrative-stat-kicker">Cycle Peak</div>
-          <div className="narrative-stat-value narrative-stat-value-accent">$4.15T</div>
-          <div className="narrative-stat-note">2025 broad-market high with DeFi now structurally visible</div>
+          <div className="narrative-stat-value narrative-stat-value-accent">
+            $4.15T
+          </div>
+          <div className="narrative-stat-note">
+            2025 broad-market high with DeFi now structurally visible
+          </div>
         </div>
       </div>
     </section>
@@ -530,17 +908,28 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
     <section data-slide-idx={3} className={slideClassName(isActive)} id="s3">
       <div className="eyebrow">THE VOLATILITY REALITY: DEFI EDITION</div>
       <h2 className="title narrative-title narrative-title-centered">
-        A <span className="narrative-highlight">-75% drop</span> in just 4 months
+        A <span className="narrative-highlight">-75% drop</span> in just 4
+        months
       </h2>
       <div className="sub narrative-sub narrative-sub-centered">
         $180 Billion Peak TVL → $45 Billion Reset Low → $75 Billion Recovery
       </div>
-      <div className="narrative-chart-panel narrative-chart-panel-tight narrative-chart-panel-compact" data-stagger-item style={stagger(0)}>
+      <div
+        className="narrative-chart-panel narrative-chart-panel-tight narrative-chart-panel-compact"
+        data-stagger-item
+        style={stagger(0)}
+      >
         <div className="narrative-chart-head">
           <div className="narrative-chart-label">DeFi TVL Shock Chart</div>
-          <div className="narrative-chart-range">Sep 2025 → Mar 2026 · USD BILLIONS</div>
+          <div className="narrative-chart-range">
+            Sep 2025 → Mar 2026 · USD BILLIONS
+          </div>
         </div>
-        <svg className="narrative-chart-svg" viewBox={`0 0 ${volatilityRealityChartFrame.width} ${volatilityRealityChartFrame.height}`} aria-hidden="true">
+        <svg
+          className="narrative-chart-svg"
+          viewBox={`0 0 ${volatilityRealityChartFrame.width} ${volatilityRealityChartFrame.height}`}
+          aria-hidden="true"
+        >
           <defs>
             <linearGradient id="defiVolatilityArea" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stopColor="rgba(0,255,136,0.18)" />
@@ -548,63 +937,154 @@ export function Slide03WhyHumansFail({ isActive }: SlideComponentProps) {
               <stop offset="100%" stopColor="rgba(0,255,136,0)" />
             </linearGradient>
           </defs>
-          {volatilityRealityScale.ticks.map(tick => (
+          {volatilityRealityScale.ticks.map((tick) => (
             <g key={tick}>
               <line
                 className="narrative-chart-grid narrative-chart-grid-soft"
                 x1={volatilityRealityChartFrame.paddingX}
-                x2={volatilityRealityChartFrame.width - volatilityRealityChartFrame.paddingX}
-                y1={getChartY(tick, volatilityRealityChartFrame, volatilityRealityScale.min, volatilityRealityScale.max)}
-                y2={getChartY(tick, volatilityRealityChartFrame, volatilityRealityScale.min, volatilityRealityScale.max)}
+                x2={
+                  volatilityRealityChartFrame.width -
+                  volatilityRealityChartFrame.paddingX
+                }
+                y1={getChartY(
+                  tick,
+                  volatilityRealityChartFrame,
+                  volatilityRealityScale.min,
+                  volatilityRealityScale.max,
+                )}
+                y2={getChartY(
+                  tick,
+                  volatilityRealityChartFrame,
+                  volatilityRealityScale.min,
+                  volatilityRealityScale.max,
+                )}
               />
               <text
                 className="narrative-chart-y-label"
                 x={18}
-                y={getChartY(tick, volatilityRealityChartFrame, volatilityRealityScale.min, volatilityRealityScale.max) + 6}
+                y={
+                  getChartY(
+                    tick,
+                    volatilityRealityChartFrame,
+                    volatilityRealityScale.min,
+                    volatilityRealityScale.max,
+                  ) + 6
+                }
               >
                 ${tick}B
               </text>
             </g>
           ))}
-          <path className="narrative-chart-area" fill="url(#defiVolatilityArea)" d={volatilityRealityAreaPath} />
-          <path className="narrative-chart-line narrative-chart-line-soft" d={volatilityRealityLeadPath} />
-          <path className="narrative-chart-line narrative-chart-line-red" d={volatilityRealityDropPath} />
-          <path className="narrative-chart-line narrative-chart-line-gold" d={volatilityRealityRecoveryPath} />
+          <path
+            className="narrative-chart-area"
+            fill="url(#defiVolatilityArea)"
+            d={volatilityRealityAreaPath}
+          />
+          <path
+            className="narrative-chart-line narrative-chart-line-soft"
+            d={volatilityRealityLeadPath}
+          />
+          <path
+            className="narrative-chart-line narrative-chart-line-red"
+            d={volatilityRealityDropPath}
+          />
+          <path
+            className="narrative-chart-line narrative-chart-line-gold"
+            d={volatilityRealityRecoveryPath}
+          />
           {volatilityRealityPoints.map((point, index) => (
-            <g key={point.label} className="narrative-chart-point-wrap" style={{ "--i": index } as CSSProperties}>
+            <g
+              key={point.label}
+              className="narrative-chart-point-wrap"
+              style={{ "--i": index } as CSSProperties}
+            >
               <circle
                 className={`narrative-chart-point${index === 4 ? " narrative-chart-point-danger" : index === 0 || index === 5 ? " narrative-chart-point-accent" : ""}`}
                 cx={point.x}
                 cy={point.y}
                 r={index === 0 || index === 4 || index === 5 ? 6 : 4}
               />
-              <text className="narrative-chart-axis-label" x={point.x} y={volatilityRealityChartFrame.height - 10} textAnchor="middle">
+              <text
+                className="narrative-chart-axis-label"
+                x={point.x}
+                y={volatilityRealityChartFrame.height - 10}
+                textAnchor="middle"
+              >
                 {point.label}
               </text>
             </g>
           ))}
-          <text className="narrative-chart-note" x={volatilityRealityPoints[0].x + 10} y={volatilityRealityPoints[0].y - 18}>ATH $180B</text>
-          <text className="narrative-chart-note narrative-chart-note-danger" x={volatilityRealityPoints[2].x + 10} y={volatilityRealityPoints[2].y - 22}>-$135B in 4 months</text>
-          <text className="narrative-chart-note narrative-chart-note-danger" x={volatilityRealityPoints[4].x + 18} y={volatilityRealityPoints[4].y - 18}>-75%</text>
-          <text className="narrative-chart-note narrative-chart-note-danger" x={volatilityRealityPoints[4].x + 18} y={volatilityRealityPoints[4].y + 10}>Reset low $45B</text>
-          <text className="narrative-chart-note" x={volatilityRealityPoints[5].x - 8} y={volatilityRealityPoints[5].y - 18} textAnchor="end">Now $75B</text>
+          <text
+            className="narrative-chart-note"
+            x={volatilityRealityPoints[0].x + 10}
+            y={volatilityRealityPoints[0].y - 18}
+          >
+            ATH $180B
+          </text>
+          <text
+            className="narrative-chart-note narrative-chart-note-danger"
+            x={volatilityRealityPoints[2].x + 10}
+            y={volatilityRealityPoints[2].y - 22}
+          >
+            -$135B in 4 months
+          </text>
+          <text
+            className="narrative-chart-note narrative-chart-note-danger"
+            x={volatilityRealityPoints[4].x + 18}
+            y={volatilityRealityPoints[4].y - 18}
+          >
+            -75%
+          </text>
+          <text
+            className="narrative-chart-note narrative-chart-note-danger"
+            x={volatilityRealityPoints[4].x + 18}
+            y={volatilityRealityPoints[4].y + 10}
+          >
+            Reset low $45B
+          </text>
+          <text
+            className="narrative-chart-note"
+            x={volatilityRealityPoints[5].x - 8}
+            y={volatilityRealityPoints[5].y - 18}
+            textAnchor="end"
+          >
+            Now $75B
+          </text>
         </svg>
       </div>
       <div className="narrative-stat-grid">
-        <div className="narrative-stat-card" data-stagger-item style={stagger(1)}>
+        <div
+          className="narrative-stat-card"
+          data-stagger-item
+          style={stagger(1)}
+        >
           <div className="narrative-stat-kicker">Peak TVL</div>
           <div className="narrative-stat-value">$180B</div>
           <div className="narrative-stat-note">DeFi summer liquidity peak</div>
         </div>
-        <div className="narrative-stat-card" data-stagger-item style={stagger(2)}>
+        <div
+          className="narrative-stat-card"
+          data-stagger-item
+          style={stagger(2)}
+        >
           <div className="narrative-stat-kicker">Reset Low</div>
-          <div className="narrative-stat-value narrative-stat-value-danger">$45B</div>
-          <div className="narrative-stat-note">Forced liquidations and de-leveraging</div>
+          <div className="narrative-stat-value narrative-stat-value-danger">
+            $45B
+          </div>
+          <div className="narrative-stat-note">
+            Forced liquidations and de-leveraging
+          </div>
         </div>
-        <div className="narrative-stat-card" data-stagger-item style={stagger(3)}>
+        <div
+          className="narrative-stat-card"
+          data-stagger-item
+          style={stagger(3)}
+        >
           <div className="narrative-stat-kicker">Recovery</div>
           <div className="narrative-stat-value">$75B</div>
-          <div className="narrative-stat-note">Protocols stabilized, but still far from peak</div>
+          <div className="narrative-stat-note">
+            Protocols stabilized, but still far from peak
+          </div>
         </div>
       </div>
     </section>
@@ -615,47 +1095,118 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={4} className={slideClassName(isActive)} id="s4">
       <div className="eyebrow">WHY MANUAL TRADING IS HARD</div>
-      <h2 className="title narrative-title">DeFi cycles move faster than humans do</h2>
+      <h2 className="title narrative-title">
+        DeFi cycles move faster than humans do
+      </h2>
       <div className="sub narrative-sub">
-        The long-term market cap trend looks obvious after the fact. In real time, traders have to process macro liquidity, cross-chain rotation, and narrative shifts while the market trades 24/7.
+        The long-term market cap trend looks obvious after the fact. In real
+        time, traders have to process macro liquidity, cross-chain rotation, and
+        narrative shifts while the market trades 24/7.
       </div>
-      <div className="narrative-chart-panel narrative-chart-panel-compact" data-stagger-item style={stagger(0)}>
+      <div
+        className="narrative-chart-panel narrative-chart-panel-compact"
+        data-stagger-item
+        style={stagger(0)}
+      >
         <div className="narrative-chart-head">
           <div className="narrative-chart-label">DeFi Market Cap Chart</div>
-          <div className="narrative-chart-range">2014 → 2026 · MARKET CAP VS DEFI SECTOR</div>
+          <div className="narrative-chart-range">
+            2014 → 2026 · MARKET CAP VS DEFI SECTOR
+          </div>
         </div>
         <div className="narrative-chart-legend">
-          <div className="narrative-chart-legend-item"><span className="narrative-chart-legend-dot narrative-chart-legend-dot-gold" /> All Crypto</div>
-          <div className="narrative-chart-legend-item"><span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" /> DeFi Sector</div>
+          <div className="narrative-chart-legend-item">
+            <span className="narrative-chart-legend-dot narrative-chart-legend-dot-gold" />{" "}
+            All Crypto
+          </div>
+          <div className="narrative-chart-legend-item">
+            <span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" />{" "}
+            DeFi Sector
+          </div>
         </div>
-        <svg className="narrative-chart-svg" viewBox={`0 0 ${narrativeCompactChartFrame.width} ${narrativeCompactChartFrame.height}`} aria-hidden="true">
+        <svg
+          className="narrative-chart-svg"
+          viewBox={`0 0 ${narrativeCompactChartFrame.width} ${narrativeCompactChartFrame.height}`}
+          aria-hidden="true"
+        >
           <defs>
             <linearGradient id="defiArea" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stopColor="rgba(0,255,136,0.16)" />
               <stop offset="100%" stopColor="rgba(0,255,136,0)" />
             </linearGradient>
           </defs>
-          {[0, 1, 2, 3, 4].map(tick => (
+          {[0, 1, 2, 3, 4].map((tick) => (
             <g key={tick}>
-              <line className="narrative-chart-grid narrative-chart-grid-soft" x1={narrativeCompactChartFrame.paddingX} x2={narrativeCompactChartFrame.width - narrativeCompactChartFrame.paddingX} y1={getChartY(tick, narrativeCompactChartFrame, 0, 4.5)} y2={getChartY(tick, narrativeCompactChartFrame, 0, 4.5)} />
-              <text className="narrative-chart-y-label" x={18} y={getChartY(tick, narrativeCompactChartFrame, 0, 4.5) + 6}>
+              <line
+                className="narrative-chart-grid narrative-chart-grid-soft"
+                x1={narrativeCompactChartFrame.paddingX}
+                x2={
+                  narrativeCompactChartFrame.width -
+                  narrativeCompactChartFrame.paddingX
+                }
+                y1={getChartY(tick, narrativeCompactChartFrame, 0, 4.5)}
+                y2={getChartY(tick, narrativeCompactChartFrame, 0, 4.5)}
+              />
+              <text
+                className="narrative-chart-y-label"
+                x={18}
+                y={getChartY(tick, narrativeCompactChartFrame, 0, 4.5) + 6}
+              >
                 {tick === 0 ? "$0" : `$${tick}T`}
               </text>
             </g>
           ))}
-          <path className="narrative-chart-area" fill="url(#defiArea)" d={defiMarketCapAreaPath} />
-          <path className="narrative-chart-line narrative-chart-line-gold" d={defiMarketCapLinePath} />
-          <path className="narrative-chart-line narrative-chart-line-orange" d={defiSectorLinePath} />
+          <path
+            className="narrative-chart-area"
+            fill="url(#defiArea)"
+            d={defiMarketCapAreaPath}
+          />
+          <path
+            className="narrative-chart-line narrative-chart-line-gold"
+            d={defiMarketCapLinePath}
+          />
+          <path
+            className="narrative-chart-line narrative-chart-line-orange"
+            d={defiSectorLinePath}
+          />
           {defiMarketCapPoints.map((point, index) => (
-            <g key={point.label} className="narrative-chart-point-wrap" style={{ "--i": index } as CSSProperties}>
-              <circle className={`narrative-chart-point${index === 7 || index === 11 ? " narrative-chart-point-accent" : ""}`} cx={point.x} cy={point.y} r={index === 11 ? 6 : 3.5} />
-              <text className="narrative-chart-axis-label" x={point.x} y={narrativeCompactChartFrame.height - 14} textAnchor="middle">
+            <g
+              key={point.label}
+              className="narrative-chart-point-wrap"
+              style={{ "--i": index } as CSSProperties}
+            >
+              <circle
+                className={`narrative-chart-point${index === 7 || index === 11 ? " narrative-chart-point-accent" : ""}`}
+                cx={point.x}
+                cy={point.y}
+                r={index === 11 ? 6 : 3.5}
+              />
+              <text
+                className="narrative-chart-axis-label"
+                x={point.x}
+                y={narrativeCompactChartFrame.height - 14}
+                textAnchor="middle"
+              >
                 {point.label}
               </text>
             </g>
           ))}
-          <text className="narrative-chart-note" x={defiMarketCapPoints[7].x} y={defiMarketCapPoints[7].y - 18} textAnchor="middle">2021 liquidity wave</text>
-          <text className="narrative-chart-note" x={defiMarketCapPoints[11].x - 10} y={defiMarketCapPoints[11].y - 18} textAnchor="end">2025 risk-on return</text>
+          <text
+            className="narrative-chart-note"
+            x={defiMarketCapPoints[7].x}
+            y={defiMarketCapPoints[7].y - 18}
+            textAnchor="middle"
+          >
+            2021 liquidity wave
+          </text>
+          <text
+            className="narrative-chart-note"
+            x={defiMarketCapPoints[11].x - 10}
+            y={defiMarketCapPoints[11].y - 18}
+            textAnchor="end"
+          >
+            2025 risk-on return
+          </text>
         </svg>
       </div>
       <div className="narrative-insight-grid">
@@ -676,7 +1227,12 @@ export function Slide04WhyBotsFail({ isActive }: SlideComponentProps) {
             body: "Price, on-chain behavior, funding, news, and sentiment all matter simultaneously. Humans process them too slowly.",
           },
         ].map(({ icon: Icon, title, body }, index) => (
-          <div key={title} className="narrative-insight-card" data-stagger-item style={stagger(index + 1)}>
+          <div
+            key={title}
+            className="narrative-insight-card"
+            data-stagger-item
+            style={stagger(index + 1)}
+          >
             <div className="narrative-insight-icon">
               <Icon size={24} strokeWidth={2.1} />
             </div>
@@ -720,7 +1276,9 @@ export function Slide05Solution({ isActive }: SlideComponentProps) {
           <div className="ai-badge-role">ZK Verification</div>
         </div>
       </div>
-      <div className="consensus-msg">▸ MULTI-AGENT CONSENSUS · EVERY TRADE VERIFIED ON-CHAIN</div>
+      <div className="consensus-msg">
+        ▸ MULTI-AGENT CONSENSUS · EVERY TRADE VERIFIED ON-CHAIN
+      </div>
     </section>
   );
 }
@@ -733,19 +1291,153 @@ export function Slide06Vs({ isActive }: SlideComponentProps) {
       <div className="vs-wrap">
         <div className="vs-box from-left">
           <div className="vs-head">Traditional Bots</div>
-          <div className="vs-item"><span className="vs-x">✗</span> Single strategy</div>
-          <div className="vs-item"><span className="vs-x">✗</span> Manual updates required</div>
-          <div className="vs-item"><span className="vs-x">✗</span> No on-chain proof</div>
-          <div className="vs-item"><span className="vs-x">✗</span> Centralized risk</div>
-          <div className="vs-item"><span className="vs-x">✗</span> Opaque decisions</div>
+          <div className="vs-item">
+            <span className="vs-x">✗</span> Single strategy
+          </div>
+          <div className="vs-item">
+            <span className="vs-x">✗</span> Manual updates required
+          </div>
+          <div className="vs-item">
+            <span className="vs-x">✗</span> No on-chain proof
+          </div>
+          <div className="vs-item">
+            <span className="vs-x">✗</span> Centralized risk
+          </div>
+          <div className="vs-item">
+            <span className="vs-x">✗</span> Opaque decisions
+          </div>
         </div>
         <div className="vs-box vs-right from-right">
           <div className="vs-head">Symoria AI</div>
-          <div className="vs-item"><span className="vs-check">✓</span> Multi-agent consensus</div>
-          <div className="vs-item"><span className="vs-check">✓</span> Self-adapting models</div>
-          <div className="vs-item"><span className="vs-check">✓</span> ZK-verified on-chain</div>
-          <div className="vs-item"><span className="vs-check">✓</span> Distributed architecture</div>
-          <div className="vs-item"><span className="vs-check">✓</span> Full decision transparency</div>
+          <div className="vs-item">
+            <span className="vs-check">✓</span> Multi-agent consensus
+          </div>
+          <div className="vs-item">
+            <span className="vs-check">✓</span> Self-adapting models
+          </div>
+          <div className="vs-item">
+            <span className="vs-check">✓</span> ZK-verified on-chain
+          </div>
+          <div className="vs-item">
+            <span className="vs-check">✓</span> Distributed architecture
+          </div>
+          <div className="vs-item">
+            <span className="vs-check">✓</span> Full decision transparency
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Slide06AgentSwarms({ isActive }: SlideComponentProps) {
+  const firstVideoRef = useRef<HTMLVideoElement>(null);
+  const secondVideoRef = useRef<HTMLVideoElement>(null);
+  const thirdVideoRef = useRef<HTMLVideoElement>(null);
+  const [activeVideo, setActiveVideo] = useState<0 | 1 | 2>(0);
+
+  useEffect(() => {
+    const firstVideo = firstVideoRef.current;
+    const secondVideo = secondVideoRef.current;
+    const thirdVideo = thirdVideoRef.current;
+
+    if (!firstVideo || !secondVideo || !thirdVideo) return;
+
+    const resetVideos = () => {
+      firstVideo.pause();
+      secondVideo.pause();
+      thirdVideo.pause();
+      firstVideo.currentTime = 0;
+      secondVideo.currentTime = 0;
+      thirdVideo.currentTime = 0;
+    };
+
+    resetVideos();
+    setActiveVideo(0);
+
+    return resetVideos;
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!isActive) return;
+
+    const activeRef = [firstVideoRef, secondVideoRef, thirdVideoRef][
+      activeVideo
+    ];
+    const activeElement = activeRef.current;
+
+    if (!activeElement) return;
+
+    activeElement.currentTime = 0;
+    const playPromise = activeElement.play();
+    playPromise?.catch(() => {});
+  }, [activeVideo, isActive]);
+
+  return (
+    <section
+      data-slide-idx="6-video"
+      className={slideClassName(isActive)}
+      id="s6-video"
+    >
+      <div className="swarm-video-shell" data-stagger-item style={stagger(0)}>
+        <div className="swarm-video-frame">
+          <video
+            ref={firstVideoRef}
+            className={`swarm-video${activeVideo === 0 ? " swarm-video-active" : ""}`}
+            src="/assets/video-1.mp4"
+            muted
+            playsInline
+            preload="auto"
+            onEnded={() => setActiveVideo(1)}
+          />
+          <video
+            ref={secondVideoRef}
+            className={`swarm-video${activeVideo === 1 ? " swarm-video-active" : ""}`}
+            src="/assets/video-2.mp4"
+            muted
+            playsInline
+            preload="auto"
+            onEnded={() => setActiveVideo(2)}
+          />
+          <video
+            ref={thirdVideoRef}
+            className={`swarm-video${activeVideo === 2 ? " swarm-video-active" : ""}`}
+            src="/assets/video-3.mp4"
+            muted
+            playsInline
+            preload="auto"
+            onEnded={(event) => {
+              event.currentTarget.currentTime = 0;
+              const playPromise = event.currentTarget.play();
+              playPromise?.catch(() => {});
+            }}
+          />
+          <div className="swarm-video-shade" />
+          <div className="swarm-video-copy-wrap">
+            <div className="eyebrow swarm-video-kicker">
+              AUTONOMOUS SWARM OPERATIONS
+            </div>
+            <div className="swarm-video-text-stack">
+              <h2
+                className="swarm-video-line swarm-video-title-line"
+                style={stagger(0)}
+              >
+                Symoria AI Agents Swarms
+              </h2>
+              <div
+                className="swarm-video-line swarm-video-body-line"
+                style={stagger(1)}
+              >
+                that trade. Negotiate. Create. Execute.
+              </div>
+              <div
+                className="swarm-video-line swarm-video-body-line"
+                style={stagger(2)}
+              >
+                No sleep. No salary. No mercy.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -758,7 +1450,8 @@ export function Slide07AiConsensus({ isActive }: SlideComponentProps) {
       <div className="eyebrow">HOW IT WORKS</div>
       <h2 className="title">Consensus Before Every Trade</h2>
       <div className="sub">
-        No single agent controls capital. Every decision requires multi-agent agreement — validated by zero-knowledge proof before execution.
+        No single agent controls capital. Every decision requires multi-agent
+        agreement — validated by zero-knowledge proof before execution.
       </div>
       <div className="card-grid" style={{ marginTop: 48 }}>
         {[
@@ -768,7 +1461,12 @@ export function Slide07AiConsensus({ isActive }: SlideComponentProps) {
           ["04", "ZK Proof Generated"],
           ["05", "Executed On-Chain"],
         ].map(([step, title], index) => (
-          <div key={step} className={`card${index === 4 ? " card-green" : ""}`} data-stagger-item style={stagger(index, { textAlign: "center" })}>
+          <div
+            key={step}
+            className={`card${index === 4 ? " card-green" : ""}`}
+            data-stagger-item
+            style={stagger(index, { textAlign: "center" })}
+          >
             <div className="card-label">Step {step}</div>
             <div className="card-title">{title}</div>
           </div>
@@ -784,7 +1482,9 @@ export function Slide08YieldOptimizer({ isActive }: SlideComponentProps) {
       <div className="eyebrow">CORE ENGINE 01</div>
       <h2 className="title">Yield Optimizer</h2>
       <div className="sub">
-        Continuously scans 200+ DeFi protocols across 8 chains to compound your capital at maximum safe yield — automatically rebalancing as conditions shift.
+        Continuously scans 200+ DeFi protocols across 8 chains to compound your
+        capital at maximum safe yield — automatically rebalancing as conditions
+        shift.
       </div>
       <div className="card-grid">
         {[
@@ -792,7 +1492,12 @@ export function Slide08YieldOptimizer({ isActive }: SlideComponentProps) {
           ["8", "Chains Supported"],
           ["< 2s", "Rebalance Speed"],
         ].map(([value, label], index) => (
-          <div key={label} className="card card-green" data-stagger-item style={stagger(index, { textAlign: "center" })}>
+          <div
+            key={label}
+            className="card card-green"
+            data-stagger-item
+            style={stagger(index, { textAlign: "center" })}
+          >
             <div className="kpi-val">{value}</div>
             <div className="kpi-label">{label}</div>
           </div>
@@ -808,7 +1513,9 @@ export function Slide09Arbitrage({ isActive }: SlideComponentProps) {
       <div className="eyebrow">CORE ENGINE 02</div>
       <h2 className="title">Arbitrage Engine</h2>
       <div className="sub">
-        Detects price inefficiencies across DEXes in real time. Executes flash-loan-powered arbitrage with zero capital at risk — profits are pure delta.
+        Detects price inefficiencies across DEXes in real time. Executes
+        flash-loan-powered arbitrage with zero capital at risk — profits are
+        pure delta.
       </div>
       <div className="card-grid">
         {[
@@ -816,7 +1523,12 @@ export function Slide09Arbitrage({ isActive }: SlideComponentProps) {
           ["0", "Capital at Risk"],
           ["$2.4M", "Monthly Arb Volume"],
         ].map(([value, label], index) => (
-          <div key={label} className="card card-green" data-stagger-item style={stagger(index, { textAlign: "center" })}>
+          <div
+            key={label}
+            className="card card-green"
+            data-stagger-item
+            style={stagger(index, { textAlign: "center" })}
+          >
             <div className="kpi-val">{value}</div>
             <div className="kpi-label">{label}</div>
           </div>
@@ -832,7 +1544,8 @@ export function Slide10PortfolioReplicator({ isActive }: SlideComponentProps) {
       <div className="eyebrow">CORE ENGINE 03</div>
       <h2 className="title">Portfolio Replicator</h2>
       <div className="sub">
-        Mirror on-chain wallets of verified top traders with customizable lag, risk limits, and position sizing — automated, non-custodial.
+        Mirror on-chain wallets of verified top traders with customizable lag,
+        risk limits, and position sizing — automated, non-custodial.
       </div>
       <div className="card-grid">
         {[
@@ -840,8 +1553,18 @@ export function Slide10PortfolioReplicator({ isActive }: SlideComponentProps) {
           ["Custom", "Risk Limits"],
           ["Non-custodial", "Self-Sovereign"],
         ].map(([value, label], index) => (
-          <div key={label} className="card card-green" data-stagger-item style={stagger(index, { textAlign: "center" })}>
-            <div className="kpi-val" style={{ fontSize: index === 2 ? 42 : undefined }}>{value}</div>
+          <div
+            key={label}
+            className="card card-green"
+            data-stagger-item
+            style={stagger(index, { textAlign: "center" })}
+          >
+            <div
+              className="kpi-val"
+              style={{ fontSize: index === 2 ? 42 : undefined }}
+            >
+              {value}
+            </div>
             <div className="kpi-label">{label}</div>
           </div>
         ))}
@@ -856,9 +1579,18 @@ export function Slide11ZkVerification({ isActive }: SlideComponentProps) {
       <div className="eyebrow">TRUSTLESS BY DESIGN</div>
       <h2 className="title">Zero-Knowledge Proof on Every Trade</h2>
       <div className="sub">
-        Every decision Symoria makes is cryptographically proven on-chain. You never have to trust us — the math speaks for itself.
+        Every decision Symoria makes is cryptographically proven on-chain. You
+        never have to trust us — the math speaks for itself.
       </div>
-      <div style={{ marginTop: 48, display: "grid", gridTemplateColumns: "1fr auto", gap: 60, alignItems: "center" }}>
+      <div
+        style={{
+          marginTop: 48,
+          display: "grid",
+          gridTemplateColumns: "1fr auto",
+          gap: 60,
+          alignItems: "center",
+        }}
+      >
         <div className="zk-diagram from-left">
           <div className="zk-node">Agent Decision</div>
           <div className="zk-arrow">→</div>
@@ -898,7 +1630,12 @@ export function Slide12MultiChain({ isActive }: SlideComponentProps) {
           ["#F3BA2F", "BNB Chain"],
           ["#9945FF", "Solana"],
         ].map(([color, name], index) => (
-          <div key={name} className="chain-card" data-stagger-item style={stagger(index)}>
+          <div
+            key={name}
+            className="chain-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="chain-dot" style={{ background: color }} />
             <div className="chain-name">{name}</div>
           </div>
@@ -922,14 +1659,20 @@ export function Slide13Performance({ isActive }: SlideComponentProps) {
           ["MAR", "+27.8%"],
           ["APR", "+24.6%"],
         ].map(([month, value], index) => (
-          <div key={month} className="perf-card" data-stagger-item style={stagger(index)}>
+          <div
+            key={month}
+            className="perf-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="perf-month">{month}</div>
             <div className="perf-val">{value}</div>
           </div>
         ))}
       </div>
       <div className="sub" style={{ marginTop: 32, fontSize: 18 }}>
-        All figures net of fees. Past performance does not guarantee future results.
+        All figures net of fees. Past performance does not guarantee future
+        results.
       </div>
     </section>
   );
@@ -967,8 +1710,12 @@ export function Slide14CapitalSimulation({ isActive }: SlideComponentProps) {
           <div className="sim-desc">in 12 months</div>
         </div>
       </div>
-      <div className="sub" style={{ marginTop: 28, fontSize: 16, opacity: 0.5 }}>
-        Simulated projections based on historical performance. Not financial advice.
+      <div
+        className="sub"
+        style={{ marginTop: 28, fontSize: 16, opacity: 0.5 }}
+      >
+        Simulated projections based on historical performance. Not financial
+        advice.
       </div>
     </section>
   );
@@ -983,7 +1730,8 @@ export function Slide15TimeFreedom({ isActive }: SlideComponentProps) {
         <div className="from-left">
           <div className="col-label">Your time back</div>
           <div className="col-body">
-            Symoria runs 24/7 so you don&apos;t have to. Set your risk tolerance, deposit capital, and let the AI handle everything else.
+            Symoria runs 24/7 so you don&apos;t have to. Set your risk
+            tolerance, deposit capital, and let the AI handle everything else.
           </div>
         </div>
         <div className="from-right">
@@ -1013,7 +1761,8 @@ export function Slide16AssetSovereignty({ isActive }: SlideComponentProps) {
       <div className="eyebrow">SELF-CUSTODY</div>
       <h2 className="title">Your Keys. Your Capital. Always.</h2>
       <div className="sub">
-        Symoria never holds your assets. Smart contracts execute trades on your behalf, but ownership never leaves your wallet.
+        Symoria never holds your assets. Smart contracts execute trades on your
+        behalf, but ownership never leaves your wallet.
       </div>
       <div className="card-grid">
         {[
@@ -1021,7 +1770,12 @@ export function Slide16AssetSovereignty({ isActive }: SlideComponentProps) {
           ["⚡", "Permission-less"],
           ["🔍", "On-Chain Verifiable"],
         ].map(([icon, title], index) => (
-          <div key={title} className="card card-green" data-stagger-item style={stagger(index, { textAlign: "center" })}>
+          <div
+            key={title}
+            className="card card-green"
+            data-stagger-item
+            style={stagger(index, { textAlign: "center" })}
+          >
             <div className="card-icon">{icon}</div>
             <div className="card-title">{title}</div>
           </div>
@@ -1044,7 +1798,12 @@ export function Slide17Roadmap({ isActive }: SlideComponentProps) {
           ["Q4 2026", "Portfolio Replicator Beta"],
           ["Q1 2027", "Decentralized Governance"],
         ].map(([label, title], index) => (
-          <div key={label} className="rm-step" data-stagger-item style={stagger(index)}>
+          <div
+            key={label}
+            className="rm-step"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="rm-dot" />
             <div className="rm-label">{label}</div>
             <div className="rm-title">{title}</div>
@@ -1062,20 +1821,26 @@ export function Slide18Ecosystem({ isActive }: SlideComponentProps) {
       <h2 className="title">Integrated Across DeFi</h2>
       <div className="eco-row" data-stagger-item style={stagger(0)}>
         <div className="eco-row-label">DEX Integrations</div>
-        {["Uniswap", "Curve", "Balancer", "dYdX", "GMX"].map(tag => (
-          <div key={tag} className="eco-tag">{tag}</div>
+        {["Uniswap", "Curve", "Balancer", "dYdX", "GMX"].map((tag) => (
+          <div key={tag} className="eco-tag">
+            {tag}
+          </div>
         ))}
       </div>
       <div className="eco-row" data-stagger-item style={stagger(1)}>
         <div className="eco-row-label">Chain Infrastructure</div>
-        {["Chainlink", "The Graph", "Alchemy", "Infura"].map(tag => (
-          <div key={tag} className="eco-tag">{tag}</div>
+        {["Chainlink", "The Graph", "Alchemy", "Infura"].map((tag) => (
+          <div key={tag} className="eco-tag">
+            {tag}
+          </div>
         ))}
       </div>
       <div className="eco-row" data-stagger-item style={stagger(2)}>
         <div className="eco-row-label">Security Auditors</div>
-        {["OpenZeppelin", "Trail of Bits", "Certik"].map(tag => (
-          <div key={tag} className="eco-tag">{tag}</div>
+        {["OpenZeppelin", "Trail of Bits", "Certik"].map((tag) => (
+          <div key={tag} className="eco-tag">
+            {tag}
+          </div>
         ))}
       </div>
     </section>
@@ -1099,7 +1864,11 @@ export function Slide19MembershipTiers({ isActive }: SlideComponentProps) {
             Community access
           </div>
         </div>
-        <div className="tier-card tier-featured" data-stagger-item style={stagger(1)}>
+        <div
+          className="tier-card tier-featured"
+          data-stagger-item
+          style={stagger(1)}
+        >
           <div className="tier-name">SIGNAL</div>
           <div className="tier-price">$99/mo</div>
           <div className="tier-feat">
@@ -1135,43 +1904,76 @@ export function Slide20NftOverview({ isActive }: SlideComponentProps) {
       <div className="nft-intro-layout">
         <div className="nft-visual-panel from-left">
           <div className="nft-visual-frame">
-            <img src="/assets/nfts.png" alt="Symoria AI NFT cards" className="nft-hero-image" />
+            <img
+              src="/assets/nfts.png"
+              alt="Symoria AI NFT cards"
+              className="nft-hero-image"
+            />
           </div>
         </div>
         <div className="nft-copy-panel">
           <h2 className="title">What Are Symoria AI NFTs?</h2>
-          <div className="nft-kicker">Powering AI Trading Through NFT Utility</div>
+          <div className="nft-kicker">
+            Powering AI Trading Through NFT Utility
+          </div>
           <div className="nft-overview-list">
-            <div className="nft-overview-item" data-stagger-item style={stagger(0)}>
+            <div
+              className="nft-overview-item"
+              data-stagger-item
+              style={stagger(0)}
+            >
               <div className="nft-overview-icon">
                 <ShieldCheck size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
                 <div className="nft-overview-title">Access More</div>
-                <div className="nft-overview-body">Unlock deeper platform utilities, premium features, and holder-only advantages across the Symoria ecosystem.</div>
+                <div className="nft-overview-body">
+                  Unlock deeper platform utilities, premium features, and
+                  holder-only advantages across the Symoria ecosystem.
+                </div>
               </div>
             </div>
-            <div className="nft-overview-item" data-stagger-item style={stagger(1)}>
+            <div
+              className="nft-overview-item"
+              data-stagger-item
+              style={stagger(1)}
+            >
               <div className="nft-overview-icon">
                 <Coins size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
                 <div className="nft-overview-title">Earn More</div>
-                <div className="nft-overview-body">Participate in referrals, profit-linked rewards, and ecosystem upside through a single utility asset.</div>
+                <div className="nft-overview-body">
+                  Participate in referrals, profit-linked rewards, and ecosystem
+                  upside through a single utility asset.
+                </div>
               </div>
             </div>
-            <div className="nft-overview-item" data-stagger-item style={stagger(2)}>
+            <div
+              className="nft-overview-item"
+              data-stagger-item
+              style={stagger(2)}
+            >
               <div className="nft-overview-icon">
                 <Bot size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
                 <div className="nft-overview-title">Automate More</div>
-                <div className="nft-overview-body">Higher NFT tiers unlock stronger AI trading capabilities, smarter tooling, and greater platform advantage.</div>
+                <div className="nft-overview-body">
+                  Higher NFT tiers unlock stronger AI trading capabilities,
+                  smarter tooling, and greater platform advantage.
+                </div>
               </div>
             </div>
           </div>
-          <div className="nft-overview-note" data-stagger-item style={stagger(0)}>
-            NFT ownership combines platform access, AI tooling, reward participation, and compounding ecosystem upside in a single utility layer.
+          <div
+            className="nft-overview-note"
+            data-stagger-item
+            style={stagger(0)}
+          >
+            NFT ownership combines platform access, AI tooling, reward
+            participation, and compounding ecosystem upside in a single utility
+            layer.
           </div>
         </div>
       </div>
@@ -1187,14 +1989,18 @@ export function Slide21NftWhyOwn({ isActive }: SlideComponentProps) {
         <div className="nft-why-copy from-left">
           <h2 className="title">Why Own a Symoria AI NFT?</h2>
           <div className="sub nft-sub">
-            Each NFT is designed to compound utility across earnings, access, and platform participation as the Symoria ecosystem grows.
+            Each NFT is designed to compound utility across earnings, access,
+            and platform participation as the Symoria ecosystem grows.
           </div>
-          <div className="nft-why-caption">One asset. Multiple advantages. Scalable utility tied to your level and contribution.</div>
+          <div className="nft-why-caption">
+            One asset. Multiple advantages. Scalable utility tied to your level
+            and contribution.
+          </div>
         </div>
         <div className="nft-why-box" data-stagger-item style={stagger(0)}>
           <div className="nft-why-head">Core Reasons To Hold</div>
           <ul className="nft-why-list">
-            {nftWhyOwn.map(item => (
+            {nftWhyOwn.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
@@ -1210,23 +2016,35 @@ export function Slide21NftBenefits({ isActive }: SlideComponentProps) {
       <div className="eyebrow">KEY BENEFITS FOR NFT HOLDERS</div>
       <h2 className="title">Utility That Scales With Participation</h2>
       <div className="sub nft-benefits-sub">
-        Designed to reward long-term holders and active participants across referrals, AI trading, and protocol growth.
+        Designed to reward long-term holders and active participants across
+        referrals, AI trading, and protocol growth.
       </div>
       <div className="nft-benefit-grid">
         {nftBenefitCards.map((card, index) => (
-          <div key={card.kicker} className="nft-benefit-card" data-stagger-item style={stagger(index)}>
+          <div
+            key={card.kicker}
+            className="nft-benefit-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="nft-benefit-icon">
               <card.icon size={24} strokeWidth={2.1} />
             </div>
             <div className="nft-benefit-kicker">{card.kicker}</div>
             <div className="nft-benefit-title">{card.title}</div>
             <ul className="nft-benefit-list">
-              {card.bullets.map(item => (
+              {card.bullets.map((item) => (
                 <li key={item}>
                   <span className="nft-benefit-bullet-icon" aria-hidden="true">
-                    {card.kicker === "MLM Reward System" ? <Gift size={16} strokeWidth={2.2} /> : null}
-                    {card.kicker === "AI Trading Feature Access" ? <Sparkles size={16} strokeWidth={2.2} /> : null}
-                    {card.kicker === "Profit Sharing Rewards" ? <Coins size={16} strokeWidth={2.2} /> : null}
+                    {card.kicker === "MLM Reward System" ? (
+                      <Gift size={16} strokeWidth={2.2} />
+                    ) : null}
+                    {card.kicker === "AI Trading Feature Access" ? (
+                      <Sparkles size={16} strokeWidth={2.2} />
+                    ) : null}
+                    {card.kicker === "Profit Sharing Rewards" ? (
+                      <Coins size={16} strokeWidth={2.2} />
+                    ) : null}
                   </span>
                   <span>{item}</span>
                 </li>
@@ -1236,7 +2054,8 @@ export function Slide21NftBenefits({ isActive }: SlideComponentProps) {
         ))}
       </div>
       <div className="nft-benefit-callout">
-        Higher NFT tiers unlock increased earning potential, stronger AI trading capabilities, and larger profit-sharing allocations.
+        Higher NFT tiers unlock increased earning potential, stronger AI trading
+        capabilities, and larger profit-sharing allocations.
       </div>
     </section>
   );
@@ -1247,7 +2066,8 @@ export function Slide23NftRewardsSystem({ isActive }: SlideComponentProps) {
       <div className="eyebrow">NFT REWARD SYSTEM</div>
       <h2 className="title">NFT Holders Reward System</h2>
       <div className="sub nft-reward-sub">
-        NFT level determines referral recommendation, downline sharing depth, and trading subscription rewards across the Symoria ecosystem.
+        NFT level determines referral recommendation, downline sharing depth,
+        and trading subscription rewards across the Symoria ecosystem.
       </div>
       <div className="nft-reward-panel">
         <table className="nft-reward-table">
@@ -1263,17 +2083,27 @@ export function Slide23NftRewardsSystem({ isActive }: SlideComponentProps) {
             </tr>
           </thead>
           <tbody>
-            {nftRewardRows.map(([level, quantity, price, subtotal, recommendation, downline, trading]) => (
-              <tr key={level}>
-                <td>{level}</td>
-                <td>{quantity}</td>
-                <td>{price}</td>
-                <td>{subtotal}</td>
-                <td>{recommendation}</td>
-                <td>{downline}</td>
-                <td>{trading}</td>
-              </tr>
-            ))}
+            {nftRewardRows.map(
+              ([
+                level,
+                quantity,
+                price,
+                subtotal,
+                recommendation,
+                downline,
+                trading,
+              ]) => (
+                <tr key={level}>
+                  <td>{level}</td>
+                  <td>{quantity}</td>
+                  <td>{price}</td>
+                  <td>{subtotal}</td>
+                  <td>{recommendation}</td>
+                  <td>{downline}</td>
+                  <td>{trading}</td>
+                </tr>
+              ),
+            )}
           </tbody>
         </table>
       </div>
@@ -1287,22 +2117,32 @@ export function Slide24NftTradingAccess({ isActive }: SlideComponentProps) {
       <div className="nft-access-mesh" aria-hidden="true" />
       <div className="eyebrow">AI TRADING ACCESS</div>
       <h2 className="title nft-access-title">
-        Unlock AI Trading with <span className="nft-access-accent">Symoria NFTs</span>
+        Unlock AI Trading with{" "}
+        <span className="nft-access-accent">Symoria NFTs</span>
       </h2>
       <div className="sub nft-access-sub">
-        Hold Symoria NFTs to gain exclusive access to Symoria&apos;s AI-powered trading platform, with premium subscription benefits based on your NFT level.
+        Hold Symoria NFTs to gain exclusive access to Symoria&apos;s AI-powered
+        trading platform, with premium subscription benefits based on your NFT
+        level.
       </div>
       <div className="nft-access-label">Holder Benefits</div>
       <div className="nft-access-grid">
         {nftTradingAccessTiers.map((tier, index) => (
-          <div key={tier.title} className="nft-access-card" data-stagger-item style={stagger(index)}>
+          <div
+            key={tier.title}
+            className="nft-access-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="nft-access-icon">
               <tier.icon size={28} strokeWidth={2.2} />
             </div>
             <div className="nft-access-card-title">{tier.title}</div>
             <div className="nft-access-card-meta">{tier.holders}</div>
             <div className="nft-access-duration">{tier.duration}</div>
-            <div className="nft-access-duration-label">premium subscription access</div>
+            <div className="nft-access-duration-label">
+              premium subscription access
+            </div>
           </div>
         ))}
       </div>
@@ -1319,12 +2159,17 @@ export function Slide20Pricing({ isActive }: SlideComponentProps) {
         <div className="pricing-box from-left">
           <div className="pricing-type">SUBSCRIPTION</div>
           <div className="pricing-headline">Flat monthly fee.</div>
-          <div className="pricing-body">No percentage of profits taken. Pay once, access everything in your tier.</div>
+          <div className="pricing-body">
+            No percentage of profits taken. Pay once, access everything in your
+            tier.
+          </div>
         </div>
         <div className="pricing-box from-right">
           <div className="pricing-type">PERFORMANCE</div>
           <div className="pricing-headline">0% performance fee.</div>
-          <div className="pricing-body">Your gains are yours. We don&apos;t profit from your success.</div>
+          <div className="pricing-body">
+            Your gains are yours. We don&apos;t profit from your success.
+          </div>
         </div>
       </div>
       <div className="sub" style={{ marginTop: 32, fontSize: 18 }}>
@@ -1343,7 +2188,9 @@ export function Slide21Referral({ isActive }: SlideComponentProps) {
         <div className="ref-step" data-stagger-item style={stagger(0)}>
           <div className="ref-num">01</div>
           <div className="ref-title">Share your link</div>
-          <div className="ref-body">Get your unique referral URL from the dashboard</div>
+          <div className="ref-body">
+            Get your unique referral URL from the dashboard
+          </div>
         </div>
         <div className="ref-arrow">→</div>
         <div className="ref-step" data-stagger-item style={stagger(1)}>
@@ -1373,10 +2220,18 @@ export function Slide22ReferralSharing({ isActive }: SlideComponentProps) {
       <h2 className="title ref-share-title">
         Referral <span className="ref-share-accent">Level Sharing</span>
       </h2>
-      <div className="sub ref-share-sub">Deep 30-level sharing structure for platform revenue and referral matching.</div>
+      <div className="sub ref-share-sub">
+        Deep 30-level sharing structure for platform revenue and referral
+        matching.
+      </div>
       <div className="ref-share-grid">
         {referralSharingBands.map((band, index) => (
-          <div key={band.title} className="ref-share-card" data-stagger-item style={stagger(index)}>
+          <div
+            key={band.title}
+            className="ref-share-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="ref-share-icon">
               <band.icon size={28} strokeWidth={2.2} />
             </div>
@@ -1389,7 +2244,9 @@ export function Slide22ReferralSharing({ isActive }: SlideComponentProps) {
           </div>
         ))}
       </div>
-      <div className="ref-share-footnote">Calculated based on referrals across 30 total tiers.</div>
+      <div className="ref-share-footnote">
+        Calculated based on referrals across 30 total tiers.
+      </div>
     </section>
   );
 }
@@ -1401,29 +2258,57 @@ export function Slide22Community({ isActive }: SlideComponentProps) {
       <h2 className="title">50,000+ Traders. One Mission.</h2>
       <div className="comm-grid">
         <div className="comm-card" data-stagger-item style={stagger(0)}>
-          <div className="comm-val" data-countup data-cu-target="47" data-cu-suffix="K+" data-cu-decimals="0">
+          <div
+            className="comm-val"
+            data-countup
+            data-cu-target="47"
+            data-cu-suffix="K+"
+            data-cu-decimals="0"
+          >
             0K+
           </div>
           <div className="comm-label">Telegram Members</div>
         </div>
         <div className="comm-card" data-stagger-item style={stagger(1)}>
-          <div className="comm-val" data-countup data-cu-target="31" data-cu-suffix="K+" data-cu-decimals="0">
+          <div
+            className="comm-val"
+            data-countup
+            data-cu-target="31"
+            data-cu-suffix="K+"
+            data-cu-decimals="0"
+          >
             0K+
           </div>
           <div className="comm-label">X Followers</div>
         </div>
         <div className="comm-card" data-stagger-item style={stagger(2)}>
-          <div className="comm-val" data-countup data-cu-target="12" data-cu-suffix="K+" data-cu-decimals="0">
+          <div
+            className="comm-val"
+            data-countup
+            data-cu-target="12"
+            data-cu-suffix="K+"
+            data-cu-decimals="0"
+          >
             0K+
           </div>
           <div className="comm-label">Active Traders</div>
         </div>
       </div>
       <div className="comm-cta">
-        <a href="https://t.me/symoriaio" target="_blank" rel="noopener noreferrer" className="comm-btn">
+        <a
+          href="https://t.me/symoriaio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="comm-btn"
+        >
           Join Telegram
         </a>
-        <a href="https://x.com/symoriaio" target="_blank" rel="noopener noreferrer" className="comm-btn">
+        <a
+          href="https://x.com/symoriaio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="comm-btn"
+        >
           Follow on X
         </a>
       </div>
@@ -1440,42 +2325,24 @@ export function Slide23Security({ isActive }: SlideComponentProps) {
         <div className="sec-card" data-stagger-item style={stagger(0)}>
           <div className="sec-icon">🛡️</div>
           <div className="sec-title">Smart Contract Audits</div>
-          <div className="sec-body">OpenZeppelin certified. Every line reviewed, every function tested.</div>
+          <div className="sec-body">
+            OpenZeppelin certified. Every line reviewed, every function tested.
+          </div>
         </div>
         <div className="sec-card" data-stagger-item style={stagger(1)}>
           <div className="sec-icon">🔐</div>
           <div className="sec-title">ZK-Proof Engine</div>
-          <div className="sec-body">Every trade cryptographically verified. No black box.</div>
+          <div className="sec-body">
+            Every trade cryptographically verified. No black box.
+          </div>
         </div>
         <div className="sec-card" data-stagger-item style={stagger(2)}>
           <div className="sec-icon">🎯</div>
           <div className="sec-title">Bug Bounty</div>
-          <div className="sec-body">$500K active bounty program. We pay for your vigilance.</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Slide24Team({ isActive }: SlideComponentProps) {
-  return (
-    <section data-slide-idx={30} className={slideClassName(isActive)} id="s30">
-      <div className="eyebrow">CORE TEAM</div>
-      <h2 className="title">Built by DeFi Veterans</h2>
-      <div className="team-grid">
-        {[
-          ["A", "Alex K.", "CEO & AI ARCHITECT", "Ex-Google DeepMind"],
-          ["M", "Mia Chen", "CTO", "Ex-Ethereum Foundation"],
-          ["R", "Raj Patel", "HEAD OF QUANT", "Ex-Two Sigma"],
-          ["S", "Sara Liu", "HEAD OF SECURITY", "Ex-Trail of Bits"],
-        ].map(([avatar, name, role, previous], index) => (
-          <div key={name} className="team-card" data-stagger-item style={stagger(index)}>
-            <div className="team-avatar">{avatar}</div>
-            <div className="team-name">{name}</div>
-            <div className="team-role">{role}</div>
-            <div className="team-prev">{previous}</div>
+          <div className="sec-body">
+            $500K active bounty program. We pay for your vigilance.
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
@@ -1486,7 +2353,10 @@ export function Slide25Tokenomics({ isActive }: SlideComponentProps) {
     <section data-slide-idx={31} className={slideClassName(isActive)} id="s31">
       <div className="eyebrow">SYM TOKEN</div>
       <h2 className="title">The Fuel of Autonomous Finance</h2>
-      <div className="sub">SYM powers fee discounts, governance voting, and staking rewards within the Symoria ecosystem.</div>
+      <div className="sub">
+        SYM powers fee discounts, governance voting, and staking rewards within
+        the Symoria ecosystem.
+      </div>
       <div className="token-grid">
         {[
           ["40%", "Community & Ecosystem"],
@@ -1494,7 +2364,12 @@ export function Slide25Tokenomics({ isActive }: SlideComponentProps) {
           ["20%", "Treasury"],
           ["20%", "Early Investors"],
         ].map(([percent, label], index) => (
-          <div key={label} className="token-card" data-stagger-item style={stagger(index)}>
+          <div
+            key={label}
+            className="token-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="token-pct">{percent}</div>
             <div className="token-label">{label}</div>
           </div>
@@ -1518,7 +2393,10 @@ export function Slide26WhyNow({ isActive }: SlideComponentProps) {
             <li>Retail demands smarter tools</li>
           </ul>
         </div>
-        <div className="from-right" style={{ display: "flex", alignItems: "center" }}>
+        <div
+          className="from-right"
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <div className="why-window">
             The window is open.
             <br />
@@ -1537,12 +2415,29 @@ export function Slide27Faq({ isActive }: SlideComponentProps) {
       <h2 className="title">Common Questions</h2>
       <div className="faq-grid">
         {[
-          ["Is my capital safe?", "Symoria is non-custodial. Your keys, your assets. We never hold your funds."],
-          ["What are the risks?", "DeFi involves smart contract and market risk. Start small and understand what you're deploying."],
-          ["Which wallets work?", "MetaMask, WalletConnect, Ledger, and all EVM-compatible wallets are fully supported."],
-          ["Can I withdraw anytime?", "Yes. No lockups. Full liquidity, always. Your capital is never locked."],
+          [
+            "Is my capital safe?",
+            "Symoria is non-custodial. Your keys, your assets. We never hold your funds.",
+          ],
+          [
+            "What are the risks?",
+            "DeFi involves smart contract and market risk. Start small and understand what you're deploying.",
+          ],
+          [
+            "Which wallets work?",
+            "MetaMask, WalletConnect, Ledger, and all EVM-compatible wallets are fully supported.",
+          ],
+          [
+            "Can I withdraw anytime?",
+            "Yes. No lockups. Full liquidity, always. Your capital is never locked.",
+          ],
         ].map(([question, answer], index) => (
-          <div key={question} className="faq-card" data-stagger-item style={stagger(index)}>
+          <div
+            key={question}
+            className="faq-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="faq-q">{question}</div>
             <div className="faq-a">{answer}</div>
           </div>
@@ -1566,7 +2461,12 @@ export function Slide28TvlGrowth({ isActive }: SlideComponentProps) {
           ["$35.1M", 340],
           ["$48.4M", 400],
         ].map(([value, height], index) => (
-          <div key={value} className="bar-col" data-stagger-item style={stagger(index)}>
+          <div
+            key={value}
+            className="bar-col"
+            data-stagger-item
+            style={stagger(index)}
+          >
             <div className="bar-val">{value}</div>
             <div className="bar-bar" style={{ height }} />
             <div className="bar-label">Month {index + 1}</div>
@@ -1587,16 +2487,27 @@ export function Slide29Legal({ isActive }: SlideComponentProps) {
       <h2 className="title">Important Disclosures</h2>
       <div className="legal-body">
         <p>
-          Symoria is a non-custodial AI-powered DeFi automation platform. We do not hold, manage, or control user assets at any time. All trade execution occurs via smart contracts deployed on public blockchains, initiated by user-authorized transactions.
+          Symoria is a non-custodial AI-powered DeFi automation platform. We do
+          not hold, manage, or control user assets at any time. All trade
+          execution occurs via smart contracts deployed on public blockchains,
+          initiated by user-authorized transactions.
         </p>
         <p>
-          Nothing in this presentation constitutes financial, investment, legal, or tax advice. All performance data presented is historical or simulated and does not guarantee future results. DeFi markets are highly volatile and may result in partial or total loss of capital.
+          Nothing in this presentation constitutes financial, investment, legal,
+          or tax advice. All performance data presented is historical or
+          simulated and does not guarantee future results. DeFi markets are
+          highly volatile and may result in partial or total loss of capital.
         </p>
         <p>
-          Users are responsible for complying with applicable laws and regulations in their jurisdiction. Symoria does not offer services in jurisdictions where such services are prohibited by law, including but not limited to the United States of America.
+          Users are responsible for complying with applicable laws and
+          regulations in their jurisdiction. Symoria does not offer services in
+          jurisdictions where such services are prohibited by law, including but
+          not limited to the United States of America.
         </p>
         <p>
-          Smart contract risk, market risk, liquidity risk, and regulatory risk are inherent to all DeFi activities. Please conduct independent due diligence before using any financial protocol.
+          Smart contract risk, market risk, liquidity risk, and regulatory risk
+          are inherent to all DeFi activities. Please conduct independent due
+          diligence before using any financial protocol.
         </p>
       </div>
     </section>
@@ -1612,35 +2523,91 @@ export function Slide30Cta({ isActive }: SlideComponentProps) {
         <div className="from-left">
           <div className="col-stat-list">
             <div className="col-stat">
-              <div className="col-stat-val" data-countup data-cu-target="48" data-cu-prefix="$" data-cu-suffix="M TVL" data-cu-decimals="0">
+              <div
+                className="col-stat-val"
+                data-countup
+                data-cu-target="48"
+                data-cu-prefix="$"
+                data-cu-suffix="M TVL"
+                data-cu-decimals="0"
+              >
                 $0M TVL
               </div>
               <div className="col-stat-label">Total Value Locked</div>
             </div>
             <div className="col-stat">
-              <div className="col-stat-val" data-countup data-cu-target="12400" data-cu-suffix=" Users" data-cu-decimals="0">
+              <div
+                className="col-stat-val"
+                data-countup
+                data-cu-target="12400"
+                data-cu-suffix=" Users"
+                data-cu-decimals="0"
+              >
                 0 Users
               </div>
               <div className="col-stat-label">Active Traders</div>
             </div>
             <div className="col-stat">
-              <div className="col-stat-val" data-countup data-cu-target="2.4" data-cu-prefix="$" data-cu-suffix="M/mo" data-cu-decimals="1">
+              <div
+                className="col-stat-val"
+                data-countup
+                data-cu-target="2.4"
+                data-cu-prefix="$"
+                data-cu-suffix="M/mo"
+                data-cu-decimals="1"
+              >
                 $0.0M/mo
               </div>
               <div className="col-stat-label">Monthly Volume</div>
             </div>
           </div>
         </div>
-        <div className="from-right" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center" }}>
-          <div style={{ fontFamily: "var(--serif)", fontSize: 100, fontWeight: 600, color: "var(--green)", lineHeight: 1 }}>SYM.</div>
-          <div style={{ fontSize: 24, fontWeight: 300, color: "rgba(255,255,255,0.5)", marginTop: 16, marginBottom: 32 }}>
+        <div
+          className="from-right"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "var(--serif)",
+              fontSize: 100,
+              fontWeight: 600,
+              color: "var(--green)",
+              lineHeight: 1,
+            }}
+          >
+            SYM.
+          </div>
+          <div
+            style={{
+              fontSize: 24,
+              fontWeight: 300,
+              color: "rgba(255,255,255,0.5)",
+              marginTop: 16,
+              marginBottom: 32,
+            }}
+          >
             Autonomous AI · DeFi · 2026
           </div>
           <div style={{ display: "flex", gap: 16 }}>
-            <a href="https://symoria.io" target="_blank" rel="noopener noreferrer" className="comm-btn">
+            <a
+              href="https://symoria.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="comm-btn"
+            >
               symoria.io
             </a>
-            <a href="https://x.com/symoriaio" target="_blank" rel="noopener noreferrer" className="comm-btn">
+            <a
+              href="https://x.com/symoriaio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="comm-btn"
+            >
               @symoria_ai
             </a>
           </div>
@@ -1661,10 +2628,18 @@ export function Slide31SocialStats({ isActive }: SlideComponentProps) {
         <h2 className="title socials-title">
           Connect with <span className="socials-title-accent">Symoria</span>
         </h2>
-        <div className="sub socials-sub">Join our community and stay updated with the latest AI-driven DeFi insights</div>
+        <div className="sub socials-sub">
+          Join our community and stay updated with the latest AI-driven DeFi
+          insights
+        </div>
         <div className="socials-grid">
           {socialStats.map((entry, index) => (
-            <div key={entry.platform} className="socials-card" data-stagger-item style={stagger(index)}>
+            <div
+              key={entry.platform}
+              className="socials-card"
+              data-stagger-item
+              style={stagger(index)}
+            >
               <div className="socials-mark">
                 <SocialIcon platform={entry.platform} />
               </div>
@@ -1700,11 +2675,13 @@ export function Slide31ThankYou({ isActive }: SlideComponentProps) {
 
 export const slides = [
   Slide00Cover,
+
   Slide01Market,
   Slide02Problem,
   Slide03WhyHumansFail,
   Slide04WhyBotsFail,
   Slide05Solution,
+  Slide06AgentSwarms,
   Slide06Vs,
   Slide07AiConsensus,
   Slide08YieldOptimizer,
@@ -1729,7 +2706,6 @@ export const slides = [
   Slide22ReferralSharing,
   Slide22Community,
   Slide23Security,
-  Slide24Team,
   Slide25Tokenomics,
   Slide26WhyNow,
   Slide27Faq,

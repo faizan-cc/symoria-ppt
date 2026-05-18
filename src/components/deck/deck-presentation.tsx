@@ -35,7 +35,9 @@ function splitChars(el: Element) {
 
 export default function DeckPresentation() {
   const [current, setCurrent] = useState(0);
+  const [introDismissed, setIntroDismissed] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
+  const introVideoRef = useRef<HTMLVideoElement>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const goTo = useCallback((i: number) => {
@@ -43,8 +45,28 @@ export default function DeckPresentation() {
     setCurrent(i);
   }, []);
 
+  const dismissIntro = useCallback(() => {
+    const video = introVideoRef.current;
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+    setIntroDismissed(true);
+  }, []);
+
+  useEffect(() => {
+    if (introDismissed) return;
+    const video = introVideoRef.current;
+    if (!video) return;
+
+    const playPromise = video.play();
+    playPromise?.catch(() => {});
+  }, [introDismissed]);
+
   // Scale to fit screen
   useEffect(() => {
+    if (!introDismissed) return;
+
     const scale = () => {
       if (!stageRef.current) return;
       const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
@@ -55,15 +77,18 @@ export default function DeckPresentation() {
     scale();
     window.addEventListener("resize", scale);
     return () => window.removeEventListener("resize", scale);
-  }, []);
+  }, [introDismissed]);
 
   // Char split on mount
   useEffect(() => {
+    if (!introDismissed) return;
     document.querySelectorAll("[data-split-chars]").forEach(splitChars);
-  }, []);
+  }, [introDismissed]);
 
   // Keyboard navigation
   useEffect(() => {
+    if (!introDismissed) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (["ArrowRight", "ArrowDown", " "].includes(e.key)) {
         e.preventDefault();
@@ -75,10 +100,12 @@ export default function DeckPresentation() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [introDismissed]);
 
   // Touch navigation
   useEffect(() => {
+    if (!introDismissed) return;
+
     let tx = 0;
     let ty = 0;
     const onStart = (e: TouchEvent) => {
@@ -98,55 +125,85 @@ export default function DeckPresentation() {
       document.removeEventListener("touchstart", onStart);
       document.removeEventListener("touchend", onEnd);
     };
-  }, []);
+  }, [introDismissed]);
 
   // Countup on slide change
   useEffect(() => {
+    if (!introDismissed) return;
+
     timers.current.forEach(clearTimeout);
     timers.current = [];
-    const slide = document.querySelector(`[data-slide-idx="${current}"]`);
+    const slide = stageRef.current?.children.item(current) as HTMLElement | null;
     if (!slide) return;
     slide.querySelectorAll("[data-countup]").forEach(el => {
       const id = setTimeout(() => animateCountup(el as HTMLElement), 700);
       timers.current.push(id);
     });
-  }, [current]);
+  }, [current, introDismissed]);
 
   return (
     <>
-      <div className="stage-wrap">
-        <div ref={stageRef} className="deck-stage">
-          {slides.map((Slide, index) => (
-            <Slide key={index} isActive={current === index} />
-          ))}
+      {!introDismissed && (
+        <div className="app-intro">
+          <video
+            ref={introVideoRef}
+            className="app-intro-video"
+            src="/assets/landing-video.mov"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+          <div className="app-intro-shade" />
+          <div className="app-intro-controls">
+            <button className="app-intro-enter" onClick={dismissIntro}>
+              Click to enter
+            </button>
+            <button className="app-intro-skip" onClick={dismissIntro}>
+              Skip
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="deck-progress-wrap">
-        <div className="deck-progress" style={{ width: `${(current / (TOTAL - 1)) * 100}%` }} />
-      </div>
+      {introDismissed && (
+        <>
+          <div className="stage-wrap">
+            <div ref={stageRef} className="deck-stage">
+              {slides.map((Slide, index) => (
+                <Slide key={index} isActive={current === index} />
+              ))}
+            </div>
+          </div>
 
-      <div className="deck-nav-bar">
-        <button className="deck-nav-btn" onClick={() => goTo(current - 1)}>
-          ←
-        </button>
-        <div className="deck-dots">
-          {Array.from({ length: TOTAL }, (_, index) => (
-            <button
-              key={index}
-              className={`deck-dot${index === current ? " active" : ""}`}
-              onClick={() => goTo(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-        <span className="deck-nav-counter">
-          {String(current + 1).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")}
-        </span>
-        <button className="deck-nav-btn" onClick={() => goTo(current + 1)}>
-          →
-        </button>
-      </div>
+          <div className="deck-progress-wrap">
+            <div className="deck-progress" style={{ width: `${(current / (TOTAL - 1)) * 100}%` }} />
+          </div>
+
+          <div className="deck-nav-bar">
+            <button className="deck-nav-btn" onClick={() => goTo(current - 1)}>
+              ←
+            </button>
+            <div className="deck-dots">
+              {Array.from({ length: TOTAL }, (_, index) => (
+                <button
+                  key={index}
+                  className={`deck-dot${index === current ? " active" : ""}`}
+                  onClick={() => goTo(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+            <span className="deck-nav-counter">
+              {String(current + 1).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")}
+            </span>
+            <button className="deck-nav-btn" onClick={() => goTo(current + 1)}>
+              →
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 }
