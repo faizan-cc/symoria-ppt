@@ -3471,6 +3471,7 @@ export const slides = [
   Slide06Vs,
   Slide13Performance,
   Slide14CapitalSimulation,
+  Slide31SocialStats,
   Slide20NftOverview,
   Slide21NftWhyOwn,
   Slide21ReferralDirectReward,
@@ -3482,6 +3483,5 @@ export const slides = [
   Slide17Roadmap,
   Slide27Faq,
   Slide29Legal,
-  Slide31SocialStats,
   Slide31ThankYou,
 ] as const;
