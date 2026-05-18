@@ -36,6 +36,7 @@ function splitChars(el: Element) {
 export default function DeckPresentation() {
   const [current, setCurrent] = useState(0);
   const [introDismissed, setIntroDismissed] = useState(false);
+  const [introReady, setIntroReady] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const introVideoRef = useRef<HTMLVideoElement>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -55,12 +56,25 @@ export default function DeckPresentation() {
   }, []);
 
   useEffect(() => {
-    if (introDismissed) return;
+    if (introDismissed || !introReady) return;
     const video = introVideoRef.current;
     if (!video) return;
 
     const playPromise = video.play();
     playPromise?.catch(() => {});
+  }, [introDismissed, introReady]);
+
+  useEffect(() => {
+    if (introDismissed) return;
+    const video = introVideoRef.current;
+    if (!video) return;
+
+    if (video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+      setIntroReady(true);
+      return;
+    }
+
+    video.load();
   }, [introDismissed]);
 
   // Scale to fit screen
@@ -144,26 +158,40 @@ export default function DeckPresentation() {
   return (
     <>
       {!introDismissed && (
-        <div className="app-intro">
+        <div className={`app-intro${introReady ? " app-intro-ready" : ""}`}>
           <video
             ref={introVideoRef}
-            className="app-intro-video"
+            className={`app-intro-video${introReady ? " app-intro-video-ready" : ""}`}
             src="/assets/landing-video.mov"
-            autoPlay
             muted
             loop
             playsInline
             preload="auto"
+            onLoadedData={() => setIntroReady(true)}
+            onCanPlayThrough={() => setIntroReady(true)}
           />
-          <div className="app-intro-shade" />
-          <div className="app-intro-controls">
-            <button className="app-intro-enter" onClick={dismissIntro}>
-              Click to enter
-            </button>
-            <button className="app-intro-skip" onClick={dismissIntro}>
-              Skip
-            </button>
+          <div className={`app-intro-loader${introReady ? " app-intro-loader-hidden" : ""}`}>
+            <div className="app-intro-loader-kicker">◆ Sales · 2026</div>
+            <div className="app-intro-loader-center">
+           
+              <div className="app-intro-loader-subtitle"> SYMORIA </div>
+            </div>
+            <div className="app-intro-loader-status">Loading...</div>
           </div>
+
+          {introReady && (
+            <>
+              <div className="app-intro-shade" />
+              <div className="app-intro-controls">
+                <button className="app-intro-enter" onClick={dismissIntro}>
+                  Click to enter
+                </button>
+                <button className="app-intro-skip" onClick={dismissIntro}>
+                  Skip
+                </button>
+              </div>
+            </>
+          )}
         </div>
       )}
 
