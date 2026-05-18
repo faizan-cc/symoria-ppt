@@ -13,6 +13,7 @@ import {
 type SlideComponentProps = {
   isActive: boolean;
   locale?: "en" | "kr";
+  onAdvance?: () => void;
 };
 
 const socialStats = [
@@ -39,11 +40,30 @@ const socialStats = [
 ] as const;
 
 const nftWhyOwn = [
-  "Multiple income opportunities in one ecosystem",
-  "Real utility backed by AI technology",
-  "Exclusive access to premium platform features",
-  "Long-term rewards for loyal community members",
-  "Scalable benefits based on NFT level and participation",
+  {
+    title: "Referral Direct Reward",
+    icon: Network,
+    description:
+      "Placeholder description: explain the direct referral bonus, who qualifies for it, and how holders receive the reward when a new user joins through their invite.",
+  },
+  {
+    title: "Free Trading Subscription",
+    icon: ShieldCheck,
+    description:
+      "Placeholder description: explain which NFT tiers unlock free trading access, how long the subscription lasts, and what premium tools are included.",
+  },
+  {
+    title: "Referral Trading Commission Reward",
+    icon: TrendingUp,
+    description:
+      "Placeholder description: explain how trading commissions are shared through the referral structure, what percentage holders earn, and how payouts accumulate over time.",
+  },
+  {
+    title: "Token Airdrop",
+    icon: Coins,
+    description:
+      "Placeholder description: explain airdrop eligibility, distribution criteria, and how NFT ownership increases exposure to ecosystem token incentives.",
+  },
 ] as const;
 
 const nftBenefitCards = [
@@ -245,6 +265,223 @@ const nftTradingAccessTiers = [
     holders: "Level 15-19 Holders",
     duration: "3 Months",
     icon: ShieldCheck,
+  },
+] as const;
+
+const nftSubscriptionPlans = [
+  {
+    title: "Elite",
+    icon: Crown,
+    levels: "NFT Levels 1-4",
+    duration: "9-12 Months",
+    detail: "Maximum subscription access for top NFT tiers",
+    benefits: [
+      "Simulation trading",
+      "Spot + Margin trading",
+      "All trading signals",
+      "Custom pairs signals",
+      "Signal bot notifications",
+      "Full platform access",
+    ],
+  },
+  {
+    title: "Pro",
+    icon: Sparkles,
+    levels: "NFT Levels 5-8",
+    duration: "6-9 Months",
+    detail: "Advanced trading toolkit with higher-tier access",
+    benefits: [
+      "Simulation trading",
+      "Spot trading",
+      "All trading signals",
+      "Signal bot notifications",
+    ],
+  },
+
+  {
+    title: "Basic",
+    icon: Bot,
+    levels: "NFT Levels 9-14",
+    duration: "3-6 Months",
+    detail: "Longer access for mid-tier holders",
+    benefits: [
+      "Simulation trading",
+      "Spot trading access",
+      "All trading signals",
+    ],
+  },
+
+  {
+    title: "Starter",
+    icon: ShieldCheck,
+    levels: "NFT Levels 15-19",
+    duration: "3 Months",
+    detail: "Entry-level free trading subscription",
+    benefits: ["Simulation trading access", "AI trading signals available"],
+  },
+] as const;
+
+const nftCommissionPools = [
+  {
+    title: "Total Pool",
+    value: "30%",
+    note: "Trading benefit sharing allocation",
+    icon: TrendingUp,
+  },
+  {
+    title: "A+B Split",
+    value: "4%",
+    note: "Direct split pool shown as 2% : 2%",
+    icon: Network,
+  },
+  {
+    title: "Depth Share",
+    value: "18%",
+    note: "Referral ladder distribution from the shared structure",
+    icon: Gift,
+  },
+  {
+    title: "Holder Bonus",
+    value: "8%",
+    note: "NFT-holder downline double-share layer",
+    icon: Crown,
+  },
+] as const;
+
+const nftCommissionBands = [
+  {
+    title: "Elite",
+    icon: Crown,
+    levels: ["1", "2", "3", "4"],
+    share: "12%",
+    detail: "Highest trading commission band across the first four NFT levels.",
+    highlights: [
+      "Top-tier trading benefit sharing",
+      "Strongest early-level matching curve",
+      "Holder bonus pool remains active",
+    ],
+  },
+  {
+    title: "Pro",
+    icon: Sparkles,
+    levels: ["5", "6", "7", "8"],
+    share: "11%",
+    detail: "High-earning commission range for upper-mid NFT holders.",
+    highlights: [
+      "Large referral trading share band",
+      "Still participates in holder bonus structure",
+      "Built for active team expansion",
+    ],
+  },
+  {
+    title: "Basic",
+    icon: Bot,
+    levels: ["9", "10", "11", "12", "13", "14"],
+    share: "10%",
+    detail: "Mid-tier commission participation spanning six NFT levels.",
+    highlights: [
+      "Keeps trading rewards active across the middle ladder",
+      "Balanced for holders scaling referral depth",
+      "Covers six consecutive NFT levels",
+    ],
+  },
+  {
+    title: "Starter",
+    icon: ShieldCheck,
+    levels: ["15", "16", "17", "18", "19"],
+    share: "8%",
+    detail:
+      "Entry trading commission band extending reward coverage to level 19.",
+    highlights: [
+      "Introduces trading benefit sharing for new holders",
+      "Maintains payout visibility through the final NFT tier",
+      "Completes the full 1-19 reward span",
+    ],
+  },
+] as const;
+
+const nftAirdropSummary = [
+  {
+    title: "Total Airdrop",
+    value: "105.4M",
+    note: "Combined SYM allocation across NFT Levels 1-19.",
+    icon: Coins,
+  },
+  {
+    title: "Top Tier",
+    value: "30M",
+    note: "Level 1 receives the largest single SYM reward.",
+    icon: Crown,
+  },
+  {
+    title: "Covered Levels",
+    value: "19",
+    note: "Every NFT level has a defined token reward allocation.",
+    icon: Network,
+  },
+  {
+    title: "Entry Reward",
+    value: "50K",
+    note: "Level 19 still retains a fixed SYM airdrop allocation.",
+    icon: ShieldCheck,
+  },
+] as const;
+
+const nftAirdropBands = [
+  {
+    title: "Elite",
+    icon: Crown,
+    levels: "NFT Levels 1-4",
+    total: "80M SYM",
+    detail: "Largest SYM allocations",
+    rewards: [
+      { level: "1", value: "30M SYM" },
+      { level: "2", value: "25M SYM" },
+      { level: "3", value: "15M SYM" },
+      { level: "4", value: "10M SYM" },
+    ],
+  },
+  {
+    title: "Pro",
+    icon: Sparkles,
+    levels: "NFT Levels 5-8",
+    total: "19M SYM",
+    detail: "Multi-million SYM rewards",
+    rewards: [
+      { level: "5", value: "7.5M SYM" },
+      { level: "6", value: "5M SYM" },
+      { level: "7", value: "4M SYM" },
+      { level: "8", value: "2.5M SYM" },
+    ],
+  },
+  {
+    title: "Basic",
+    icon: Bot,
+    levels: "NFT Levels 9-14",
+    total: "6.15M SYM",
+    detail: "Mid-tier SYM allocation",
+    rewards: [
+      { level: "9", value: "2M SYM" },
+      { level: "10", value: "1.5M SYM" },
+      { level: "11", value: "1M SYM" },
+      { level: "12", value: "750K SYM" },
+      { level: "13", value: "500K SYM" },
+      { level: "14", value: "400K SYM" },
+    ],
+  },
+  {
+    title: "Starter",
+    icon: ShieldCheck,
+    levels: "NFT Levels 15-19",
+    total: "750K SYM",
+    detail: "Entry-tier SYM rewards",
+    rewards: [
+      { level: "15", value: "250K SYM" },
+      { level: "16", value: "200K SYM" },
+      { level: "17", value: "150K SYM" },
+      { level: "18", value: "100K SYM" },
+      { level: "19", value: "50K SYM" },
+    ],
   },
 ] as const;
 
@@ -765,7 +1002,7 @@ export function Slide02Problem({ isActive }: SlideComponentProps) {
       style={{ alignItems: "flex-start" }}
     >
       <h2 className="title narrative-title">
-        DeFi market growth turned a niche experiment into a{" "}
+        TradeFi market growth turned a niche experiment into a{" "}
         <span className="narrative-highlight">multi-trillion-dollar arena</span>
         .
       </h2>
@@ -1319,11 +1556,11 @@ export function Slide05Solution({ isActive }: SlideComponentProps) {
         <div className="ai-op">✓</div>
         <div className="ai-badge">
           <div className="ai-badge-name">ORACLE</div>
-          <div className="ai-badge-role">ZK Verification</div>
+          <div className="ai-badge-role">On Chain Verification</div>
         </div>
       </div>
       <div className="consensus-msg">
-        ▸ MULTI-AGENT CONSENSUS · EVERY TRADE VERIFIED ON-CHAIN
+        ▸ MULTI-MODEL CONSENSUS · EVERY TRADE VERIFIED ON-CHAIN
       </div>
     </section>
   );
@@ -1376,7 +1613,10 @@ export function Slide06Vs({ isActive }: SlideComponentProps) {
   );
 }
 
-export function Slide06AgentSwarms({ isActive }: SlideComponentProps) {
+export function Slide06AgentSwarms({
+  isActive,
+  onAdvance,
+}: SlideComponentProps) {
   const firstVideoRef = useRef<HTMLVideoElement>(null);
   const secondVideoRef = useRef<HTMLVideoElement>(null);
   const thirdVideoRef = useRef<HTMLVideoElement>(null);
@@ -1430,32 +1670,44 @@ export function Slide06AgentSwarms({ isActive }: SlideComponentProps) {
           <video
             ref={firstVideoRef}
             className={`swarm-video${activeVideo === 0 ? " swarm-video-active" : ""}`}
-            src="/assets/video-1.mp4"
+            src="/assets/video-2.mp4"
             muted
             playsInline
             preload="auto"
+            onLoadedMetadata={(event) => {
+              event.currentTarget.defaultPlaybackRate = 1.5;
+              event.currentTarget.playbackRate = 1.5;
+            }}
             onEnded={() => setActiveVideo(1)}
           />
           <video
             ref={secondVideoRef}
             className={`swarm-video${activeVideo === 1 ? " swarm-video-active" : ""}`}
-            src="/assets/video-2.mp4"
+            src="/assets/video-3.mp4"
             muted
             playsInline
             preload="auto"
+            onLoadedMetadata={(event) => {
+              event.currentTarget.defaultPlaybackRate = 1.6;
+              event.currentTarget.playbackRate = 1.6;
+            }}
             onEnded={() => setActiveVideo(2)}
           />
           <video
             ref={thirdVideoRef}
             className={`swarm-video${activeVideo === 2 ? " swarm-video-active" : ""}`}
-            src="/assets/video-3.mp4"
+            src="/assets/video-1.mp4"
             muted
             playsInline
             preload="auto"
+            onLoadedMetadata={(event) => {
+              event.currentTarget.defaultPlaybackRate = 2;
+              event.currentTarget.playbackRate = 2;
+            }}
             onEnded={(event) => {
               event.currentTarget.currentTime = 0;
-              const playPromise = event.currentTarget.play();
-              playPromise?.catch(() => {});
+              event.currentTarget.playbackRate = 2;
+              onAdvance?.();
             }}
           />
           <div className="swarm-video-shade" />
@@ -1482,6 +1734,171 @@ export function Slide06AgentSwarms({ isActive }: SlideComponentProps) {
               >
                 No sleep. No salary. No mercy.
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Slide06HowNftWorks({
+  isActive,
+  onAdvance,
+}: SlideComponentProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showOverlay, setShowOverlay] = useState(true);
+
+  useEffect(() => {
+    setShowOverlay(true);
+
+    if (!isActive) return;
+
+    const timer = window.setTimeout(() => {
+      setShowOverlay(false);
+    }, 2000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [isActive]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+
+    if (!isActive) return;
+
+    const playPromise = video.play();
+    playPromise?.catch(() => {});
+
+    return () => {
+      video.pause();
+      video.currentTime = 0;
+    };
+  }, [isActive]);
+
+  return (
+    <section
+      data-slide-idx="6-how-nft-video"
+      className={slideClassName(isActive)}
+      id="s6-how-nft-video"
+    >
+      <div className="swarm-video-shell" data-stagger-item style={stagger(0)}>
+        <div className="swarm-video-frame">
+          <video
+            ref={videoRef}
+            className={`swarm-video${isActive ? " swarm-video-active" : ""}`}
+            src="/assets/how%20nft%20works.mp4"
+            muted
+            onLoadedMetadata={(event) => {
+              event.currentTarget.defaultPlaybackRate = 3;
+              event.currentTarget.playbackRate = 3;
+            }}
+            playsInline
+            preload="auto"
+            onEnded={() => onAdvance?.()}
+          />
+          <div
+            className={`swarm-video-shade${showOverlay ? "" : " swarm-video-overlay-hidden"}`}
+          />
+          <div
+            className={`swarm-video-copy-wrap${showOverlay ? "" : " swarm-video-overlay-hidden"}`}
+          >
+            <div className="eyebrow swarm-video-kicker">NFT EXPLAINER</div>
+            <div className="swarm-video-text-stack">
+              <h2
+                className="swarm-video-line swarm-video-title-line"
+                style={stagger(0)}
+              >
+                How NFT Works
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+export function Slide06HowTradingWorks({
+  isActive,
+  onAdvance,
+}: SlideComponentProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showOverlay, setShowOverlay] = useState(true);
+
+  useEffect(() => {
+    setShowOverlay(true);
+
+    if (!isActive) return;
+
+    const timer = window.setTimeout(() => {
+      setShowOverlay(false);
+    }, 2000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [isActive]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+
+    if (!isActive) return;
+
+    const playPromise = video.play();
+    playPromise?.catch(() => {});
+
+    return () => {
+      video.pause();
+      video.currentTime = 0;
+    };
+  }, [isActive]);
+
+  return (
+    <section
+      data-slide-idx="6-how-nft-video"
+      className={slideClassName(isActive)}
+      id="s6-how-nft-video"
+    >
+      <div className="swarm-video-shell" data-stagger-item style={stagger(0)}>
+        <div className="swarm-video-frame">
+          <video
+            ref={videoRef}
+            className={`swarm-video${isActive ? " swarm-video-active" : ""}`}
+            src="/assets/how%20trading%20works.mp4"
+            muted
+            onLoadedMetadata={(event) => {
+              event.currentTarget.defaultPlaybackRate = 3;
+              event.currentTarget.playbackRate = 3;
+            }}
+            playsInline
+            preload="auto"
+            onEnded={() => onAdvance?.()}
+          />
+          <div
+            className={`swarm-video-shade${showOverlay ? "" : " swarm-video-overlay-hidden"}`}
+          />
+          <div
+            className={`swarm-video-copy-wrap${showOverlay ? "" : " swarm-video-overlay-hidden"}`}
+          >
+            <div className="eyebrow swarm-video-kicker">NFT EXPLAINER</div>
+            <div className="swarm-video-text-stack">
+              <h2
+                className="swarm-video-line swarm-video-title-line"
+                style={stagger(0)}
+              >
+                How Trading Works
+              </h2>
             </div>
           </div>
         </div>
@@ -1816,81 +2233,228 @@ export function Slide21NftWhyOwn({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={21} className={slideClassName(isActive)} id="s21">
       <div className="eyebrow">NFT HOLDER VALUE</div>
-      <div className="nft-why-layout">
-        <div className="nft-why-copy from-left">
-          <h2 className="title">Why Own a Symoria AI NFT?</h2>
-          <div className="sub nft-sub">
-            Each NFT is designed to compound utility across earnings, access,
-            and platform participation as the Symoria ecosystem grows.
+      <h2 className="title">Why Hold Symoria NFT</h2>
+      <div className="nft-why-reward-grid">
+        {nftWhyOwn.map(({ title, icon: Icon }, index) => (
+          <div
+            key={title}
+            className="nft-why-reward-card"
+            data-stagger-item
+            style={stagger(index)}
+          >
+            <div className="nft-why-reward-icon">
+              <Icon size={28} strokeWidth={2.1} />
+            </div>
+            <div className="nft-why-reward-title">{`${index + 1}. ${title}`}</div>
           </div>
-          <div className="nft-why-caption">
-            One asset. Multiple advantages. Scalable utility tied to your level
-            and contribution.
-          </div>
-        </div>
-        <div className="nft-why-box" data-stagger-item style={stagger(0)}>
-          <div className="nft-why-head">Core Reasons To Hold</div>
-          <ul className="nft-why-list">
-            {nftWhyOwn.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
+        ))}
       </div>
     </section>
   );
 }
 
-export function Slide21NftBenefits({ isActive }: SlideComponentProps) {
+export function Slide21ReferralDirectReward({ isActive }: SlideComponentProps) {
+  const reward = nftWhyOwn[0];
+  const Icon = reward.icon;
+
   return (
-    <section data-slide-idx={22} className={slideClassName(isActive)} id="s22">
-      <div className="eyebrow">KEY BENEFITS FOR NFT HOLDERS</div>
-      <h2 className="title">Utility That Scales With Participation</h2>
-      <div className="sub nft-benefits-sub">
-        Designed to reward long-term holders and active participants across
-        referrals, AI trading, and protocol growth.
+    <section
+      data-slide-idx="s21-reward-1"
+      className={slideClassName(isActive)}
+      id="s21-reward-1"
+    >
+      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <h2 className="title nft-reward-detail-title">{reward.title}</h2>
+      <div className="sub ref-share-sub">
+        Deep 30-level sharing structure for platform revenue and referral
+        matching.
       </div>
-      <div className="nft-benefit-grid">
-        {nftBenefitCards.map((card, index) => (
+      <div className="ref-share-grid">
+        {referralSharingBands.map((band, index) => (
           <div
-            key={card.kicker}
-            className="nft-benefit-card"
+            key={band.title}
+            className="ref-share-card"
             data-stagger-item
             style={stagger(index)}
           >
-            <div className="nft-benefit-icon">
-              <card.icon size={24} strokeWidth={2.1} />
+            <div className="ref-share-icon">
+              <band.icon size={28} strokeWidth={2.2} />
             </div>
-            <div className="nft-benefit-kicker">{card.kicker}</div>
-            <div className="nft-benefit-title">{card.title}</div>
-            <ul className="nft-benefit-list">
-              {card.bullets.map((item) => (
-                <li key={item}>
-                  <span className="nft-benefit-bullet-icon" aria-hidden="true">
-                    {card.kicker === "MLM Reward System" ? (
-                      <Gift size={16} strokeWidth={2.2} />
-                    ) : null}
-                    {card.kicker === "AI Trading Feature Access" ? (
-                      <Sparkles size={16} strokeWidth={2.2} />
-                    ) : null}
-                    {card.kicker === "Profit Sharing Rewards" ? (
-                      <Coins size={16} strokeWidth={2.2} />
-                    ) : null}
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="ref-share-card-title">{band.title}</div>
+            <div className="ref-share-value-row">
+              <span className="ref-share-value">{band.value}</span>
+              <span className="ref-share-suffix">{band.suffix}</span>
+            </div>
+            <div className="ref-share-note">{band.note}</div>
           </div>
         ))}
       </div>
-      <div className="nft-benefit-callout">
-        Higher NFT tiers unlock increased earning potential, stronger AI trading
-        capabilities, and larger profit-sharing allocations.
+      <div className="ref-share-footnote">
+        Calculated based on referrals across 30 total tiers.
       </div>
     </section>
   );
 }
+
+export function Slide21FreeTradingSubscription({
+  isActive,
+}: SlideComponentProps) {
+  const reward = nftWhyOwn[1];
+
+  return (
+    <section
+      data-slide-idx="s21-reward-2"
+      className={slideClassName(isActive)}
+      id="s21-reward-2"
+    >
+      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <h2 className="title nft-reward-detail-title">{reward.title}</h2>
+      <div className="sub nft-reward-detail-sub">
+        NFT purchase level unlocks one of four subscription packages. Higher
+        levels receive broader trading access and longer subscription periods.
+      </div>
+      <div className="nft-subscription-grid">
+        {nftSubscriptionPlans.map((plan, index) => {
+          const PlanIcon = plan.icon;
+
+          return (
+            <div
+              key={plan.title}
+              className="nft-subscription-card"
+              data-stagger-item
+              style={stagger(index)}
+            >
+              <div className="nft-subscription-icon">
+                <PlanIcon size={26} strokeWidth={2.1} />
+              </div>
+              <div className="nft-subscription-title">{plan.title}</div>
+              <div className="nft-subscription-levels">{plan.levels}</div>
+              <div className="nft-subscription-duration">{plan.duration}</div>
+              <div className="nft-subscription-detail">{plan.detail}</div>
+              <ul className="nft-subscription-benefits">
+                {plan.benefits.map((benefit) => (
+                  <li key={benefit}>{benefit}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+export function Slide21ReferralCommissionReward({
+  isActive,
+}: SlideComponentProps) {
+  const reward = nftWhyOwn[2];
+
+  return (
+    <section
+      data-slide-idx="s21-reward-3"
+      className={slideClassName(isActive)}
+      id="s21-reward-3"
+    >
+      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <h2 className="title nft-reward-detail-title">{reward.title}</h2>
+      <div className="sub nft-reward-detail-sub">
+        The shared commission model totals 30%. Rewards now span every NFT level
+        from 1 through 19, with higher tiers unlocking larger commission bands.
+      </div>
+
+      <div className="nft-commission-band-grid">
+        {nftCommissionBands.map((band, index) => {
+          const BandIcon = band.icon;
+
+          return (
+            <div
+              key={band.title}
+              className="nft-commission-band-card"
+              data-stagger-item
+              style={stagger(index + 4)}
+            >
+              <div className="nft-commission-band-top">
+                <div>
+                  <div className="nft-commission-band-title">{band.title}</div>
+                  <div className="nft-commission-band-meta">
+                    NFT Levels {band.levels[0]}-
+                    {band.levels[band.levels.length - 1]}
+                  </div>
+                </div>
+                <div className="nft-commission-band-icon">
+                  <BandIcon size={24} strokeWidth={2.1} />
+                </div>
+              </div>
+              <div className="nft-commission-band-share">{band.share}</div>
+              <div className="nft-commission-band-detail">{band.detail}</div>
+              <div className="nft-commission-level-list">
+                {band.levels.map((level) => (
+                  <span key={level} className="nft-commission-level-pill">
+                    L{level}
+                  </span>
+                ))}
+              </div>
+              <ul className="nft-commission-band-list">
+                {band.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+export function Slide21TokenAirdrop({ isActive }: SlideComponentProps) {
+  const reward = nftWhyOwn[3];
+
+  return (
+    <section
+      data-slide-idx="s21-reward-4"
+      className={slideClassName(isActive)}
+      id="s21-reward-4"
+    >
+      <div className="eyebrow">NFT REWARD DETAIL</div>
+      <h2 className="title nft-reward-detail-title">{reward.title}</h2>
+      <div className="sub nft-reward-detail-sub">
+        SYM airdrop allocations span every NFT level from 1 through 19. Higher
+        tiers receive larger token rewards, but every level keeps a defined SYM
+        allocation inside the full distribution curve.
+      </div>
+
+      <div className="nft-airdrop-band-grid">
+        {nftAirdropBands.map((band, index) => {
+          return (
+            <div
+              key={band.title}
+              className="nft-airdrop-band-card"
+              data-stagger-item
+              style={stagger(index + 4)}
+            >
+              <div className="nft-airdrop-band-total">{band.detail}</div>
+
+              <div className="nft-airdrop-level-list">
+                {band.rewards.map((entry) => (
+                  <div key={entry.level} className="nft-airdrop-level-row">
+                    <span className="nft-airdrop-level-label">
+                      L{entry.level}
+                    </span>
+                    <span className="nft-airdrop-level-value">
+                      {entry.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 export function Slide23NftRewardsSystem({ isActive }: SlideComponentProps) {
   return (
     <section data-slide-idx={23} className={slideClassName(isActive)} id="s23">
@@ -2418,20 +2982,17 @@ export const slides = [
   Slide06Vs,
   Slide13Performance,
   Slide14CapitalSimulation,
-  Slide16AssetSovereignty,
-  Slide17Roadmap,
   Slide20NftOverview,
   Slide21NftWhyOwn,
-  Slide21NftBenefits,
-  Slide23NftRewardsSystem,
-  Slide24NftTradingAccess,
-  Slide21Referral,
-  Slide22ReferralSharing,
-
+  Slide21ReferralDirectReward,
+  Slide21FreeTradingSubscription,
+  Slide21ReferralCommissionReward,
+  Slide21TokenAirdrop,
+  Slide06HowNftWorks,
+  Slide06HowTradingWorks,
+  Slide17Roadmap,
   Slide27Faq,
-
   Slide29Legal,
-
   Slide31SocialStats,
   Slide31ThankYou,
 ] as const;

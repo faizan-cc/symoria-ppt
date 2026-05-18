@@ -109,10 +109,10 @@ export default function DeckPresentation() {
     const onKey = (e: KeyboardEvent) => {
       if (["ArrowRight", "ArrowDown", " "].includes(e.key)) {
         e.preventDefault();
-        setCurrent(c => Math.min(c + 1, TOTAL - 1));
+        setCurrent((c) => Math.min(c + 1, TOTAL - 1));
       } else if (["ArrowLeft", "ArrowUp"].includes(e.key)) {
         e.preventDefault();
-        setCurrent(c => Math.max(c - 1, 0));
+        setCurrent((c) => Math.max(c - 1, 0));
       }
     };
     window.addEventListener("keydown", onKey);
@@ -133,7 +133,9 @@ export default function DeckPresentation() {
       const dx = e.changedTouches[0].clientX - tx;
       const dy = e.changedTouches[0].clientY - ty;
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-        setCurrent(c => (dx < 0 ? Math.min(c + 1, TOTAL - 1) : Math.max(c - 1, 0)));
+        setCurrent((c) =>
+          dx < 0 ? Math.min(c + 1, TOTAL - 1) : Math.max(c - 1, 0),
+        );
       }
     };
     document.addEventListener("touchstart", onStart, { passive: true });
@@ -150,9 +152,11 @@ export default function DeckPresentation() {
 
     timers.current.forEach(clearTimeout);
     timers.current = [];
-    const slide = stageRef.current?.children.item(current) as HTMLElement | null;
+    const slide = stageRef.current?.children.item(
+      current,
+    ) as HTMLElement | null;
     if (!slide) return;
-    slide.querySelectorAll("[data-countup]").forEach(el => {
+    slide.querySelectorAll("[data-countup]").forEach((el) => {
       const id = setTimeout(() => animateCountup(el as HTMLElement), 700);
       timers.current.push(id);
     });
@@ -173,10 +177,11 @@ export default function DeckPresentation() {
             onLoadedData={() => setIntroReady(true)}
             onCanPlayThrough={() => setIntroReady(true)}
           />
-          <div className={`app-intro-loader${introReady ? " app-intro-loader-hidden" : ""}`}>
+          <div
+            className={`app-intro-loader${introReady ? " app-intro-loader-hidden" : ""}`}
+          >
             <div className="app-intro-loader-kicker">◆ Sales · 2026</div>
             <div className="app-intro-loader-center">
-           
               <div className="app-intro-loader-subtitle"> SYMORIA </div>
             </div>
             <div className="app-intro-loader-status">Loading...</div>
@@ -203,31 +208,30 @@ export default function DeckPresentation() {
           <div className="stage-wrap">
             <div ref={stageRef} className="deck-stage">
               {slides.map((Slide, index) => (
-                <Slide key={index} isActive={current === index} locale={locale} />
+                <Slide
+                  key={index}
+                  isActive={current === index}
+                  locale={locale}
+                  onAdvance={() => goTo(index + 1)}
+                />
               ))}
             </div>
           </div>
 
           <div className="deck-progress-wrap">
-            <div className="deck-progress" style={{ width: `${(current / (TOTAL - 1)) * 100}%` }} />
+            <div
+              className="deck-progress"
+              style={{ width: `${(current / (TOTAL - 1)) * 100}%` }}
+            />
           </div>
 
           <div className="deck-nav-bar">
             <button className="deck-nav-btn" onClick={() => goTo(current - 1)}>
               ←
             </button>
-            <div className="deck-dots">
-              {Array.from({ length: TOTAL }, (_, index) => (
-                <button
-                  key={index}
-                  className={`deck-dot${index === current ? " active" : ""}`}
-                  onClick={() => goTo(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
             <span className="deck-nav-counter">
-              {String(current + 1).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")}
+              {String(current + 1).padStart(2, "0")} /{" "}
+              {String(TOTAL).padStart(2, "0")}
             </span>
             <button className="deck-nav-btn" onClick={() => goTo(current + 1)}>
               →
