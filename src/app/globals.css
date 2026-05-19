@@ -646,10 +646,11 @@ h1.title .ch { display: inline-block; opacity: 0; }
   --reward-accent: rgba(0,255,136,0.82);
   --reward-accent-soft: rgba(0,255,136,0.12);
   position: relative;
-  min-height: 250px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 22px;
   padding: 34px 36px;
   border-radius: 24px;
   border: 1px solid var(--reward-accent-soft);
@@ -739,13 +740,44 @@ h1.title .ch { display: inline-block; opacity: 0; }
 .nft-reward-detail-sub { max-width: 880px; font-size: 30px; line-height: 1.5; }
 .nft-subscription-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 42px; }
 .nft-subscription-card {
+  --nft-subscription-accent: var(--green);
+  --nft-subscription-accent-rgb: 0,255,136;
+  --nft-subscription-surface-start: rgba(8,24,12,0.72);
+  --nft-subscription-surface-end: rgba(8,16,12,0.88);
   min-height: 430px;
   padding: 30px 24px 26px;
   border-radius: 24px;
-  border: 1px solid rgba(0,255,136,0.22);
-  background: linear-gradient(180deg, rgba(8,24,12,0.72) 0%, rgba(8,16,12,0.88) 100%);
+  border: 1px solid rgba(var(--nft-subscription-accent-rgb), 0.24);
+  background: linear-gradient(180deg, var(--nft-subscription-surface-start) 0%, var(--nft-subscription-surface-end) 100%);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 20px 50px rgba(0,0,0,0.18);
   opacity: 0;
+}
+.nft-subscription-card-1 {
+  --nft-subscription-accent: #ffd166;
+  --nft-subscription-accent-rgb: 255,209,102;
+  --nft-subscription-surface-start: rgba(44,28,8,0.94);
+  --nft-subscription-surface-end: rgba(18,11,4,0.96);
+  border-color: rgba(255,209,102,0.72);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 28px 72px rgba(0,0,0,0.28), 0 0 42px rgba(255,209,102,0.2);
+  transform: translateY(-12px) scale(1.03);
+}
+.nft-subscription-card-2 {
+  --nft-subscription-accent: #55d8ff;
+  --nft-subscription-accent-rgb: 85,216,255;
+  --nft-subscription-surface-start: rgba(7,24,34,0.9);
+  --nft-subscription-surface-end: rgba(4,13,22,0.94);
+}
+.nft-subscription-card-3 {
+  --nft-subscription-accent: #66f0bb;
+  --nft-subscription-accent-rgb: 102,240,187;
+  --nft-subscription-surface-start: rgba(8,30,21,0.88);
+  --nft-subscription-surface-end: rgba(4,16,12,0.9);
+}
+.nft-subscription-card-4 {
+  --nft-subscription-accent: #ff9f5a;
+  --nft-subscription-accent-rgb: 255,159,90;
+  --nft-subscription-surface-start: rgba(42,20,8,0.9);
+  --nft-subscription-surface-end: rgba(20,10,4,0.94);
 }
 .nft-subscription-icon {
   width: 54px;
@@ -753,11 +785,11 @@ h1.title .ch { display: inline-block; opacity: 0; }
   display: grid;
   place-items: center;
   border-radius: 16px;
-  color: var(--green);
-  background: rgba(0,255,136,0.08);
-  border: 1px solid rgba(0,255,136,0.22);
+  color: var(--nft-subscription-accent);
+  background: rgba(var(--nft-subscription-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--nft-subscription-accent-rgb), 0.28);
 }
-.nft-subscription-title { margin-top: 18px; font-size: 34px; font-weight: 600; color: var(--green); line-height: 1.05; }
+.nft-subscription-title { margin-top: 18px; font-size: 34px; font-weight: 600; color: var(--nft-subscription-accent); line-height: 1.05; }
 .nft-subscription-levels { margin-top: 12px; font-size: 17px; color: rgba(255,255,255,0.8); }
 .nft-subscription-duration { margin-top: 12px; font-family: var(--serif); font-size: 42px; font-weight: 600; color: var(--white); line-height: 1; }
 .nft-subscription-detail { margin-top: 12px; font-size: 16px; color: rgba(255,255,255,0.58); line-height: 1.55; }
@@ -1271,13 +1303,17 @@ h1.title .ch { display: inline-block; opacity: 0; }
 .ref-share-sub { max-width: 980px; }
 .ref-share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 58px; }
 .ref-share-card {
+  --ref-share-accent: var(--green);
+  --ref-share-accent-rgb: 0,255,136;
+  --ref-share-surface-start: rgba(8,24,12,0.82);
+  --ref-share-surface-end: rgba(6,18,10,0.82);
   position: relative;
   min-height: 272px;
   padding: 34px 32px;
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(8,24,12,0.82) 0%, rgba(6,18,10,0.82) 100%);
-  border: 1px solid rgba(0,255,136,0.5);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 20px 50px rgba(0,0,0,0.18);
+  background: linear-gradient(180deg, var(--ref-share-surface-start) 0%, var(--ref-share-surface-end) 100%);
+  border: 1px solid rgba(var(--ref-share-accent-rgb), 0.5);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 20px 50px rgba(0,0,0,0.18), 0 0 0 1px rgba(var(--ref-share-accent-rgb), 0.06);
   text-align: center;
   opacity: 0;
 }
@@ -1286,8 +1322,29 @@ h1.title .ch { display: inline-block; opacity: 0; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 46%, rgba(0,255,136,0.04));
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent 46%, rgba(var(--ref-share-accent-rgb), 0.12));
   pointer-events: none;
+}
+.ref-share-card-1 {
+  --ref-share-accent: #66f0bb;
+  --ref-share-accent-rgb: 102,240,187;
+  --ref-share-surface-start: rgba(8,30,21,0.88);
+  --ref-share-surface-end: rgba(4,16,12,0.9);
+}
+.ref-share-card-2 {
+  --ref-share-accent: #55d8ff;
+  --ref-share-accent-rgb: 85,216,255;
+  --ref-share-surface-start: rgba(6,24,34,0.9);
+  --ref-share-surface-end: rgba(4,12,22,0.92);
+}
+.ref-share-card-3 {
+  --ref-share-accent: #ffd166;
+  --ref-share-accent-rgb: 255,209,102;
+  --ref-share-surface-start: rgba(40,24,6,0.94);
+  --ref-share-surface-end: rgba(18,10,3,0.96);
+  border-color: rgba(255,209,102,0.72);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 28px 70px rgba(0,0,0,0.3), 0 0 40px rgba(255,209,102,0.18);
+  transform: translateY(-12px) scale(1.03);
 }
 .ref-share-icon {
   width: 64px;
@@ -1295,12 +1352,12 @@ h1.title .ch { display: inline-block; opacity: 0; }
   margin: 0 auto 30px;
   display: grid;
   place-items: center;
-  color: var(--green);
+  color: var(--ref-share-accent);
   border-radius: 18px;
-  background: rgba(0,255,136,0.08);
-  border: 1px solid rgba(0,255,136,0.26);
+  background: rgba(var(--ref-share-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--ref-share-accent-rgb), 0.28);
 }
-.ref-share-card-title { font-size: 26px; font-weight: 600; color: var(--green); line-height: 1.2; }
+.ref-share-card-title { font-size: 26px; font-weight: 600; color: var(--ref-share-accent); line-height: 1.2; }
 .ref-share-value-row { display: flex; align-items: flex-end; justify-content: center; gap: 10px; margin-top: 26px; }
 .ref-share-value { font-family: var(--serif); font-size: 58px; font-weight: 600; color: var(--white); line-height: 0.95; }
 .ref-share-suffix { font-size: 22px; color: rgba(255,255,255,0.78); margin-bottom: 8px; }

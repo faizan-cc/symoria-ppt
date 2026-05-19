@@ -603,7 +603,7 @@ const nftWhyOwnKr = [
   {
     title: "추천 트레이딩 수수료 보상",
     description:
-      "추천 구조를 통해 트레이딩 수수료가 어떻게 배분되는지, 홀더가 어떤 비율을 받는지, 보상이 시간이 지나며 어떻게 누적되는지 설명합니다.",
+      "직접 추천 보상의 구조와 대상 조건, 그리고 초대한 사용자가 플랫폼에 가입했을 때 보상을 받는 방식을 설명합니다.",
   },
   {
     title: "토큰 에어드롭",
@@ -2792,7 +2792,7 @@ export function Slide21ReferralDirectReward({
         {sharingBands.map((band, index) => (
           <div
             key={band.title}
-            className="ref-share-card"
+            className={`ref-share-card ref-share-card-${index + 1}`}
             data-stagger-item
             style={stagger(index)}
           >
@@ -2850,7 +2850,7 @@ export function Slide21FreeTradingSubscription({
           return (
             <div
               key={plan.title}
-              className="nft-subscription-card"
+              className={`nft-subscription-card nft-subscription-card-${index + 1}`}
               data-stagger-item
               style={stagger(index)}
             >
