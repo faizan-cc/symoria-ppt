@@ -1986,7 +1986,7 @@ export function Slide06AgentSwarms({
           <video
             ref={firstVideoRef}
             className={`swarm-video${activeVideo === 0 ? " swarm-video-active" : ""}`}
-            src="/assets/video-2.mp4"
+            src="/assets/1.mp4"
             muted
             playsInline
             preload="auto"
@@ -1999,7 +1999,7 @@ export function Slide06AgentSwarms({
           <video
             ref={secondVideoRef}
             className={`swarm-video${activeVideo === 1 ? " swarm-video-active" : ""}`}
-            src="/assets/video-3.mp4"
+            src="/assets/2.mp4"
             muted
             playsInline
             preload="auto"
@@ -2007,25 +2007,13 @@ export function Slide06AgentSwarms({
               event.currentTarget.defaultPlaybackRate = 1.6;
               event.currentTarget.playbackRate = 1.6;
             }}
-            onEnded={() => setActiveVideo(2)}
-          />
-          <video
-            ref={thirdVideoRef}
-            className={`swarm-video${activeVideo === 2 ? " swarm-video-active" : ""}`}
-            src="/assets/video-1.mp4"
-            muted
-            playsInline
-            preload="auto"
-            onLoadedMetadata={(event) => {
-              event.currentTarget.defaultPlaybackRate = 2;
-              event.currentTarget.playbackRate = 2;
-            }}
-            onEnded={(event) => {
+           onEnded={(event) => {
               event.currentTarget.currentTime = 0;
               event.currentTarget.playbackRate = 2;
               onAdvance?.();
             }}
           />
+         
           <div className="swarm-video-shade" />
           <div className="swarm-video-copy-wrap">
             <div className="eyebrow swarm-video-kicker">
@@ -3372,7 +3360,9 @@ export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
       <div className="socials-ribbon socials-ribbon-b" />
       <div className="socials-vignette" />
       <div className="socials-shell">
-        <h2 className="title socials-title">Symoria Community</h2>
+        <h2 className="title socials-title">
+          {tr(locale, "Symoria Community", "Symoria 커뮤니티")}
+        </h2>
         <div className="sub socials-sub">
           {tr(
             locale,
