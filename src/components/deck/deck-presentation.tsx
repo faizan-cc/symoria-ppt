@@ -75,6 +75,10 @@ export default function DeckPresentation() {
     setIntroDismissed(true);
   }, []);
 
+  const navigateToHomePageIntro = useCallback(() => {
+    window.location.href = `https://app.symoria.io/${locale}`;
+  }, [locale]);
+
   useEffect(() => {
     if (introDismissed || !introReady) return;
     const video = introVideoRef.current;
@@ -211,7 +215,8 @@ export default function DeckPresentation() {
                 <button className="app-intro-enter" onClick={dismissIntro}>
                   {copy.enter}
                 </button>
-                <button className="app-intro-skip" onClick={dismissIntro}>
+
+                <button className="app-intro-skip" onClick={navigateToHomePageIntro}>
                   {copy.skip}
                 </button>
               </div>
