@@ -320,6 +320,7 @@ h1.title .ch { display: inline-block; opacity: 0; }
 .app-intro {
   position: fixed;
   inset: 0;
+  min-height: 100svh;
   z-index: 2000;
   background: var(--bg);
 }
@@ -406,7 +407,7 @@ h1.title .ch { display: inline-block; opacity: 0; }
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 28px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
   z-index: 3;
   display: flex;
   align-items: center;
@@ -462,10 +463,20 @@ h1.title .ch { display: inline-block; opacity: 0; }
     padding: 10px 14px;
   }
   .app-intro-controls {
-    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: max(88px, calc(env(safe-area-inset-bottom, 0px) + 20px));
+    justify-content: center;
+    gap: 14px;
+  }
+  .app-intro-enter {
+    padding: 16px 24px;
+    border-width: 1px;
+    background: rgba(8, 18, 14, 0.42);
   }
   .app-intro-skip {
-    right: 20px;
+    position: static;
+    padding: 16px 24px;
   }
 }
 .swarm-video-shell {
@@ -631,9 +642,62 @@ h1.title .ch { display: inline-block; opacity: 0; }
 .nft-overview-note { margin-top: 26px; max-width: 620px; padding: 20px 24px; border-radius: 18px; border: 1px solid rgba(0,255,136,0.18); background: rgba(0,255,136,0.06); color: rgba(255,255,255,0.78); font-size: 19px; line-height: 1.62; }
 #s21 .title { font-size: 80px; }
 .nft-why-reward-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 42px; }
-.nft-why-reward-card { min-height: 250px; display: flex; flex-direction: column; justify-content: space-between; padding: 34px 36px; border-radius: 24px; border: 1px solid rgba(0,255,136,0.18); background: rgba(18,22,31,0.84); box-shadow: 0 20px 48px rgba(0,0,0,0.22); opacity: 0; }
-.nft-why-reward-icon { width: 64px; height: 64px; display: grid; place-items: center; border-radius: 18px; color: var(--green); background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.18); box-shadow: 0 0 20px rgba(0,255,136,0.08); }
+.nft-why-reward-card {
+  --reward-accent: rgba(0,255,136,0.82);
+  --reward-accent-soft: rgba(0,255,136,0.12);
+  position: relative;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 36px;
+  border-radius: 24px;
+  border: 1px solid var(--reward-accent-soft);
+  background:
+    radial-gradient(circle at top right, var(--reward-accent-soft), transparent 34%),
+    linear-gradient(180deg, rgba(18,22,31,0.94) 0%, rgba(18,22,31,0.82) 100%);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.22);
+  overflow: hidden;
+  opacity: 0;
+}
+.nft-why-reward-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--reward-accent) 0%, transparent 78%);
+}
+.nft-why-reward-card-1 {
+  --reward-accent: rgba(0,255,136,0.9);
+  --reward-accent-soft: rgba(0,255,136,0.14);
+}
+.nft-why-reward-card-2 {
+  --reward-accent: rgba(78,214,255,0.9);
+  --reward-accent-soft: rgba(78,214,255,0.14);
+}
+.nft-why-reward-card-3 {
+  --reward-accent: rgba(255,186,73,0.88);
+  --reward-accent-soft: rgba(255,186,73,0.14);
+}
+.nft-why-reward-card-4 {
+  --reward-accent: rgba(102,255,214,0.88);
+  --reward-accent-soft: rgba(102,255,214,0.14);
+}
+.nft-why-reward-icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: var(--reward-accent);
+  background: color-mix(in srgb, var(--reward-accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--reward-accent) 24%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--reward-accent) 18%, transparent);
+}
+.nft-why-reward-copy { display: flex; flex-direction: column; gap: 14px; }
 .nft-why-reward-title { max-width: 520px; font-size: 34px; font-weight: 600; line-height: 1.18; color: var(--white); }
+.nft-why-reward-body { max-width: 540px; font-size: 19px; line-height: 1.62; color: rgba(255,255,255,0.68); }
 .nft-reward-detail-shell { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 42px; align-items: stretch; margin-top: 52px; }
 .nft-reward-detail-visual,
 .nft-reward-detail-note { opacity: 0; }

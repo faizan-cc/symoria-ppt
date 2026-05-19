@@ -50,25 +50,25 @@ const nftWhyOwn = [
     title: "Referral Direct Reward",
     icon: Network,
     description:
-      "Placeholder description: explain the direct referral bonus, who qualifies for it, and how holders receive the reward when a new user joins through their invite.",
+      "Direct referral rewards give NFT holders a clear bonus path when invited users join and activate within the ecosystem.",
   },
   {
     title: "Free Trading Subscription",
     icon: ShieldCheck,
     description:
-      "Placeholder description: explain which NFT tiers unlock free trading access, how long the subscription lasts, and what premium tools are included.",
+      "Different NFT tiers unlock free trading access windows, premium tools, and longer platform usage periods.",
   },
   {
     title: "Referral Trading Commission Reward",
     icon: TrendingUp,
     description:
-      "Placeholder description: explain how trading commissions are shared through the referral structure, what percentage holders earn, and how payouts accumulate over time.",
+      "Trading commissions can be shared through the referral structure, allowing holders to build recurring reward flow as activity grows.",
   },
   {
     title: "Token Airdrop",
     icon: Coins,
     description:
-      "Placeholder description: explain airdrop eligibility, distribution criteria, and how NFT ownership increases exposure to ecosystem token incentives.",
+      "NFT ownership expands access to token airdrops, giving holders broader exposure to ecosystem incentive distribution.",
   },
 ] as const;
 
@@ -1288,19 +1288,19 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
       <h2 className="title narrative-title">
         {tr(
           locale,
-          "TradeFi market growth turned a niche experiment into a ",
+          "The growth of the TradeFi market turned a niche experiment into a ",
           "TradeFi 시장의 성장은 틈새 실험을 ",
         )}
         <span className="narrative-highlight">
-          {tr(locale, "multi-trillion-dollar arena", "수조 달러 규모의 시장")}
+          {tr(locale, "multi-trillion-dollar market", "수조 달러 시장")}
         </span>
         {tr(locale, ".", "으로 바꾸었습니다.")}
       </h2>
       <div className="sub narrative-sub">
         {tr(
           locale,
-          "The early market was almost invisible in 2015. By 2021 it had its first real liquidity wave, and by 2025 the broader market was printing above $4T while TradeFi itself became a permanent capital destination.",
-          "초기 시장은 2015년에 거의 보이지 않을 정도로 미미했습니다. 2021년에 첫 실질적 유동성 파동이 형성됐고, 2025년에는 전체 시장 규모가 4조 달러를 넘어 TradeFi가 구조적인 자본 유입처로 자리 잡았습니다.",
+          "The early market in 2015 was so minimal it was barely visible. In 2021, the first substantial liquidity wave formed, and by 2025, the total market size exceeded $4 trillion, establishing TradeFi as a structural destination for capital inflows.",
+          "2015년 초기 시장은 너무 미미해 거의 보이지 않을 정도였습니다. 2021년에는 첫 번째 실질적 유동성 파동이 형성됐고, 2025년에는 전체 시장 규모가 4조 달러를 넘어 TradeFi가 구조적인 자본 유입처로 자리 잡았습니다.",
         )}
       </div>
       <div
@@ -1310,12 +1310,12 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
       >
         <div className="narrative-chart-head">
           <div className="narrative-chart-label">
-            {tr(locale, "TradeFI Market Cap Chart", "TradeFi 시가총액 차트")}
+            {tr(locale, "TradeFi Market Cap Chart", "TradeFi 시가총액 차트")}
           </div>
           <div className="narrative-chart-range">
             {tr(
               locale,
-              "2014 → 2026 · MARKET CAP VS TradeFI SECTOR",
+              "2014 → 2026 · MARKET CAP VS TradeFi SECTOR",
               "2014 → 2026 · 전체 시총 vs TradeFi 섹터",
             )}
           </div>
@@ -1327,7 +1327,7 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
           </div>
           <div className="narrative-chart-legend-item">
             <span className="narrative-chart-legend-dot narrative-chart-legend-dot-orange" />{" "}
-            {tr(locale, "TradeFI Sector", "TradeFi 섹터")}
+            {tr(locale, "TradeFi Sector", "TradeFi 섹터")}
           </div>
         </div>
         <svg
@@ -1447,7 +1447,7 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
           style={stagger(1)}
         >
           <div className="narrative-stat-kicker">
-            {tr(locale, "Early Footprint", "초기 시장 규모")}
+            {tr(locale, "Early Market Size", "초기 시장 규모")}
           </div>
           <div className="narrative-stat-value">$3.9B</div>
           <div className="narrative-stat-note">
@@ -1464,7 +1464,7 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
           style={stagger(2)}
         >
           <div className="narrative-stat-kicker">
-            {tr(locale, "First TradeFi Breakout", "첫 TradeFi 확장 국면")}
+            {tr(locale, "First TradeFi Expansion Phase", "첫 TradeFi 확장 국면")}
           </div>
           <div className="narrative-stat-value narrative-stat-value-accent">
             $2.45T
@@ -1491,8 +1491,8 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
           <div className="narrative-stat-note">
             {tr(
               locale,
-              "2025 broad-market high with TradeFI now structurally visible",
-              "2025년 전체 시장 고점으로, TradeFi가 구조적으로 가시화된 시점",
+              "2025 peak of the entire market, when TradeFi became structurally visible",
+              "2025년 전체 시장 정점에서 TradeFi가 구조적으로 가시화된 시점",
             )}
           </div>
         </div>
@@ -1704,7 +1704,7 @@ export function Slide04WhyBotsFail({ isActive, locale }: SlideComponentProps) {
     <section data-slide-idx={4} className={slideClassName(isActive)} id="s4">
       <div className="eyebrow">{tr(locale, "WHY MANUAL TRADING IS HARD", "왜 수동 트레이딩은 어려운가")}</div>
       <h2 className="title narrative-title">
-        {tr(locale, "TradeFi cycles move faster than humans do", "TradeFi 사이클은 인간보다 빠르게 움직입니다")}
+        {tr(locale, "TradeFi cycles move faster than humans do", "TradeFi 사이클은 인간보다 빠릅니다")}
       </h2>
       <div className="sub narrative-sub">
         {tr(
@@ -2533,7 +2533,7 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
         </div>
         <div className="nft-copy-panel">
           <h2 className="title">
-            {tr(locale, "What Are Symoria AI NFTs?", "Symoria AI NFT란 무엇인가?")}
+            {tr(locale, "What Are Symoria AI NFTs?", "Symoria AI NFT란?")}
           </h2>
           <div className="nft-kicker">
             {tr(locale, "Powering AI Trading Through NFT Utility", "NFT 유틸리티로 AI 트레이딩을 강화")}
@@ -2624,17 +2624,20 @@ export function Slide21NftWhyOwn({ isActive, locale }: SlideComponentProps) {
         {tr(locale, "Why Hold Symoria NFT", "왜 Symoria NFT를 보유해야 하는가")}
       </h2>
       <div className="nft-why-reward-grid">
-        {rewards.map(({ title, icon: Icon }, index) => (
+        {rewards.map(({ title, description, icon: Icon }, index) => (
           <div
             key={title}
-            className="nft-why-reward-card"
+            className={`nft-why-reward-card nft-why-reward-card-${index + 1}`}
             data-stagger-item
             style={stagger(index)}
           >
             <div className="nft-why-reward-icon">
               <Icon size={28} strokeWidth={2.1} />
             </div>
-            <div className="nft-why-reward-title">{`${index + 1}. ${title}`}</div>
+            <div className="nft-why-reward-copy">
+              <div className="nft-why-reward-title">{`${index + 1}. ${title}`}</div>
+              <div className="nft-why-reward-body">{description}</div>
+            </div>
           </div>
         ))}
       </div>
