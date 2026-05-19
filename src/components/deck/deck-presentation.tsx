@@ -76,7 +76,11 @@ export default function DeckPresentation() {
   }, []);
 
   const navigateToHomePageIntro = useCallback(() => {
-    window.open(`https://app.symoria.io/${locale}`, "_blank", "noopener,noreferrer");
+    window.open(
+      `https://app.symoria.io/${locale}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   }, [locale]);
 
   useEffect(() => {
@@ -213,11 +217,14 @@ export default function DeckPresentation() {
               <div className="app-intro-shade" />
               <div className="app-intro-controls">
                 <button className="app-intro-enter" onClick={dismissIntro}>
-                  {copy.enter}
+                  Enter/입장하기
                 </button>
 
-                <button className="app-intro-skip" onClick={navigateToHomePageIntro}>
-                  {copy.skip}
+                <button
+                  className="app-intro-skip"
+                  onClick={navigateToHomePageIntro}
+                >
+                  Skip/건너뛰기
                 </button>
               </div>
             </>

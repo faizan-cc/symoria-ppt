@@ -3372,10 +3372,7 @@ export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
       <div className="socials-ribbon socials-ribbon-b" />
       <div className="socials-vignette" />
       <div className="socials-shell">
-        <h2 className="title socials-title">
-          {tr(locale, "Connect with ", "함께하세요, ")}
-          <span className="socials-title-accent">Symoria</span>
-        </h2>
+        <h2 className="title socials-title">Symoria Community</h2>
         <div className="sub socials-sub">
           {tr(
             locale,
