@@ -76,7 +76,7 @@ export default function DeckPresentation() {
   }, []);
 
   const navigateToHomePageIntro = useCallback(() => {
-    window.location.href = `https://app.symoria.io/${locale}`;
+    window.open(`https://app.symoria.io/${locale}`, "_blank", "noopener,noreferrer");
   }, [locale]);
 
   useEffect(() => {
