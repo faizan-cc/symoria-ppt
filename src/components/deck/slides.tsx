@@ -3478,34 +3478,39 @@ export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
           )}
         </div>
         <div className="socials-grid">
-          {stats.map((entry, index) => (
-            <a
-              key={entry.platform}
-              className="socials-card"
-              data-stagger-item
-              style={{
-                ...stagger(index),
-                "--social-accent": entry.accent,
-                "--social-accent-rgb": entry.accentRgb,
-                "--social-surface": entry.surface,
-              } as CSSProperties}
-              href={entry.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${entry.platform} ${tr(locale, "channel", "채널")} ${tr(locale, "for Symoria", "바로가기")}`}
-            >
-              <div className="socials-mark">
-                <SocialIcon platform={entry.platform} />
-              </div>
-              <div className="socials-platform">{entry.platform}</div>
-              <div className="socials-handle">{entry.handle}</div>
-              <div className="socials-audience">{entry.audience}</div>
-              <div className="socials-cta">
-                <span>{tr(locale, "Open channel", "채널 바로가기")}</span>
-                <span aria-hidden="true">↗</span>
-              </div>
-            </a>
-          ))}
+          {stats.map((entry, index) => {
+            return (
+              <a
+                key={entry.platform}
+                className="socials-card"
+                data-stagger-item
+                style={{
+                  ...stagger(index),
+                  "--social-accent": entry.accent,
+                  "--social-accent-rgb": entry.accentRgb,
+                  "--social-surface": entry.surface,
+                } as CSSProperties}
+                href={entry.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${entry.platform} ${tr(locale, "channel", "채널")} ${tr(locale, "for Symoria", "바로가기")}`}
+              >
+                <div className="socials-head">
+                  <div className="socials-mark">
+                    <SocialIcon platform={entry.platform} />
+                  </div>
+                  <div className="socials-platform">{entry.platform}</div>
+                </div>
+                <div className="socials-audience socials-audience-highlight">
+                  {entry.audience}
+                </div>
+                <div className="socials-cta">
+                  <span>{tr(locale, "Open channel", "채널 바로가기")}</span>
+                  <span aria-hidden="true">↗</span>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
