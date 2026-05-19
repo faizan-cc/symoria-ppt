@@ -110,7 +110,7 @@ const nftWhyOwn = [
     title: "Referral Direct Reward",
     icon: Network,
     description:
-      "Direct referral rewards give NFT holders a clear bonus path when invited users join and activate within the ecosystem.",
+      "NFT holders earn direct rewards when invited users join Symoria, mint NFTs, and actively trade within the ecosystem. Higher NFT tiers unlock greater reward percentages and earning potential.",
   },
   {
     title: "Free Trading Subscription",
@@ -593,7 +593,7 @@ const nftWhyOwnKr = [
   {
     title: "직접 추천 보상",
     description:
-      "직접 추천 보상의 구조, 대상 조건, 그리고 초대한 사용자가 가입했을 때 홀더가 보상을 받는 방식을 설명합니다.",
+      "NFT 홀더는 초대한 사용자가 Symoria에 가입하고 NFT를 민팅한 뒤 생태계 안에서 활발히 거래하면 직접 보상을 받습니다. 더 높은 NFT 티어일수록 더 큰 보상 비율과 수익 잠재력이 열립니다.",
   },
   {
     title: "무료 트레이딩 구독권",
@@ -720,7 +720,7 @@ const nftAirdropBandsKr = [
 ] as const;
 
 function getShortDateLabel(label: string, locale?: Locale) {
-  return locale === "kr" ? shortDateLabelsKr[label] ?? label : label;
+  return locale === "kr" ? (shortDateLabelsKr[label] ?? label) : label;
 }
 
 function getAudienceLabel(audience: string, locale?: Locale) {
@@ -1217,7 +1217,9 @@ export function Slide01Market({ isActive, locale }: SlideComponentProps) {
           >
             0M+
           </div>
-          <div className="kpi-label">{tr(locale, "Active Wallets", "활성 지갑")}</div>
+          <div className="kpi-label">
+            {tr(locale, "Active Wallets", "활성 지갑")}
+          </div>
         </div>
         <div className="card" data-stagger-item style={stagger(2)}>
           <div
@@ -1229,7 +1231,9 @@ export function Slide01Market({ isActive, locale }: SlideComponentProps) {
           >
             0%
           </div>
-          <div className="kpi-label">{tr(locale, "Annual Growth Rate", "연간 성장률")}</div>
+          <div className="kpi-label">
+            {tr(locale, "Annual Growth Rate", "연간 성장률")}
+          </div>
         </div>
       </div>
       <div className="market-quote">
@@ -1402,7 +1406,11 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
             y={defiGrowthNarrativePoints[12].y - 16}
             textAnchor="end"
           >
-            {tr(locale, "2026 still above $2T", "2026년에도 2조 달러 이상 유지")}
+            {tr(
+              locale,
+              "2026 still above $2T",
+              "2026년에도 2조 달러 이상 유지",
+            )}
           </text>
         </svg>
       </div>
@@ -1430,7 +1438,11 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
           style={stagger(2)}
         >
           <div className="narrative-stat-kicker">
-            {tr(locale, "First TradeFi Expansion Phase", "첫 TradeFi 확장 국면")}
+            {tr(
+              locale,
+              "First TradeFi Expansion Phase",
+              "첫 TradeFi 확장 국면",
+            )}
           </div>
           <div className="narrative-stat-value narrative-stat-value-accent">
             $2.45T
@@ -1467,7 +1479,10 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
   );
 }
 
-export function Slide03WhyHumansFail({ isActive, locale }: SlideComponentProps) {
+export function Slide03WhyHumansFail({
+  isActive,
+  locale,
+}: SlideComponentProps) {
   return (
     <section data-slide-idx={3} className={slideClassName(isActive)} id="s3">
       <h2 className="title narrative-title narrative-title-centered">
@@ -1494,7 +1509,11 @@ export function Slide03WhyHumansFail({ isActive, locale }: SlideComponentProps) 
             {tr(locale, "TradeFi TVL Shock Chart", "TradeFi TVL 충격 차트")}
           </div>
           <div className="narrative-chart-range">
-            {tr(locale, "Sep 2025 → Mar 2026 · USD BILLIONS", "2025년 9월 → 2026년 3월 · 단위: 십억 달러")}
+            {tr(
+              locale,
+              "Sep 2025 → Mar 2026 · USD BILLIONS",
+              "2025년 9월 → 2026년 3월 · 단위: 십억 달러",
+            )}
           </div>
         </div>
         <svg
@@ -1630,10 +1649,16 @@ export function Slide03WhyHumansFail({ isActive, locale }: SlideComponentProps) 
           data-stagger-item
           style={stagger(1)}
         >
-          <div className="narrative-stat-kicker">{tr(locale, "Peak TVL", "TVL 정점")}</div>
+          <div className="narrative-stat-kicker">
+            {tr(locale, "Peak TVL", "TVL 정점")}
+          </div>
           <div className="narrative-stat-value">$180B</div>
           <div className="narrative-stat-note">
-            {tr(locale, "TradeFi summer liquidity peak", "TradeFi 여름 유동성 정점")}
+            {tr(
+              locale,
+              "TradeFi summer liquidity peak",
+              "TradeFi 여름 유동성 정점",
+            )}
           </div>
         </div>
         <div
@@ -1641,12 +1666,18 @@ export function Slide03WhyHumansFail({ isActive, locale }: SlideComponentProps) 
           data-stagger-item
           style={stagger(2)}
         >
-          <div className="narrative-stat-kicker">{tr(locale, "Reset Low", "리셋 저점")}</div>
+          <div className="narrative-stat-kicker">
+            {tr(locale, "Reset Low", "리셋 저점")}
+          </div>
           <div className="narrative-stat-value narrative-stat-value-danger">
             $45B
           </div>
           <div className="narrative-stat-note">
-            {tr(locale, "Forced liquidations and de-leveraging", "강제 청산과 디레버리징")}
+            {tr(
+              locale,
+              "Forced liquidations and de-leveraging",
+              "강제 청산과 디레버리징",
+            )}
           </div>
         </div>
         <div
@@ -1654,10 +1685,16 @@ export function Slide03WhyHumansFail({ isActive, locale }: SlideComponentProps) 
           data-stagger-item
           style={stagger(3)}
         >
-          <div className="narrative-stat-kicker">{tr(locale, "Recovery", "회복 구간")}</div>
+          <div className="narrative-stat-kicker">
+            {tr(locale, "Recovery", "회복 구간")}
+          </div>
           <div className="narrative-stat-value">$75B</div>
           <div className="narrative-stat-note">
-            {tr(locale, "Protocols stabilized, but still far from peak", "프로토콜은 안정화됐지만 아직 정점과는 큰 격차")}
+            {tr(
+              locale,
+              "Protocols stabilized, but still far from peak",
+              "프로토콜은 안정화됐지만 아직 정점과는 큰 격차",
+            )}
           </div>
         </div>
       </div>
@@ -1668,9 +1705,19 @@ export function Slide03WhyHumansFail({ isActive, locale }: SlideComponentProps) 
 export function Slide04WhyBotsFail({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={4} className={slideClassName(isActive)} id="s4">
-      <div className="eyebrow">{tr(locale, "WHY MANUAL TRADING IS HARD", "왜 수동 트레이딩은 어려운가")}</div>
+      <div className="eyebrow">
+        {tr(
+          locale,
+          "WHY MANUAL TRADING IS HARD",
+          "왜 수동 트레이딩은 어려운가",
+        )}
+      </div>
       <h2 className="title narrative-title">
-        {tr(locale, "TradeFi cycles move faster than humans do", "TradeFi 사이클은 인간보다 빠릅니다")}
+        {tr(
+          locale,
+          "TradeFi cycles move faster than humans do",
+          "TradeFi 사이클은 인간보다 빠릅니다",
+        )}
       </h2>
       <div className="sub narrative-sub">
         {tr(
@@ -1689,7 +1736,11 @@ export function Slide04WhyBotsFail({ isActive, locale }: SlideComponentProps) {
             {tr(locale, "TradeFi Market Cap Chart", "TradeFi 시가총액 차트")}
           </div>
           <div className="narrative-chart-range">
-            {tr(locale, "2014 → 2026 · MARKET CAP VS TradeFI SECTOR", "2014 → 2026 · 전체 시총 vs TradeFi 섹터")}
+            {tr(
+              locale,
+              "2014 → 2026 · MARKET CAP VS TradeFI SECTOR",
+              "2014 → 2026 · 전체 시총 vs TradeFi 섹터",
+            )}
           </div>
         </div>
         <div className="narrative-chart-legend">
@@ -1800,7 +1851,11 @@ export function Slide04WhyBotsFail({ isActive, locale }: SlideComponentProps) {
           },
           {
             icon: Network,
-            title: tr(locale, "Capital Rotates Across Ecosystems", "자금은 생태계 간 빠르게 이동합니다"),
+            title: tr(
+              locale,
+              "Capital Rotates Across Ecosystems",
+              "자금은 생태계 간 빠르게 이동합니다",
+            ),
             body: tr(
               locale,
               "Liquidity jumps between chains, sectors, and narratives faster than most traders can detect and react.",
@@ -1809,7 +1864,11 @@ export function Slide04WhyBotsFail({ isActive, locale }: SlideComponentProps) {
           },
           {
             icon: Bot,
-            title: tr(locale, "Too Many Signals, Too Little Time", "신호는 너무 많고 시간은 너무 적습니다"),
+            title: tr(
+              locale,
+              "Too Many Signals, Too Little Time",
+              "신호는 너무 많고 시간은 너무 적습니다",
+            ),
             body: tr(
               locale,
               "Price, on-chain behavior, funding, news, and sentiment all matter simultaneously. Humans process them too slowly.",
@@ -1840,32 +1899,46 @@ export function Slide05Solution({ isActive, locale }: SlideComponentProps) {
     <section data-slide-idx={5} className={slideClassName(isActive)} id="s5">
       <div className="eyebrow">{tr(locale, "THE SOLUTION", "해결책")}</div>
       <h2 className="title">
-        {tr(locale, "Meet Symoria: AI That Never Sleeps", "잠들지 않는 AI, Symoria")}
+        {tr(
+          locale,
+          "Meet Symoria: AI That Never Sleeps",
+          "잠들지 않는 AI, Symoria",
+        )}
       </h2>
       <div className="ai-row" data-stagger-item style={stagger(0)}>
         <div className="ai-badge">
           <div className="ai-badge-name">SCOUT</div>
-          <div className="ai-badge-role">{tr(locale, "Market Discovery", "시장 탐색")}</div>
+          <div className="ai-badge-role">
+            {tr(locale, "Market Discovery", "시장 탐색")}
+          </div>
         </div>
         <div className="ai-op">+</div>
         <div className="ai-badge">
           <div className="ai-badge-name">ANALYST</div>
-          <div className="ai-badge-role">{tr(locale, "Signal Processing", "시그널 분석")}</div>
+          <div className="ai-badge-role">
+            {tr(locale, "Signal Processing", "시그널 분석")}
+          </div>
         </div>
         <div className="ai-op">×</div>
         <div className="ai-badge">
           <div className="ai-badge-name">EXECUTOR</div>
-          <div className="ai-badge-role">{tr(locale, "Trade Execution", "거래 실행")}</div>
+          <div className="ai-badge-role">
+            {tr(locale, "Trade Execution", "거래 실행")}
+          </div>
         </div>
         <div className="ai-op">∑</div>
         <div className="ai-badge">
           <div className="ai-badge-name">GUARDIAN</div>
-          <div className="ai-badge-role">{tr(locale, "Risk Management", "리스크 관리")}</div>
+          <div className="ai-badge-role">
+            {tr(locale, "Risk Management", "리스크 관리")}
+          </div>
         </div>
         <div className="ai-op">✓</div>
         <div className="ai-badge">
           <div className="ai-badge-name">ORACLE</div>
-          <div className="ai-badge-role">{tr(locale, "On Chain Verification", "온체인 검증")}</div>
+          <div className="ai-badge-role">
+            {tr(locale, "On Chain Verification", "온체인 검증")}
+          </div>
         </div>
       </div>
       <div className="consensus-msg">
@@ -1882,45 +1955,63 @@ export function Slide05Solution({ isActive, locale }: SlideComponentProps) {
 export function Slide06Vs({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={6} className={slideClassName(isActive)} id="s6">
-      <div className="eyebrow">{tr(locale, "SYMORIA VS THE REST", "SYMORIA VS 기존 솔루션")}</div>
+      <div className="eyebrow">
+        {tr(locale, "SYMORIA VS THE REST", "SYMORIA VS 기존 솔루션")}
+      </div>
       <h2 className="title">
-        {tr(locale, "Not Another Bot. A Different Paradigm.", "또 하나의 봇이 아닙니다. 패러다임이 다릅니다.")}
+        {tr(
+          locale,
+          "Not Another Bot. A Different Paradigm.",
+          "또 하나의 봇이 아닙니다. 패러다임이 다릅니다.",
+        )}
       </h2>
       <div className="vs-wrap">
         <div className="vs-box from-left">
-          <div className="vs-head">{tr(locale, "Traditional Bots", "전통적 봇")}</div>
-          <div className="vs-item">
-            <span className="vs-x">✗</span> {tr(locale, "Single strategy", "단일 전략")}
+          <div className="vs-head">
+            {tr(locale, "Traditional Bots", "전통적 봇")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> {tr(locale, "Manual updates required", "수동 업데이트 필요")}
+            <span className="vs-x">✗</span>{" "}
+            {tr(locale, "Single strategy", "단일 전략")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> {tr(locale, "No on-chain proof", "온체인 증명 부재")}
+            <span className="vs-x">✗</span>{" "}
+            {tr(locale, "Manual updates required", "수동 업데이트 필요")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> {tr(locale, "Centralized risk", "중앙화 리스크")}
+            <span className="vs-x">✗</span>{" "}
+            {tr(locale, "No on-chain proof", "온체인 증명 부재")}
           </div>
           <div className="vs-item">
-            <span className="vs-x">✗</span> {tr(locale, "Opaque decisions", "불투명한 의사결정")}
+            <span className="vs-x">✗</span>{" "}
+            {tr(locale, "Centralized risk", "중앙화 리스크")}
+          </div>
+          <div className="vs-item">
+            <span className="vs-x">✗</span>{" "}
+            {tr(locale, "Opaque decisions", "불투명한 의사결정")}
           </div>
         </div>
         <div className="vs-box vs-right from-right">
           <div className="vs-head">Symoria AI</div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> {tr(locale, "Multi-Model consensus", "다중 모델 합의")}
+            <span className="vs-check">✓</span>{" "}
+            {tr(locale, "Multi-Model consensus", "다중 모델 합의")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> {tr(locale, "Self-adapting models", "자기 적응형 모델")}
+            <span className="vs-check">✓</span>{" "}
+            {tr(locale, "Self-adapting models", "자기 적응형 모델")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> {tr(locale, "Verified on-chain", "온체인 검증")}
+            <span className="vs-check">✓</span>{" "}
+            {tr(locale, "Verified on-chain", "온체인 검증")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> {tr(locale, "Distributed architecture", "분산형 아키텍처")}
+            <span className="vs-check">✓</span>{" "}
+            {tr(locale, "Distributed architecture", "분산형 아키텍처")}
           </div>
           <div className="vs-item">
-            <span className="vs-check">✓</span> {tr(locale, "Full decision transparency", "완전한 의사결정 투명성")}
+            <span className="vs-check">✓</span>{" "}
+            {tr(locale, "Full decision transparency", "완전한 의사결정 투명성")}
           </div>
         </div>
       </div>
@@ -2007,13 +2098,13 @@ export function Slide06AgentSwarms({
               event.currentTarget.defaultPlaybackRate = 1.6;
               event.currentTarget.playbackRate = 1.6;
             }}
-           onEnded={(event) => {
+            onEnded={(event) => {
               event.currentTarget.currentTime = 0;
               event.currentTarget.playbackRate = 2;
               onAdvance?.();
             }}
           />
-         
+
           <div className="swarm-video-shade" />
           <div className="swarm-video-copy-wrap">
             <div className="eyebrow swarm-video-kicker">
@@ -2024,19 +2115,31 @@ export function Slide06AgentSwarms({
                 className="swarm-video-line swarm-video-title-line"
                 style={stagger(0)}
               >
-                {tr(locale, "Symoria AI Agents Swarms", "Symoria AI 에이전트 스웜")}
+                {tr(
+                  locale,
+                  "Symoria AI Agents Swarms",
+                  "Symoria AI 에이전트 스웜",
+                )}
               </h2>
               <div
                 className="swarm-video-line swarm-video-body-line"
                 style={stagger(1)}
               >
-                {tr(locale, "that trade. Negotiate. Create. Execute.", "거래하고, 협상하고, 만들고, 실행합니다.")}
+                {tr(
+                  locale,
+                  "that trade. Negotiate. Create. Execute.",
+                  "거래하고, 협상하고, 만들고, 실행합니다.",
+                )}
               </div>
               <div
                 className="swarm-video-line swarm-video-body-line"
                 style={stagger(2)}
               >
-                {tr(locale, "No sleep. No salary. No mercy.", "쉬지 않고. 급여도 없이. 망설임도 없이.")}
+                {tr(
+                  locale,
+                  "No sleep. No salary. No mercy.",
+                  "쉬지 않고. 급여도 없이. 망설임도 없이.",
+                )}
               </div>
             </div>
           </div>
@@ -2221,7 +2324,9 @@ export function Slide13Performance({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={13} className={slideClassName(isActive)} id="s13">
       <div className="eyebrow">{tr(locale, "TRACK RECORD", "트랙 레코드")}</div>
-      <h2 className="title">{tr(locale, "Six Months. Consistent Alpha.", "6개월, 일관된 알파.")}</h2>
+      <h2 className="title">
+        {tr(locale, "Six Months. Consistent Alpha.", "6개월, 일관된 알파.")}
+      </h2>
       <div className="perf-grid">
         {performanceSeries.map(({ month, value }, index) => (
           <div
@@ -2246,17 +2351,30 @@ export function Slide13Performance({ isActive, locale }: SlideComponentProps) {
   );
 }
 
-export function Slide14CapitalSimulation({ isActive, locale }: SlideComponentProps) {
+export function Slide14CapitalSimulation({
+  isActive,
+  locale,
+}: SlideComponentProps) {
   return (
     <section data-slide-idx={14} className={slideClassName(isActive)} id="s14">
-      <div className="eyebrow">{tr(locale, "CAPITAL SIMULATION", "자본 시뮬레이션")}</div>
-      <h2 className="title">{tr(locale, "What $10,000 Becomes", "$10,000의 12개월 후")}</h2>
+      <div className="eyebrow">
+        {tr(locale, "CAPITAL SIMULATION", "자본 시뮬레이션")}
+      </div>
+      <h2 className="title">
+        {tr(locale, "What $10,000 Becomes", "$10,000의 12개월 후")}
+      </h2>
       <div className="sim-grid">
         <div className="sim-card" data-stagger-item style={stagger(0)}>
-          <div className="sim-label">{tr(locale, "CONSERVATIVE", "보수적")}</div>
-          <div className="sim-rate">{tr(locale, "15% avg/month", "월평균 15%")}</div>
+          <div className="sim-label">
+            {tr(locale, "CONSERVATIVE", "보수적")}
+          </div>
+          <div className="sim-rate">
+            {tr(locale, "15% avg/month", "월평균 15%")}
+          </div>
           <div className="sim-val">$10K → $44K</div>
-          <div className="sim-desc">{tr(locale, "in 12 months", "12개월 후")}</div>
+          <div className="sim-desc">
+            {tr(locale, "in 12 months", "12개월 후")}
+          </div>
         </div>
         <div
           className="sim-card"
@@ -2267,15 +2385,23 @@ export function Slide14CapitalSimulation({ isActive, locale }: SlideComponentPro
           })}
         >
           <div className="sim-label">{tr(locale, "MODERATE", "중립적")}</div>
-          <div className="sim-rate">{tr(locale, "22% avg/month", "월평균 22%")}</div>
+          <div className="sim-rate">
+            {tr(locale, "22% avg/month", "월평균 22%")}
+          </div>
           <div className="sim-val">$10K → $87K</div>
-          <div className="sim-desc">{tr(locale, "in 12 months", "12개월 후")}</div>
+          <div className="sim-desc">
+            {tr(locale, "in 12 months", "12개월 후")}
+          </div>
         </div>
         <div className="sim-card" data-stagger-item style={stagger(2)}>
           <div className="sim-label">{tr(locale, "AGGRESSIVE", "공격적")}</div>
-          <div className="sim-rate">{tr(locale, "30% avg/month", "월평균 30%")}</div>
+          <div className="sim-rate">
+            {tr(locale, "30% avg/month", "월평균 30%")}
+          </div>
           <div className="sim-val">$10K → $137K</div>
-          <div className="sim-desc">{tr(locale, "in 12 months", "12개월 후")}</div>
+          <div className="sim-desc">
+            {tr(locale, "in 12 months", "12개월 후")}
+          </div>
         </div>
       </div>
       <div
@@ -2285,7 +2411,11 @@ export function Slide14CapitalSimulation({ isActive, locale }: SlideComponentPro
       >
         <div
           className="sim-performance-chart"
-          aria-label={tr(locale, "Recent monthly performance chart", "최근 월별 성과 차트")}
+          aria-label={tr(
+            locale,
+            "Recent monthly performance chart",
+            "최근 월별 성과 차트",
+          )}
         >
           <div className="sim-performance-chart-head">
             <div className="sim-performance-chart-label">
@@ -2408,9 +2538,15 @@ export function Slide16AssetSovereignty({
 }: SlideComponentProps) {
   return (
     <section data-slide-idx={16} className={slideClassName(isActive)} id="s16">
-      <div className="eyebrow">{tr(locale, "SELF-CUSTODY", "셀프 커스터디")}</div>
+      <div className="eyebrow">
+        {tr(locale, "SELF-CUSTODY", "셀프 커스터디")}
+      </div>
       <h2 className="title">
-        {tr(locale, "Your Keys. Your Capital. Always.", "당신의 키. 당신의 자본. 언제나.")}
+        {tr(
+          locale,
+          "Your Keys. Your Capital. Always.",
+          "당신의 키. 당신의 자본. 언제나.",
+        )}
       </h2>
       <div className="sub">
         {tr(
@@ -2445,13 +2581,30 @@ export function Slide17Roadmap({ isActive, locale }: SlideComponentProps) {
     <section data-slide-idx={17} className={slideClassName(isActive)} id="s17">
       <div className="eyebrow">{tr(locale, "ROADMAP", "로드맵")}</div>
       <h2 className="title">
-        {tr(locale, "Building the Autonomous Finance Layer", "자율 금융 레이어를 구축합니다")}
+        {tr(
+          locale,
+          "Building the Autonomous Finance Layer",
+          "자율 금융 레이어를 구축합니다",
+        )}
       </h2>
       <div className="roadmap-line">
         {[
-          ["Q1 2026", tr(locale, "Core AI Agents Live", "핵심 AI 에이전트 출시")],
-          ["Q2 2026", tr(locale, "On Chain Verification Layer", "온체인 검증 레이어 출시")],
-          ["Q3 2026", tr(locale, "AI Margin Trading Live", "AI 마진 트레이딩 출시")],
+          [
+            "Q1 2026",
+            tr(locale, "Core AI Agents Live", "핵심 AI 에이전트 출시"),
+          ],
+          [
+            "Q2 2026",
+            tr(
+              locale,
+              "On Chain Verification Layer",
+              "온체인 검증 레이어 출시",
+            ),
+          ],
+          [
+            "Q3 2026",
+            tr(locale, "AI Margin Trading Live", "AI 마진 트레이딩 출시"),
+          ],
           ["Q4 2026", tr(locale, "Multi-Chain Expansion", "멀티체인 확장")],
           ["Q1 2027", tr(locale, "Prediction Markets", "예측 시장")],
         ].map(([label, title], index) => (
@@ -2490,7 +2643,11 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
             {tr(locale, "What Are Symoria AI NFTs?", "Symoria AI NFT란?")}
           </h2>
           <div className="nft-kicker">
-            {tr(locale, "Powering AI Trading Through NFT Utility", "NFT 유틸리티로 AI 트레이딩을 강화")}
+            {tr(
+              locale,
+              "Powering AI Trading Through NFT Utility",
+              "NFT 유틸리티로 AI 트레이딩을 강화",
+            )}
           </div>
           <div className="nft-overview-list">
             <div
@@ -2502,7 +2659,9 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
                 <ShieldCheck size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
-                <div className="nft-overview-title">{tr(locale, "Access More", "더 넓은 접근")}</div>
+                <div className="nft-overview-title">
+                  {tr(locale, "Access More", "더 넓은 접근")}
+                </div>
                 <div className="nft-overview-body">
                   {tr(
                     locale,
@@ -2521,7 +2680,9 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
                 <Coins size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
-                <div className="nft-overview-title">{tr(locale, "Earn More", "더 큰 보상")}</div>
+                <div className="nft-overview-title">
+                  {tr(locale, "Earn More", "더 큰 보상")}
+                </div>
                 <div className="nft-overview-body">
                   {tr(
                     locale,
@@ -2540,7 +2701,9 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
                 <Bot size={22} strokeWidth={2.2} />
               </div>
               <div className="nft-overview-copy">
-                <div className="nft-overview-title">{tr(locale, "Automate More", "더 강한 자동화")}</div>
+                <div className="nft-overview-title">
+                  {tr(locale, "Automate More", "더 강한 자동화")}
+                </div>
                 <div className="nft-overview-body">
                   {tr(
                     locale,
@@ -2573,7 +2736,9 @@ export function Slide21NftWhyOwn({ isActive, locale }: SlideComponentProps) {
 
   return (
     <section data-slide-idx={21} className={slideClassName(isActive)} id="s21">
-      <div className="eyebrow">{tr(locale, "NFT HOLDER VALUE", "NFT 홀더 가치")}</div>
+      <div className="eyebrow">
+        {tr(locale, "NFT HOLDER VALUE", "NFT 홀더 가치")}
+      </div>
       <h2 className="title">
         {tr(locale, "Why Hold Symoria NFT", "왜 Symoria NFT를 보유해야 하는가")}
       </h2>
@@ -2612,7 +2777,9 @@ export function Slide21ReferralDirectReward({
       className={slideClassName(isActive)}
       id="s21-reward-1"
     >
-      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
+      <div className="eyebrow">
+        {tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}
+      </div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub ref-share-sub">
         {tr(
@@ -2665,7 +2832,9 @@ export function Slide21FreeTradingSubscription({
       className={slideClassName(isActive)}
       id="s21-reward-2"
     >
-      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
+      <div className="eyebrow">
+        {tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}
+      </div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub nft-reward-detail-sub">
         {tr(
@@ -2718,7 +2887,9 @@ export function Slide21ReferralCommissionReward({
       className={slideClassName(isActive)}
       id="s21-reward-3"
     >
-      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
+      <div className="eyebrow">
+        {tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}
+      </div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub nft-reward-detail-sub">
         {tr(
@@ -2773,10 +2944,7 @@ export function Slide21ReferralCommissionReward({
   );
 }
 
-export function Slide21TokenAirdrop({
-  isActive,
-  locale,
-}: SlideComponentProps) {
+export function Slide21TokenAirdrop({ isActive, locale }: SlideComponentProps) {
   const reward = getNftWhyOwn(locale)[3];
   const airdropBands = getNftAirdropBands(locale);
 
@@ -2786,7 +2954,9 @@ export function Slide21TokenAirdrop({
       className={slideClassName(isActive)}
       id="s21-reward-4"
     >
-      <div className="eyebrow">{tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}</div>
+      <div className="eyebrow">
+        {tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}
+      </div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
       <div className="sub nft-reward-detail-sub">
         {tr(
@@ -2833,7 +3003,9 @@ export function Slide23NftRewardsSystem({
 }: SlideComponentProps) {
   return (
     <section data-slide-idx={23} className={slideClassName(isActive)} id="s23">
-      <div className="eyebrow">{tr(locale, "NFT REWARD SYSTEM", "NFT 보상 시스템")}</div>
+      <div className="eyebrow">
+        {tr(locale, "NFT REWARD SYSTEM", "NFT 보상 시스템")}
+      </div>
       <h2 className="title">
         {tr(locale, "NFT Holders Reward System", "NFT 홀더 보상 시스템")}
       </h2>
@@ -2854,7 +3026,9 @@ export function Slide23NftRewardsSystem({
               <th>{tr(locale, "Price Subtotal", "가격 소계")}</th>
               <th>{tr(locale, "1. Recommendation", "1. 추천 보상")}</th>
               <th>{tr(locale, "2. Downline Sharing", "2. 하위 조직 공유")}</th>
-              <th>{tr(locale, "3. Trading Subscription", "3. 트레이딩 구독")}</th>
+              <th>
+                {tr(locale, "3. Trading Subscription", "3. 트레이딩 구독")}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -2895,9 +3069,11 @@ export function Slide24NftTradingAccess({
   return (
     <section data-slide-idx={24} className={slideClassName(isActive)} id="s24">
       <div className="nft-access-mesh" aria-hidden="true" />
-      <div className="eyebrow">{tr(locale, "AI TRADING ACCESS", "AI 트레이딩 접근권")}</div>
+      <div className="eyebrow">
+        {tr(locale, "AI TRADING ACCESS", "AI 트레이딩 접근권")}
+      </div>
       <h2 className="title nft-access-title">
-        {tr(locale, "Unlock AI Trading with", "AI 트레이딩을 여는 열쇠,")} {" "}
+        {tr(locale, "Unlock AI Trading with", "AI 트레이딩을 여는 열쇠,")}{" "}
         <span className="nft-access-accent">Symoria NFTs</span>
       </h2>
       <div className="sub nft-access-sub">
@@ -2907,7 +3083,9 @@ export function Slide24NftTradingAccess({
           "Symoria NFT를 보유하면 NFT 레벨에 따라 프리미엄 구독 혜택과 함께 Symoria의 AI 기반 트레이딩 플랫폼에 독점적으로 접근할 수 있습니다.",
         )}
       </div>
-      <div className="nft-access-label">{tr(locale, "Holder Benefits", "홀더 혜택")}</div>
+      <div className="nft-access-label">
+        {tr(locale, "Holder Benefits", "홀더 혜택")}
+      </div>
       <div className="nft-access-grid">
         {tiers.map((tier, index) => (
           <div
@@ -2923,7 +3101,11 @@ export function Slide24NftTradingAccess({
             <div className="nft-access-card-meta">{tier.holders}</div>
             <div className="nft-access-duration">{tier.duration}</div>
             <div className="nft-access-duration-label">
-              {tr(locale, "premium subscription access", "프리미엄 구독 이용권")}
+              {tr(
+                locale,
+                "premium subscription access",
+                "프리미엄 구독 이용권",
+              )}
             </div>
           </div>
         ))}
@@ -2935,12 +3117,20 @@ export function Slide24NftTradingAccess({
 export function Slide20Pricing({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={25} className={slideClassName(isActive)} id="s25">
-      <div className="eyebrow">{tr(locale, "TRANSPARENT PRICING", "투명한 가격 정책")}</div>
-      <h2 className="title">{tr(locale, "No Hidden Fees. Ever.", "숨겨진 수수료는 없습니다.")}</h2>
+      <div className="eyebrow">
+        {tr(locale, "TRANSPARENT PRICING", "투명한 가격 정책")}
+      </div>
+      <h2 className="title">
+        {tr(locale, "No Hidden Fees. Ever.", "숨겨진 수수료는 없습니다.")}
+      </h2>
       <div className="pricing-grid">
         <div className="pricing-box from-left">
-          <div className="pricing-type">{tr(locale, "SUBSCRIPTION", "구독형")}</div>
-          <div className="pricing-headline">{tr(locale, "Flat monthly fee.", "고정 월 구독료.")}</div>
+          <div className="pricing-type">
+            {tr(locale, "SUBSCRIPTION", "구독형")}
+          </div>
+          <div className="pricing-headline">
+            {tr(locale, "Flat monthly fee.", "고정 월 구독료.")}
+          </div>
           <div className="pricing-body">
             {tr(
               locale,
@@ -2950,8 +3140,12 @@ export function Slide20Pricing({ isActive, locale }: SlideComponentProps) {
           </div>
         </div>
         <div className="pricing-box from-right">
-          <div className="pricing-type">{tr(locale, "PERFORMANCE", "성과형")}</div>
-          <div className="pricing-headline">{tr(locale, "0% performance fee.", "성과 수수료 0%.")}</div>
+          <div className="pricing-type">
+            {tr(locale, "PERFORMANCE", "성과형")}
+          </div>
+          <div className="pricing-headline">
+            {tr(locale, "0% performance fee.", "성과 수수료 0%.")}
+          </div>
           <div className="pricing-body">
             {tr(
               locale,
@@ -2975,31 +3169,65 @@ export function Slide20Pricing({ isActive, locale }: SlideComponentProps) {
 export function Slide21Referral({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={26} className={slideClassName(isActive)} id="s26">
-      <div className="eyebrow">{tr(locale, "REFERRAL PROGRAM", "추천 프로그램")}</div>
-      <h2 className="title">{tr(locale, "Grow Together. Earn Together.", "함께 성장하고 함께 보상받습니다.")}</h2>
+      <div className="eyebrow">
+        {tr(locale, "REFERRAL PROGRAM", "추천 프로그램")}
+      </div>
+      <h2 className="title">
+        {tr(
+          locale,
+          "Grow Together. Earn Together.",
+          "함께 성장하고 함께 보상받습니다.",
+        )}
+      </h2>
       <div className="ref-steps">
         <div className="ref-step" data-stagger-item style={stagger(0)}>
           <div className="ref-num">01</div>
-          <div className="ref-title">{tr(locale, "Share your link", "링크를 공유하세요")}</div>
+          <div className="ref-title">
+            {tr(locale, "Share your link", "링크를 공유하세요")}
+          </div>
           <div className="ref-body">
-            {tr(locale, "Get your unique referral URL from the dashboard", "대시보드에서 나만의 추천 URL을 받습니다")}
+            {tr(
+              locale,
+              "Get your unique referral URL from the dashboard",
+              "대시보드에서 나만의 추천 URL을 받습니다",
+            )}
           </div>
         </div>
         <div className="ref-arrow">→</div>
         <div className="ref-step" data-stagger-item style={stagger(1)}>
           <div className="ref-num">02</div>
-          <div className="ref-title">{tr(locale, "Friend signs up", "지인이 가입합니다")}</div>
-          <div className="ref-body">{tr(locale, "They subscribe to any paid plan", "유료 플랜 중 하나를 구독합니다")}</div>
+          <div className="ref-title">
+            {tr(locale, "Friend signs up", "지인이 가입합니다")}
+          </div>
+          <div className="ref-body">
+            {tr(
+              locale,
+              "They subscribe to any paid plan",
+              "유료 플랜 중 하나를 구독합니다",
+            )}
+          </div>
         </div>
         <div className="ref-arrow">→</div>
         <div className="ref-step" data-stagger-item style={stagger(2)}>
           <div className="ref-num">03</div>
-          <div className="ref-title">{tr(locale, "You earn 20%", "20%를 적립합니다")}</div>
-          <div className="ref-body">{tr(locale, "Recurring monthly commission, forever", "매월 반복 수수료가 계속 지급됩니다")}</div>
+          <div className="ref-title">
+            {tr(locale, "You earn 20%", "20%를 적립합니다")}
+          </div>
+          <div className="ref-body">
+            {tr(
+              locale,
+              "Recurring monthly commission, forever",
+              "매월 반복 수수료가 계속 지급됩니다",
+            )}
+          </div>
         </div>
       </div>
       <div className="consensus-msg" style={{ marginTop: 40 }}>
-        {tr(locale, "▸ UNLIMITED REFERRALS · PAID IN USDC · MONTHLY", "▸ 무제한 추천 · USDC 지급 · 매월 정산")}
+        {tr(
+          locale,
+          "▸ UNLIMITED REFERRALS · PAID IN USDC · MONTHLY",
+          "▸ 무제한 추천 · USDC 지급 · 매월 정산",
+        )}
       </div>
     </section>
   );
@@ -3014,10 +3242,14 @@ export function Slide22ReferralSharing({
   return (
     <section data-slide-idx={27} className={slideClassName(isActive)} id="s27">
       <div className="ref-share-mesh" aria-hidden="true" />
-      <div className="eyebrow">{tr(locale, "REFERRAL LEVEL SHARING", "추천 레벨 공유")}</div>
+      <div className="eyebrow">
+        {tr(locale, "REFERRAL LEVEL SHARING", "추천 레벨 공유")}
+      </div>
       <h2 className="title ref-share-title">
         {tr(locale, "Referral ", "추천 ")}
-        <span className="ref-share-accent">{tr(locale, "Level Sharing", "레벨 공유")}</span>
+        <span className="ref-share-accent">
+          {tr(locale, "Level Sharing", "레벨 공유")}
+        </span>
       </h2>
       <div className="sub ref-share-sub">
         {tr(
@@ -3061,7 +3293,13 @@ export function Slide25Tokenomics({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={31} className={slideClassName(isActive)} id="s31">
       <div className="eyebrow">{tr(locale, "SYM TOKEN", "SYM 토큰")}</div>
-      <h2 className="title">{tr(locale, "The Fuel of Autonomous Finance", "자율 금융을 구동하는 연료")}</h2>
+      <h2 className="title">
+        {tr(
+          locale,
+          "The Fuel of Autonomous Finance",
+          "자율 금융을 구동하는 연료",
+        )}
+      </h2>
       <div className="sub">
         {tr(
           locale,
@@ -3095,14 +3333,40 @@ export function Slide26WhyNow({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={32} className={slideClassName(isActive)} id="s32">
       <div className="eyebrow">{tr(locale, "TIMING", "타이밍")}</div>
-      <h2 className="title">{tr(locale, "The Perfect Convergence", "완벽한 수렴의 시점")}</h2>
+      <h2 className="title">
+        {tr(locale, "The Perfect Convergence", "완벽한 수렴의 시점")}
+      </h2>
       <div className="two-col" style={{ marginTop: 56 }}>
         <div className="from-left">
           <ul className="why-list">
-            <li>{tr(locale, "DeFi TVL rebounds to $3T+", "DeFi TVL이 $3T+ 수준으로 회복")}</li>
-            <li>{tr(locale, "AI models hit inflection point", "AI 모델이 변곡점에 도달")}</li>
-            <li>{tr(locale, "ZK tech now viable at scale", "ZK 기술이 대규모 적용 가능한 단계에 진입")}</li>
-            <li>{tr(locale, "Retail demands smarter tools", "리테일 투자자가 더 스마트한 도구를 요구")}</li>
+            <li>
+              {tr(
+                locale,
+                "DeFi TVL rebounds to $3T+",
+                "DeFi TVL이 $3T+ 수준으로 회복",
+              )}
+            </li>
+            <li>
+              {tr(
+                locale,
+                "AI models hit inflection point",
+                "AI 모델이 변곡점에 도달",
+              )}
+            </li>
+            <li>
+              {tr(
+                locale,
+                "ZK tech now viable at scale",
+                "ZK 기술이 대규모 적용 가능한 단계에 진입",
+              )}
+            </li>
+            <li>
+              {tr(
+                locale,
+                "Retail demands smarter tools",
+                "리테일 투자자가 더 스마트한 도구를 요구",
+              )}
+            </li>
           </ul>
         </div>
         <div
@@ -3124,7 +3388,9 @@ export function Slide27Faq({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={33} className={slideClassName(isActive)} id="s33">
       <div className="eyebrow">FAQ</div>
-      <h2 className="title">{tr(locale, "Common Questions", "자주 묻는 질문")}</h2>
+      <h2 className="title">
+        {tr(locale, "Common Questions", "자주 묻는 질문")}
+      </h2>
       <div className="faq-grid">
         {[
           [
@@ -3179,7 +3445,13 @@ export function Slide28TvlGrowth({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={34} className={slideClassName(isActive)} id="s34">
       <div className="eyebrow">{tr(locale, "GROWTH", "성장")}</div>
-      <h2 className="title">{tr(locale, "Symoria TVL: 0 → $48M in 6 Months", "Symoria TVL: 6개월 만에 0 → $48M")}</h2>
+      <h2 className="title">
+        {tr(
+          locale,
+          "Symoria TVL: 0 → $48M in 6 Months",
+          "Symoria TVL: 6개월 만에 0 → $48M",
+        )}
+      </h2>
       <div className="bar-grid">
         {[
           ["$0.8M", 40],
@@ -3197,12 +3469,18 @@ export function Slide28TvlGrowth({ isActive, locale }: SlideComponentProps) {
           >
             <div className="bar-val">{value}</div>
             <div className="bar-bar" style={{ height }} />
-            <div className="bar-label">{tr(locale, "Month", "월")} {index + 1}</div>
+            <div className="bar-label">
+              {tr(locale, "Month", "월")} {index + 1}
+            </div>
           </div>
         ))}
       </div>
       <div className="sub" style={{ marginTop: 28, fontSize: 18 }}>
-        {tr(locale, "Organic growth. No VCs. No paid TVL.", "자생적 성장입니다. VC 자금도, 유료 TVL도 없습니다.")}
+        {tr(
+          locale,
+          "Organic growth. No VCs. No paid TVL.",
+          "자생적 성장입니다. VC 자금도, 유료 TVL도 없습니다.",
+        )}
       </div>
     </section>
   );
@@ -3212,7 +3490,9 @@ export function Slide29Legal({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={35} className={slideClassName(isActive)} id="s35">
       <div className="eyebrow">{tr(locale, "LEGAL", "법률 고지")}</div>
-      <h2 className="title">{tr(locale, "Important Disclosures", "중요 고지 사항")}</h2>
+      <h2 className="title">
+        {tr(locale, "Important Disclosures", "중요 고지 사항")}
+      </h2>
       <div className="legal-body">
         <p>
           {tr(
@@ -3251,7 +3531,13 @@ export function Slide30Cta({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={36} className={slideClassName(isActive)} id="s36">
       <div className="eyebrow">{tr(locale, "GET STARTED", "시작하기")}</div>
-      <h2 className="title">{tr(locale, "Your Portfolio. Running Itself.", "당신의 포트폴리오, 스스로 운용됩니다.")}</h2>
+      <h2 className="title">
+        {tr(
+          locale,
+          "Your Portfolio. Running Itself.",
+          "당신의 포트폴리오, 스스로 운용됩니다.",
+        )}
+      </h2>
       <div className="two-col">
         <div className="from-left">
           <div className="col-stat-list">
@@ -3266,7 +3552,9 @@ export function Slide30Cta({ isActive, locale }: SlideComponentProps) {
               >
                 $0M TVL
               </div>
-              <div className="col-stat-label">{tr(locale, "Total Value Locked", "총 예치 자산")}</div>
+              <div className="col-stat-label">
+                {tr(locale, "Total Value Locked", "총 예치 자산")}
+              </div>
             </div>
             <div className="col-stat">
               <div
@@ -3278,7 +3566,9 @@ export function Slide30Cta({ isActive, locale }: SlideComponentProps) {
               >
                 0 Users
               </div>
-              <div className="col-stat-label">{tr(locale, "Active Traders", "활성 트레이더")}</div>
+              <div className="col-stat-label">
+                {tr(locale, "Active Traders", "활성 트레이더")}
+              </div>
             </div>
             <div className="col-stat">
               <div
@@ -3291,7 +3581,9 @@ export function Slide30Cta({ isActive, locale }: SlideComponentProps) {
               >
                 $0.0M/mo
               </div>
-              <div className="col-stat-label">{tr(locale, "Monthly Volume", "월간 거래량")}</div>
+              <div className="col-stat-label">
+                {tr(locale, "Monthly Volume", "월간 거래량")}
+              </div>
             </div>
           </div>
         </div>
@@ -3324,7 +3616,11 @@ export function Slide30Cta({ isActive, locale }: SlideComponentProps) {
               marginBottom: 32,
             }}
           >
-            {tr(locale, "Autonomous AI · DeFi · 2026", "자율형 AI · DeFi · 2026")}
+            {tr(
+              locale,
+              "Autonomous AI · DeFi · 2026",
+              "자율형 AI · DeFi · 2026",
+            )}
           </div>
           <div style={{ display: "flex", gap: 16 }}>
             <a
@@ -3377,12 +3673,14 @@ export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
                 key={entry.platform}
                 className="socials-card"
                 data-stagger-item
-                style={{
-                  ...stagger(index),
-                  "--social-accent": entry.accent,
-                  "--social-accent-rgb": entry.accentRgb,
-                  "--social-surface": entry.surface,
-                } as CSSProperties}
+                style={
+                  {
+                    ...stagger(index),
+                    "--social-accent": entry.accent,
+                    "--social-accent-rgb": entry.accentRgb,
+                    "--social-surface": entry.surface,
+                  } as CSSProperties
+                }
                 href={entry.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -3410,10 +3708,7 @@ export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
   );
 }
 
-export function Slide31ThankYou({
-  isActive,
-  locale,
-}: SlideComponentProps) {
+export function Slide31ThankYou({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={38} className={slideClassName(isActive)} id="s38">
       <div className="end-glow" />
@@ -3427,7 +3722,11 @@ export function Slide31ThankYou({
           {tr(locale, "Running itself.", "스스로 운용됩니다.")}
         </div>
         <div className="end-meta">
-          {tr(locale, "THANK YOU · SYMORIA.IO · 2026", "감사합니다 · SYMORIA.IO · 2026")}
+          {tr(
+            locale,
+            "THANK YOU · SYMORIA.IO · 2026",
+            "감사합니다 · SYMORIA.IO · 2026",
+          )}
         </div>
       </div>
     </section>
