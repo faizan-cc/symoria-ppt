@@ -1055,66 +1055,114 @@ h1.title .ch { display: inline-block; opacity: 0; }
 .socials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 40px; }
 .socials-card {
   position: relative;
-  min-height: 228px;
+  min-height: 254px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: rgba(15,18,16,0.82);
-  border: 1px solid rgba(255,255,255,0.05);
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  background: var(--social-surface, rgba(15,18,16,0.88));
+  border: 1px solid rgba(var(--social-accent-rgb, 0,255,136), 0.34);
   border-radius: 24px;
-  padding: 26px 22px;
+  padding: 26px 24px 24px;
   overflow: hidden;
   backdrop-filter: blur(12px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 .socials-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0,255,136,0.08), transparent 45%, rgba(255,255,255,0.02));
+  background: linear-gradient(135deg, rgba(var(--social-accent-rgb, 0,255,136), 0.18), transparent 45%, rgba(255,255,255,0.04));
   pointer-events: none;
+}
+.socials-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -18% 56% 42%;
+  height: 130px;
+  background: radial-gradient(circle, rgba(var(--social-accent-rgb, 0,255,136), 0.34) 0%, transparent 72%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+.socials-card:hover,
+.socials-card:focus-visible {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(var(--social-accent-rgb, 0,255,136), 0.6);
+  box-shadow: 0 28px 60px rgba(0,0,0,0.34), 0 0 0 1px rgba(var(--social-accent-rgb, 0,255,136), 0.28), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.socials-card:focus-visible {
+  outline: 2px solid rgba(var(--social-accent-rgb, 0,255,136), 0.72);
+  outline-offset: 3px;
 }
 .socials-mark {
   position: relative;
   z-index: 1;
-  width: 72px;
-  height: 72px;
+  width: 78px;
+  height: 78px;
   border-radius: 20px;
   display: grid;
   place-items: center;
-  color: var(--green);
-  border: 1px solid rgba(0,255,136,0.28);
-  background: rgba(0,255,136,0.08);
-  box-shadow: 0 0 32px rgba(0,255,136,0.12);
+  color: var(--social-accent, var(--green));
+  border: 1px solid rgba(var(--social-accent-rgb, 0,255,136), 0.42);
+  background: rgba(var(--social-accent-rgb, 0,255,136), 0.12);
+  box-shadow: 0 16px 34px rgba(var(--social-accent-rgb, 0,255,136), 0.16);
   line-height: 0;
 }
-.socials-mark svg { width: 36px; height: 36px; display: block; }
+.socials-mark svg { width: 38px; height: 38px; display: block; }
 .socials-platform {
   position: relative;
   z-index: 1;
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.42);
-  margin-top: 16px;
+  color: var(--social-accent, var(--green));
+  margin-top: 20px;
 }
 .socials-handle {
   position: relative;
   z-index: 1;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.05;
   color: var(--white);
   margin-top: 10px;
+  text-shadow: 0 8px 24px rgba(0,0,0,0.28);
 }
 .socials-audience {
   position: relative;
   z-index: 1;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.82);
-  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  margin-top: 18px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.socials-cta {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--social-accent, var(--green));
 }
 .socials-ribbon {
   position: absolute;

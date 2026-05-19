@@ -27,22 +27,82 @@ const socialStats = [
     platform: "CoinMarketCap",
     handle: "@Symoria",
     audience: "38,100 Followers",
+    href: "https://coinmarketcap.com/community/profile/symoria/",
+    accent: "#3861FB",
+    accentRgb: "56,97,251",
+    surface:
+      "linear-gradient(160deg, rgba(56,97,251,0.28), rgba(9,13,26,0.94) 54%, rgba(56,97,251,0.12))",
   },
-  { platform: "X", handle: "@symoriaio", audience: "97,000 Followers" },
-  { platform: "Telegram", handle: "@symoria", audience: "498,000 Subscribers" },
+  {
+    platform: "X",
+    handle: "@symoriaio",
+    audience: "97,000 Followers",
+    href: "https://x.com/symoriaio",
+    accent: "#F5F7FA",
+    accentRgb: "245,247,250",
+    surface:
+      "linear-gradient(160deg, rgba(255,255,255,0.2), rgba(10,10,12,0.96) 56%, rgba(255,255,255,0.08))",
+  },
+  {
+    platform: "Telegram",
+    handle: "@symoria",
+    audience: "498,000 Subscribers",
+    href: "https://t.me/symoria",
+    accent: "#2AABEE",
+    accentRgb: "42,171,238",
+    surface:
+      "linear-gradient(160deg, rgba(42,171,238,0.32), rgba(6,19,30,0.94) 54%, rgba(42,171,238,0.12))",
+  },
   {
     platform: "YouTube",
     handle: "@symoriaAI",
     audience: "102,000 Subscribers",
+    href: "https://www.youtube.com/@symoriaAI",
+    accent: "#FF0033",
+    accentRgb: "255,0,51",
+    surface:
+      "linear-gradient(160deg, rgba(255,0,51,0.3), rgba(24,7,10,0.96) 56%, rgba(255,0,51,0.1))",
   },
   {
     platform: "Instagram",
     handle: "@symoriaai",
     audience: "153,000 Followers",
+    href: "https://www.instagram.com/symoriaai/",
+    accent: "#FF7A00",
+    accentRgb: "255,122,0",
+    surface:
+      "linear-gradient(160deg, rgba(255,122,0,0.28), rgba(193,53,132,0.24) 38%, rgba(64,93,230,0.2) 100%)",
   },
-  { platform: "Facebook", handle: "@symoria", audience: "61,000 Followers" },
-  { platform: "TikTok", handle: "@symoriaai", audience: "34,500 Followers" },
-  { platform: "Medium", handle: "@symoria", audience: "2,800 Followers" },
+  {
+    platform: "Facebook",
+    handle: "@symoria",
+    audience: "61,000 Followers",
+    href: "https://www.facebook.com/symoria/",
+    accent: "#1877F2",
+    accentRgb: "24,119,242",
+    surface:
+      "linear-gradient(160deg, rgba(24,119,242,0.3), rgba(8,14,28,0.95) 56%, rgba(24,119,242,0.1))",
+  },
+  {
+    platform: "TikTok",
+    handle: "@symoriaai",
+    audience: "34,500 Followers",
+    href: "https://www.tiktok.com/@symoriaai",
+    accent: "#20F4EE",
+    accentRgb: "32,244,238",
+    surface:
+      "linear-gradient(160deg, rgba(32,244,238,0.24), rgba(255,0,80,0.18) 44%, rgba(12,12,18,0.96) 100%)",
+  },
+  {
+    platform: "Medium",
+    handle: "@symoria",
+    audience: "2,800 Followers",
+    href: "https://medium.com/@symoria",
+    accent: "#00AB6C",
+    accentRgb: "0,171,108",
+    surface:
+      "linear-gradient(160deg, rgba(0,171,108,0.28), rgba(8,18,14,0.95) 56%, rgba(0,171,108,0.08))",
+  },
 ] as const;
 
 const nftWhyOwn = [
@@ -3419,11 +3479,20 @@ export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
         </div>
         <div className="socials-grid">
           {stats.map((entry, index) => (
-            <div
+            <a
               key={entry.platform}
               className="socials-card"
               data-stagger-item
-              style={stagger(index)}
+              style={{
+                ...stagger(index),
+                "--social-accent": entry.accent,
+                "--social-accent-rgb": entry.accentRgb,
+                "--social-surface": entry.surface,
+              } as CSSProperties}
+              href={entry.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${entry.platform} ${tr(locale, "channel", "채널")} ${tr(locale, "for Symoria", "바로가기")}`}
             >
               <div className="socials-mark">
                 <SocialIcon platform={entry.platform} />
@@ -3431,7 +3500,11 @@ export function Slide31SocialStats({ isActive, locale }: SlideComponentProps) {
               <div className="socials-platform">{entry.platform}</div>
               <div className="socials-handle">{entry.handle}</div>
               <div className="socials-audience">{entry.audience}</div>
-            </div>
+              <div className="socials-cta">
+                <span>{tr(locale, "Open channel", "채널 바로가기")}</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </a>
           ))}
         </div>
       </div>
