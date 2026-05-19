@@ -1107,130 +1107,36 @@ const performanceChartAreaPath = getAreaPath(
   performanceChartBaseline,
 );
 
+const socialIconAssets: Partial<
+  Record<(typeof socialStats)[number]["platform"], string>
+> = {
+  CoinMarketCap: "/assets/cmc-logo.png",
+  X: "/assets/x-logo.png",
+  YouTube: "/assets/yt-logo.png",
+  Instagram: "/assets/ig-logo.png",
+  Facebook: "/assets/fb-logo.png",
+  TikTok: "/assets/tiktok-logo.png",
+  Medium: "/assets/medium-logo.png",
+};
+
 function SocialIcon({
   platform,
 }: {
   platform: (typeof socialStats)[number]["platform"];
 }) {
+  const iconSrc = socialIconAssets[platform];
+
+  if (iconSrc) {
+    return <img src={iconSrc} alt="" aria-hidden="true" loading="lazy" />;
+  }
+
   switch (platform) {
-    case "CoinMarketCap":
-      return (
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <circle
-            cx="24"
-            cy="24"
-            r="19"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.8"
-          />
-          <path
-            d="M12 28.5v-6.5c0-2.1 2.5-3 3.8-1.4l4.2 5.1c.7.8 1.9.8 2.5-.1l5.2-8.2c1.3-2 4.3-1.1 4.3 1.3v10.3c0 1.1.9 2 2 2 1.1 0 2-.9 2-2v-9.3"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2.8"
-          />
-        </svg>
-      );
-    case "X":
-      return (
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path
-            d="M12 12 36 36M34.5 12 22.5 24l-10.5 12"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeWidth="3.4"
-          />
-        </svg>
-      );
     case "Telegram":
       return (
         <svg viewBox="0 0 48 48" aria-hidden="true">
           <path
             d="M39 11 9.8 22.6c-1.6.6-1.5 2.9.2 3.4l7.3 2.2 2.8 8c.5 1.5 2.5 1.9 3.6.7L28 31l7.5 5.5c1.3 1 3.2.3 3.5-1.3L42 13.9C42.4 12.2 40.6 10.4 39 11Z"
             fill="currentColor"
-          />
-        </svg>
-      );
-    case "YouTube":
-      return (
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect
-            x="8"
-            y="13"
-            width="32"
-            height="22"
-            rx="7"
-            fill="currentColor"
-          />
-          <path d="m21 19 10 5-10 5Z" fill="#06110c" />
-        </svg>
-      );
-    case "Instagram":
-      return (
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect
-            x="10"
-            y="10"
-            width="28"
-            height="28"
-            rx="8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          />
-          <circle
-            cx="24"
-            cy="24"
-            r="6.4"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          />
-          <circle cx="32.5" cy="15.5" r="1.9" fill="currentColor" />
-        </svg>
-      );
-    case "Facebook":
-      return (
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path
-            d="M27.8 14H31v-5.3c-.6-.1-2.5-.3-4.6-.3-4.6 0-7.7 2.8-7.7 8V21h-5v5.9h5V40h6.2V26.9h5.1l.8-5.9h-5.9v-3.8c0-1.8.5-3.2 2.9-3.2Z"
-            fill="currentColor"
-          />
-        </svg>
-      );
-    case "TikTok":
-      return (
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path
-            d="M27 10.5v15.4a6.4 6.4 0 1 1-4.7-6.2v4.8a2.2 2.2 0 1 0 1.9 2.2V10.5H27Zm3.9 0c.8 2.3 2.7 4.2 5.1 5v4.5a11.6 11.6 0 0 1-5.1-1.4v-8.1Z"
-            fill="currentColor"
-          />
-        </svg>
-      );
-    case "Medium":
-      return (
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="15" cy="24" r="8" fill="currentColor" />
-          <ellipse
-            cx="28"
-            cy="24"
-            rx="5.5"
-            ry="8.2"
-            fill="currentColor"
-            opacity="0.84"
-          />
-          <rect
-            x="36"
-            y="16"
-            width="4"
-            height="16"
-            rx="2"
-            fill="currentColor"
-            opacity="0.72"
           />
         </svg>
       );

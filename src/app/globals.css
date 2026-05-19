@@ -1122,7 +1122,13 @@ h1.title .ch { display: inline-block; opacity: 0; }
   line-height: 0;
   flex-shrink: 0;
 }
-.socials-mark svg { width: 38px; height: 38px; display: block; }
+.socials-mark img,
+.socials-mark svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+  object-fit: contain;
+}
 .socials-platform {
   position: relative;
   z-index: 1;
