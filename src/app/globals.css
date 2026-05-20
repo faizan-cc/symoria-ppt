@@ -774,10 +774,10 @@ h1.title .ch { display: inline-block; opacity: 0; }
   --nft-subscription-surface-end: rgba(4,16,12,0.9);
 }
 .nft-subscription-card-4 {
-  --nft-subscription-accent: #ff9f5a;
-  --nft-subscription-accent-rgb: 255,159,90;
-  --nft-subscription-surface-start: rgba(42,20,8,0.9);
-  --nft-subscription-surface-end: rgba(20,10,4,0.94);
+  --nft-subscription-accent: #ff6b8a;
+  --nft-subscription-accent-rgb: 255,107,138;
+  --nft-subscription-surface-start: rgba(42,8,18,0.9);
+  --nft-subscription-surface-end: rgba(20,4,10,0.94);
 }
 .nft-subscription-icon {
   width: 54px;
