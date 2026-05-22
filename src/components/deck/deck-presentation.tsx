@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { slides } from "./slides";
+import { slideTitles, slides } from "./slides";
 
 type Locale = "en" | "kr";
 
@@ -40,6 +40,7 @@ export default function DeckPresentation() {
   const [locale, setLocale] = useState<Locale>("kr");
   const [introDismissed, setIntroDismissed] = useState(false);
   const [introReady, setIntroReady] = useState(false);
+  const [isSlidePanelOpen, setIsSlidePanelOpen] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const introVideoRef = useRef<HTMLVideoElement>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -52,6 +53,9 @@ export default function DeckPresentation() {
           enter: "입장하기",
           skip: "건너뛰기",
           language: "언어",
+          slidePanel: "슬라이드",
+          slidePanelTitle: "빠른 이동",
+          slidePanelHint: "제목을 눌러 원하는 슬라이드로 이동하세요.",
         }
       : {
           introKicker: "◆ Sales · 2026",
@@ -59,11 +63,19 @@ export default function DeckPresentation() {
           enter: "Click to enter",
           skip: "Skip",
           language: "Language",
+          slidePanel: "Slides",
+          slidePanelTitle: "Quick Jump",
+          slidePanelHint: "Select any slide by title.",
         };
 
   const goTo = useCallback((i: number) => {
     if (i < 0 || i >= TOTAL) return;
     setCurrent(i);
+    setIsSlidePanelOpen(false);
+  }, []);
+
+  const toggleSlidePanel = useCallback(() => {
+    setIsSlidePanelOpen((open) => !open);
   }, []);
 
   const dismissIntro = useCallback(() => {
@@ -132,6 +144,17 @@ export default function DeckPresentation() {
     if (!introDismissed) return;
 
     const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsSlidePanelOpen(false);
+        return;
+      }
+
+      if ((e.key === "p" || e.key === "P") && !e.metaKey && !e.ctrlKey) {
+        e.preventDefault();
+        setIsSlidePanelOpen((open) => !open);
+        return;
+      }
+
       if (["ArrowRight", "ArrowDown", " "].includes(e.key)) {
         e.preventDefault();
         setCurrent((c) => Math.min(c + 1, TOTAL - 1));
@@ -254,6 +277,58 @@ export default function DeckPresentation() {
             />
           </div>
 
+          {isSlidePanelOpen && (
+            <div
+              className="deck-slide-panel-backdrop"
+              onClick={() => setIsSlidePanelOpen(false)}
+            >
+              <div
+                className="deck-slide-panel"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="deck-slide-panel-head">
+                  <div>
+                    <div className="deck-slide-panel-kicker">
+                      {copy.slidePanelTitle}
+                    </div>
+                    <div className="deck-slide-panel-hint">
+                      {copy.slidePanelHint}
+                    </div>
+                  </div>
+                  <button
+                    className="deck-slide-panel-close"
+                    onClick={() => setIsSlidePanelOpen(false)}
+                    type="button"
+                    aria-label="Close slide panel"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="deck-slide-panel-list" role="listbox">
+                  {slideTitles.map((title, index) => {
+                    const isActive = index === current;
+
+                    return (
+                      <button
+                        key={title.en}
+                        className={`deck-slide-panel-item${isActive ? " active" : ""}`}
+                        onClick={() => goTo(index)}
+                        type="button"
+                      >
+                        <span className="deck-slide-panel-index">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="deck-slide-panel-label">
+                          {locale === "kr" ? title.kr : title.en}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="deck-nav-bar">
             <button className="deck-nav-btn" onClick={() => goTo(current - 1)}>
               ←
@@ -262,6 +337,13 @@ export default function DeckPresentation() {
               {String(current + 1).padStart(2, "0")} /{" "}
               {String(TOTAL).padStart(2, "0")}
             </span>
+            <button
+              className={`deck-panel-toggle${isSlidePanelOpen ? " active" : ""}`}
+              onClick={toggleSlidePanel}
+              type="button"
+            >
+              {copy.slidePanel}
+            </button>
             <div className="deck-locale-switch" aria-label={copy.language}>
               <button
                 className={`deck-locale-btn${locale === "en" ? " active" : ""}`}

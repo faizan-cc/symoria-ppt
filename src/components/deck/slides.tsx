@@ -307,6 +307,158 @@ const referralSharingBands = [
   },
 ] as const;
 
+const referralDirectRewardLadder = [
+  {
+    levelEn: "Level 1",
+    levelKr: "1레벨",
+    rate: "8-12%",
+    noteEn: "Top referral band tied to NFT tier",
+    noteKr: "NFT 티어에 따라 달라지는 최상위 추천 구간",
+  },
+  {
+    levelEn: "Level 2",
+    levelKr: "2레벨",
+    rate: "7%",
+    noteEn: "Second direct line",
+    noteKr: "두 번째 직접 추천 라인",
+  },
+  {
+    levelEn: "Levels 3-4",
+    levelKr: "3-4레벨",
+    rate: "5%",
+    noteEn: "Two upper-mid levels",
+    noteKr: "상단 중간 2개 레벨",
+  },
+  {
+    levelEn: "Levels 5-6",
+    levelKr: "5-6레벨",
+    rate: "3%",
+    noteEn: "Depth expansion band",
+    noteKr: "깊이 확장 구간",
+  },
+  {
+    levelEn: "Level 7",
+    levelKr: "7레벨",
+    rate: "2%",
+    noteEn: "Bridge level before the 1% ladder",
+    noteKr: "1% 구간으로 넘어가기 전 연결 레벨",
+  },
+  {
+    levelEn: "Levels 8-14",
+    levelKr: "8-14레벨",
+    rate: "1%",
+    noteEn: "Seven consecutive levels",
+    noteKr: "연속 7개 레벨",
+  },
+  {
+    levelEn: "Levels 15-30",
+    levelKr: "15-30레벨",
+    rate: "0.5%",
+    noteEn: "Sixteen long-tail levels",
+    noteKr: "롱테일 16개 레벨",
+  },
+] as const;
+
+const referralTradingRewardLadder = [
+  {
+    levelEn: "Level 1",
+    levelKr: "1레벨",
+    rate: "10%",
+    noteEn: "Highest trading share",
+    noteKr: "최상위 트레이딩 배분",
+  },
+  {
+    levelEn: "Level 2",
+    levelKr: "2레벨",
+    rate: "9%",
+    noteEn: "Second trading line",
+    noteKr: "두 번째 트레이딩 라인",
+  },
+  {
+    levelEn: "Level 3",
+    levelKr: "3레벨",
+    rate: "8%",
+    noteEn: "Upper team tier",
+    noteKr: "상단 팀 확장 구간",
+  },
+  {
+    levelEn: "Level 4",
+    levelKr: "4레벨",
+    rate: "6%",
+    noteEn: "Still inside the core band",
+    noteKr: "핵심 보상 구간 유지",
+  },
+  {
+    levelEn: "Level 5",
+    levelKr: "5레벨",
+    rate: "5%",
+    noteEn: "Mid-depth trading reward",
+    noteKr: "중간 깊이 트레이딩 보상",
+  },
+  {
+    levelEn: "Level 6",
+    levelKr: "6레벨",
+    rate: "4%",
+    noteEn: "Continuation layer",
+    noteKr: "연속 배분 레이어",
+  },
+  {
+    levelEn: "Level 7",
+    levelKr: "7레벨",
+    rate: "3%",
+    noteEn: "Support depth payout",
+    noteKr: "보조 깊이 배분",
+  },
+  {
+    levelEn: "Level 8",
+    levelKr: "8레벨",
+    rate: "2%",
+    noteEn: "Long-tail trading band",
+    noteKr: "롱테일 트레이딩 구간",
+  },
+  {
+    levelEn: "Level 9",
+    levelKr: "9레벨",
+    rate: "2%",
+    noteEn: "Long-tail trading band",
+    noteKr: "롱테일 트레이딩 구간",
+  },
+  {
+    levelEn: "Level 10",
+    levelKr: "10레벨",
+    rate: "1%",
+    noteEn: "Final trading depth",
+    noteKr: "마지막 트레이딩 깊이",
+  },
+] as const;
+
+const referralRewardBreakdownPanels = [
+  {
+    titleEn: "Referral Reward",
+    titleKr: "추천 리워드",
+    subtitleEn: "30-level onboarding ladder",
+    subtitleKr: "30레벨 온보딩 보상 구조",
+    totalEn: "48-52% total",
+    totalKr: "총 48-52%",
+    detailEn: "Applies to referral-led signup and mint activity.",
+    detailKr: "추천 기반 가입 및 민팅 활동에 적용됩니다.",
+    icon: Network,
+    rows: referralDirectRewardLadder,
+  },
+  {
+    titleEn: "Trading Reward",
+    titleKr: "트레이딩 리워드",
+    subtitleEn: "10-level trading ladder",
+    subtitleKr: "10레벨 트레이딩 보상 구조",
+    totalEn: "50% total",
+    totalKr: "총 50%",
+    detailEn: "Shown against the $99 / $299 trading plans in the source sheet.",
+    detailKr: "원본 시트의 $99 / $299 트레이딩 플랜 기준으로 표시했습니다.",
+    icon: TrendingUp,
+    rows: referralTradingRewardLadder,
+  },
+] as const;
+
 const nftTradingAccessTiers = [
   {
     title: "Elite Package",
@@ -366,7 +518,8 @@ const nftSubscriptionPlans = [
     detail: "Maximum subscription access for top NFT tiers",
     benefits: [
       "Simulation trading",
-      "Spot + Margin trading",
+      "Margin Trading (Coming Soon)",
+      "CEX trading (Coming Soon)",
       "All trading signals",
       "Custom pairs signals",
       "Signal bot notifications",
@@ -381,9 +534,8 @@ const nftSubscriptionPlans = [
     detail: "Advanced trading toolkit with higher-tier access",
     benefits: [
       "Simulation trading",
-      "Spot trading",
+      "Margin trading (Coming Soon)",
       "All trading signals",
-      "Signal bot notifications",
     ],
   },
 
@@ -393,11 +545,7 @@ const nftSubscriptionPlans = [
     levels: "NFT Levels 9-14",
     duration: "3-6 Months",
     detail: "Longer access for mid-tier holders",
-    benefits: [
-      "Simulation trading",
-      "Spot trading access",
-      "All trading signals",
-    ],
+    benefits: ["All trading signals"],
   },
 
   {
@@ -410,84 +558,12 @@ const nftSubscriptionPlans = [
   },
 ] as const;
 
-const nftCommissionPools = [
-  {
-    title: "Total Pool",
-    value: "30%",
-    note: "Trading benefit sharing allocation",
-    icon: TrendingUp,
-  },
-  {
-    title: "A+B Split",
-    value: "4%",
-    note: "Direct split pool shown as 2% : 2%",
-    icon: Network,
-  },
-  {
-    title: "Depth Share",
-    value: "18%",
-    note: "Referral ladder distribution from the shared structure",
-    icon: Gift,
-  },
-  {
-    title: "Holder Bonus",
-    value: "8%",
-    note: "NFT-holder downline double-share layer",
-    icon: Crown,
-  },
-] as const;
+const nftCommissionRateRows = Array.from({ length: 19 }, (_, index) => ({
+  level: `${index + 1}`,
+  rate: index < 16 ? "0.5%" : "",
+}));
 
-const nftCommissionBands = [
-  {
-    title: "Elite",
-    icon: Crown,
-    levels: ["1", "2", "3", "4"],
-    share: "12%",
-    detail: "Highest trading commission band across the first four NFT levels.",
-    highlights: [
-      "Top-tier trading benefit sharing",
-      "Strongest early-level matching curve",
-      "Holder bonus pool remains active",
-    ],
-  },
-  {
-    title: "Pro",
-    icon: Sparkles,
-    levels: ["5", "6", "7", "8"],
-    share: "11%",
-    detail: "High-earning commission range for upper-mid NFT holders.",
-    highlights: [
-      "Large referral trading share band",
-      "Still participates in holder bonus structure",
-      "Built for active team expansion",
-    ],
-  },
-  {
-    title: "Basic",
-    icon: Bot,
-    levels: ["9", "10", "11", "12", "13", "14"],
-    share: "10%",
-    detail: "Mid-tier commission participation spanning six NFT levels.",
-    highlights: [
-      "Keeps trading rewards active across the middle ladder",
-      "Balanced for holders scaling referral depth",
-      "Covers six consecutive NFT levels",
-    ],
-  },
-  {
-    title: "Starter",
-    icon: ShieldCheck,
-    levels: ["15", "16", "17", "18", "19"],
-    share: "8%",
-    detail:
-      "Entry trading commission band extending reward coverage to level 19.",
-    highlights: [
-      "Introduces trading benefit sharing for new holders",
-      "Maintains payout visibility through the final NFT tier",
-      "Completes the full 1-19 reward span",
-    ],
-  },
-] as const;
+const nftCommissionRateTotal = "8.0%";
 
 const nftAirdropSummary = [
   {
@@ -638,7 +714,8 @@ const nftSubscriptionPlansKr = [
     detail: "최상위 NFT 티어를 위한 최대 구독 이용권",
     benefits: [
       "모의 트레이딩",
-      "현물 + 마진 트레이딩",
+      "마진 거래 (출시 예정)",
+      "CEX 거래 (출시 예정)",
       "모든 트레이딩 시그널",
       "커스텀 페어 시그널",
       "시그널 봇 알림",
@@ -650,19 +727,14 @@ const nftSubscriptionPlansKr = [
     levels: "NFT 레벨 5-8",
     duration: "6-9개월",
     detail: "상위 티어 홀더를 위한 고급 트레이딩 툴킷",
-    benefits: [
-      "모의 트레이딩",
-      "현물 트레이딩",
-      "모든 트레이딩 시그널",
-      "시그널 봇 알림",
-    ],
+    benefits: ["모의 트레이딩", "마진 거래 (출시 예정)", "현물 트레이딩"],
   },
   {
     title: "베이직",
     levels: "NFT 레벨 9-14",
     duration: "3-6개월",
     detail: "중간 티어 홀더를 위한 장기 이용권",
-    benefits: ["모의 트레이딩", "현물 트레이딩 이용권", "모든 트레이딩 시그널"],
+    benefits: ["현물 트레이딩 이용권"],
   },
   {
     title: "스타터",
@@ -670,45 +742,6 @@ const nftSubscriptionPlansKr = [
     duration: "3개월",
     detail: "입문형 무료 트레이딩 구독권",
     benefits: ["모의 트레이딩 이용권", "AI 트레이딩 시그널 제공"],
-  },
-] as const;
-
-const nftCommissionBandsKr = [
-  {
-    title: "엘리트",
-    detail: "상위 4개 NFT 레벨에 적용되는 최고 트레이딩 수수료 구간입니다.",
-    highlights: [
-      "최상위 트레이딩 수익 공유",
-      "초기 레벨에서 가장 강한 매칭 곡선",
-      "홀더 보너스 풀이 계속 활성화",
-    ],
-  },
-  {
-    title: "프로",
-    detail: "상위 중간 티어 NFT 홀더를 위한 고수익 수수료 구간입니다.",
-    highlights: [
-      "큰 폭의 추천 트레이딩 수익 구간",
-      "홀더 보너스 구조에 계속 참여",
-      "활발한 팀 확장에 최적화",
-    ],
-  },
-  {
-    title: "베이직",
-    detail: "6개 NFT 레벨에 걸쳐 적용되는 중간 티어 수수료 참여 구간입니다.",
-    highlights: [
-      "중간 레벨 전반에서 트레이딩 보상 유지",
-      "추천 깊이를 확장하는 홀더에 균형 잡힌 구조",
-      "연속된 6개 NFT 레벨을 커버",
-    ],
-  },
-  {
-    title: "스타터",
-    detail: "19레벨까지 보상 범위를 넓히는 입문형 트레이딩 수수료 구간입니다.",
-    highlights: [
-      "신규 홀더에게 트레이딩 수익 공유 제공",
-      "마지막 NFT 티어까지 보상 가시성 유지",
-      "1-19 전체 보상 구간 완성",
-    ],
   },
 ] as const;
 
@@ -772,17 +805,6 @@ function getNftSubscriptionPlans(locale?: Locale) {
     duration: nftSubscriptionPlansKr[index].duration,
     detail: nftSubscriptionPlansKr[index].detail,
     benefits: nftSubscriptionPlansKr[index].benefits,
-  }));
-}
-
-function getNftCommissionBands(locale?: Locale) {
-  if (locale !== "kr") return nftCommissionBands;
-
-  return nftCommissionBands.map((entry, index) => ({
-    ...entry,
-    title: nftCommissionBandsKr[index].title,
-    detail: nftCommissionBandsKr[index].detail,
-    highlights: nftCommissionBandsKr[index].highlights,
   }));
 }
 
@@ -1182,6 +1204,106 @@ export function Slide00Cover({ isActive, locale }: SlideComponentProps) {
   );
 }
 
+export function Slide00Origin({ isActive, locale }: SlideComponentProps) {
+  return (
+    <section
+      data-slide-idx={39}
+      className={slideClassName(isActive)}
+      id="s39-origin"
+    >
+      <div className="eyebrow">{tr(locale, "THE ORIGIN", "이름의 기원")}</div>
+      <h2 className="title">
+        {tr(locale, "Symoria, Rooted in Symmoria", "Symmoria에서 온 Symoria")}
+      </h2>
+      <div className="title-sub" data-stagger-item style={stagger(0)}>
+        {tr(
+          locale,
+          "Rooted in the ancient Greek idea of the Symmoria, Symoria frames capital as a collective instrument for public good.",
+          "Symoria는 공공의 이익을 위해 집단적으로 재원을 조성하던 고대 그리스의 심모리아 개념에 뿌리를 두고 있습니다.",
+        )}
+      </div>
+      <div className="vs-wrap" style={{ marginTop: 44 }}>
+        <div className="vs-box" data-stagger-item style={stagger(1)}>
+          <div className="vs-head">Symmoria</div>
+          <div
+            style={{
+              fontSize: 22,
+              lineHeight: 1.75,
+              color: "rgba(255,255,255,0.74)",
+            }}
+          >
+            {tr(
+              locale,
+              "Rooted in the ancient Greek idea of the Symmoria - collective financial partnerships created to fund public good.",
+              "고대 그리스의 심모리아(Symmoria) 개념 - 공공의 이익을 위해 집단적으로 재원을 조성하던 금융 협력 체계 - 에 뿌리를 두고 있습니다.",
+            )}
+          </div>
+        </div>
+        <div className="vs-box vs-right" data-stagger-item style={stagger(2)}>
+          <div className="vs-head">Demosthenes</div>
+          <div
+            style={{
+              fontSize: 22,
+              lineHeight: 1.75,
+              color: "rgba(255,255,255,0.82)",
+            }}
+          >
+            {tr(
+              locale,
+              'The founder chose the name "Demosthenes" in tribute to the Athenian thinker who advocated the alignment of private wealth with civic duty and democratic governance.',
+              '창립자는 사적 부(富)와 시민적 책임, 그리고 민주적 거버넌스의 조화를 강조했던 아테네의 사상가를 기리기 위해 "데모스테네스(Demosthenes)"라는 이름을 선택했습니다.',
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="narrative-insight-grid" style={{ marginTop: 28 }}>
+        {[
+          {
+            icon: Coins,
+            title: tr(locale, "Collective Capital", "집단적 자본"),
+            body: tr(
+              locale,
+              "Finance is structured as shared contribution toward a larger public outcome, not isolated extraction.",
+              "금융은 고립된 추출이 아니라 더 큰 공공의 결과를 향한 공동 기여로 설계됩니다.",
+            ),
+          },
+          {
+            icon: ShieldCheck,
+            title: tr(locale, "Civic Duty", "시민적 책임"),
+            body: tr(
+              locale,
+              "The naming ethos links private wealth to responsibility, participation, and stewardship.",
+              "이 이름이 담고 있는 정신은 사적 부를 책임, 참여, 그리고 관리 의무와 연결합니다.",
+            ),
+          },
+          {
+            icon: Network,
+            title: tr(locale, "Democratic Governance", "민주적 거버넌스"),
+            body: tr(
+              locale,
+              "Symoria takes its narrative from systems where coordinated stakeholders support transparent, collective decision-making.",
+              "Symoria의 서사는 이해관계자들의 협력이 투명하고 집단적인 의사결정을 지탱하는 구조에서 출발합니다.",
+            ),
+          },
+        ].map(({ icon: Icon, title, body }, index) => (
+          <div
+            key={title}
+            className="narrative-insight-card"
+            data-stagger-item
+            style={stagger(index + 3)}
+          >
+            <div className="narrative-insight-icon">
+              <Icon size={24} strokeWidth={2.1} />
+            </div>
+            <div className="narrative-insight-title">{title}</div>
+            <div className="narrative-insight-body">{body}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function Slide01Market({ isActive, locale }: SlideComponentProps) {
   return (
     <section data-slide-idx={1} className={slideClassName(isActive)} id="s1">
@@ -1270,7 +1392,7 @@ export function Slide02Problem({ isActive, locale }: SlideComponentProps) {
         {tr(
           locale,
           "The early market in 2015 was so minimal it was barely visible. In 2021, the first substantial liquidity wave formed, and by 2025, the total market size exceeded $4 trillion, establishing TradeFi as a structural destination for capital inflows.",
-          "2015년 초기 시장은 너무 미미해 거의 보이지 않을 정도였습니다. 2021년에는 첫 번째 실질적 유동성 파동이 형성됐고, 2025년에는 전체 시장 규모가 4조 달러를 넘어 TradeFi가 구조적인 자본 유입처로 자리 잡았습니다.",
+          "2015년 초기 시장은 거의 보이지 않을 정도로 미미한 수준이었습니다. 2021년에는 첫 번째 대규모 유동성 흐름이 형성되었고, 2025년에는 전체 시장 규모가 4조 달러를 돌파하며 TradeFi는 자본 유입의 구조적 목적지로 자리 잡았습니다"
         )}
       </div>
       <div
@@ -2101,7 +2223,6 @@ export function Slide06AgentSwarms({
             onEnded={(event) => {
               event.currentTarget.currentTime = 0;
               event.currentTarget.playbackRate = 2;
-              onAdvance?.();
             }}
           />
 
@@ -2645,32 +2766,11 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
           <div className="nft-kicker">
             {tr(
               locale,
-              "Powering AI Trading Through NFT Utility",
-              "NFT 유틸리티로 AI 트레이딩을 강화",
+              "Every Symoria NFT holder is CEO of Symoria",
+              "모든 Symoria NFT 홀더는 Symoria의 CEO입니다",
             )}
           </div>
           <div className="nft-overview-list">
-            <div
-              className="nft-overview-item"
-              data-stagger-item
-              style={stagger(0)}
-            >
-              <div className="nft-overview-icon">
-                <ShieldCheck size={22} strokeWidth={2.2} />
-              </div>
-              <div className="nft-overview-copy">
-                <div className="nft-overview-title">
-                  {tr(locale, "Access More", "더 넓은 접근")}
-                </div>
-                <div className="nft-overview-body">
-                  {tr(
-                    locale,
-                    "Unlock deeper platform utilities, premium features, and holder-only advantages across the Symoria ecosystem.",
-                    "Symoria 생태계 전반에서 더 깊은 플랫폼 유틸리티, 프리미엄 기능, 그리고 홀더 전용 혜택을 해제합니다.",
-                  )}
-                </div>
-              </div>
-            </div>
             <div
               className="nft-overview-item"
               data-stagger-item
@@ -2683,15 +2783,23 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
                 <div className="nft-overview-title">
                   {tr(locale, "Earn More", "더 큰 보상")}
                 </div>
-                <div className="nft-overview-body">
-                  {tr(
-                    locale,
-                    "Participate in referrals, profit-linked rewards, and ecosystem upside through a single utility asset.",
-                    "하나의 유틸리티 자산으로 추천 보상, 수익 연동 리워드, 그리고 생태계 성장 이익에 참여할 수 있습니다.",
-                  )}
+              </div>
+            </div>
+            <div
+              className="nft-overview-item"
+              data-stagger-item
+              style={stagger(0)}
+            >
+              <div className="nft-overview-icon">
+                <ShieldCheck size={22} strokeWidth={2.2} />
+              </div>
+              <div className="nft-overview-copy">
+                <div className="nft-overview-title">
+                  {tr(locale, "Access More", "더 넓은 접근")}
                 </div>
               </div>
             </div>
+
             <div
               className="nft-overview-item"
               data-stagger-item
@@ -2704,26 +2812,8 @@ export function Slide20NftOverview({ isActive, locale }: SlideComponentProps) {
                 <div className="nft-overview-title">
                   {tr(locale, "Automate More", "더 강한 자동화")}
                 </div>
-                <div className="nft-overview-body">
-                  {tr(
-                    locale,
-                    "Higher NFT tiers unlock stronger AI trading capabilities, smarter tooling, and greater platform advantage.",
-                    "상위 NFT 티어는 더 강력한 AI 트레이딩 역량, 더 스마트한 툴, 그리고 더 큰 플랫폼 우위를 제공합니다.",
-                  )}
-                </div>
               </div>
             </div>
-          </div>
-          <div
-            className="nft-overview-note"
-            data-stagger-item
-            style={stagger(0)}
-          >
-            {tr(
-              locale,
-              "NFT ownership combines platform access, AI tooling, reward participation, and compounding ecosystem upside in a single utility layer.",
-              "NFT 보유는 플랫폼 접근권, AI 툴링, 보상 참여, 그리고 누적되는 생태계 상승 효과를 하나의 유틸리티 레이어로 결합합니다.",
-            )}
           </div>
         </div>
       </div>
@@ -2769,7 +2859,7 @@ export function Slide21ReferralDirectReward({
   locale,
 }: SlideComponentProps) {
   const reward = getNftWhyOwn(locale)[0];
-  const sharingBands = getReferralSharingBands(locale);
+  const panel = referralRewardBreakdownPanels[0];
 
   return (
     <section
@@ -2777,44 +2867,118 @@ export function Slide21ReferralDirectReward({
       className={slideClassName(isActive)}
       id="s21-reward-1"
     >
-      <div className="eyebrow">
-        {tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}
-      </div>
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
-      <div className="sub ref-share-sub">
+      <div className="sub nft-reward-detail-sub ref-reward-detail-sub-compact">
         {tr(
           locale,
-          "Deep 30-level sharing structure for platform revenue and referral matching.",
-          "플랫폼 수익과 추천 매칭을 위한 30레벨 심층 공유 구조입니다.",
+          "Direct referral rewards follow a 30-level ladder.",
+          "직접 추천 보상은 30레벨 구조로 지급됩니다.",
         )}
       </div>
-      <div className="ref-share-grid">
-        {sharingBands.map((band, index) => (
-          <div
-            key={band.title}
-            className={`ref-share-card ref-share-card-${index + 1}`}
-            data-stagger-item
-            style={stagger(index)}
-          >
-            <div className="ref-share-icon">
-              <band.icon size={28} strokeWidth={2.2} />
-            </div>
-            <div className="ref-share-card-title">{band.title}</div>
-            <div className="ref-share-value-row">
-              <span className="ref-share-value">{band.value}</span>
-              <span className="ref-share-suffix">{band.suffix}</span>
-            </div>
-            <div className="ref-share-note">{band.note}</div>
+      {/* <div className="ref-reward-summary-row">
+        <div
+          className="ref-reward-summary-card"
+          data-stagger-item
+          style={stagger(0)}
+        >
+          <div className="ref-reward-summary-label">
+            {tr(locale, "Coverage", "적용 범위")}
           </div>
-        ))}
+          <div className="ref-reward-summary-value">
+            {tr(locale, "30 Levels", "30레벨")}
+          </div>
+          <div className="ref-reward-summary-note">
+            {tr(locale, "Referral payout depth", "추천 보상 전체 깊이")}
+          </div>
+        </div>
+        <div
+          className="ref-reward-summary-card"
+          data-stagger-item
+          style={stagger(1)}
+        >
+          <div className="ref-reward-summary-label">
+            {tr(locale, "Level 1", "1레벨")}
+          </div>
+          <div className="ref-reward-summary-value">8-12%</div>
+          <div className="ref-reward-summary-note">
+            {tr(locale, "Varies by NFT tier", "NFT 티어에 따라 변동")}
+          </div>
+        </div>
+        <div
+          className="ref-reward-summary-card"
+          data-stagger-item
+          style={stagger(2)}
+        >
+          <div className="ref-reward-summary-label">
+            {tr(locale, "Total Payout", "총 보상")}
+          </div>
+          <div className="ref-reward-summary-value">
+            {tr(locale, panel.totalEn, panel.totalKr)}
+          </div>
+          <div className="ref-reward-summary-note">
+            {tr(locale, "Across the full referral ladder", "전체 추천 구조 기준")}
+          </div>
+        </div>
+      </div> */}
+      <div className="ref-reward-detail-grid">
+        <div
+          className="ref-reward-detail-panel ref-reward-detail-panel-1 ref-reward-detail-panel-single"
+          data-stagger-item
+          style={stagger(3)}
+        >
+          <div className="ref-reward-detail-head">
+            <div className="ref-reward-detail-icon">
+              <panel.icon size={24} strokeWidth={2.1} />
+            </div>
+            <div className="ref-reward-detail-copy-block">
+              <div className="ref-reward-detail-kicker">
+                {tr(locale, panel.subtitleEn, panel.subtitleKr)}
+              </div>
+              <div className="ref-reward-detail-panel-title">
+                {tr(locale, panel.titleEn, panel.titleKr)}
+              </div>
+              <div className="ref-reward-detail-panel-copy">
+                {tr(
+                  locale,
+                  "Read left to right: level band, payout rate, and what that band means in the ladder.",
+                  "왼쪽부터 레벨 구간, 지급 비율, 그리고 해당 구간의 의미를 순서대로 보여줍니다.",
+                )}
+              </div>
+            </div>
+            <div className="ref-reward-detail-total">
+              {tr(locale, panel.totalEn, panel.totalKr)}
+            </div>
+          </div>
+          <div className="ref-reward-detail-table">
+            <div className="ref-reward-detail-table-head">
+              <span>{tr(locale, "Level Band", "레벨 구간")}</span>
+              <span>{tr(locale, "Rate", "비율")}</span>
+              <span>{tr(locale, "Meaning", "설명")}</span>
+            </div>
+            {panel.rows.map((row) => (
+              <div
+                key={`${panel.titleEn}-${row.levelEn}`}
+                className="ref-reward-detail-row"
+              >
+                <div className="ref-reward-detail-level">
+                  {tr(locale, row.levelEn, row.levelKr)}
+                </div>
+                <div className="ref-reward-detail-rate">{row.rate}</div>
+                <div className="ref-reward-detail-note">
+                  {tr(locale, row.noteEn, row.noteKr)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="ref-share-footnote">
+      {/* <div className="ref-reward-detail-footnote">
         {tr(
           locale,
-          "Calculated based on referrals across 30 total tiers.",
-          "총 30개 티어의 추천 구조를 기준으로 계산되었습니다.",
+          "Only direct referral rewards are shown here. The Level 1 band changes with NFT tier; the remaining levels follow the fixed ladder above.",
+          "이 슬라이드에는 직접 추천 보상만 표시했습니다. 1레벨 구간은 NFT 티어에 따라 달라지고, 나머지 레벨은 위의 고정 구조를 따릅니다.",
         )}
-      </div>
+      </div> */}
     </section>
   );
 }
@@ -2879,66 +3043,43 @@ export function Slide21ReferralCommissionReward({
   locale,
 }: SlideComponentProps) {
   const reward = getNftWhyOwn(locale)[2];
-  const commissionBands = getNftCommissionBands(locale);
 
   return (
     <section
       data-slide-idx="s21-reward-3"
       className={slideClassName(isActive)}
       id="s21-reward-3"
+      style={{ justifyContent: "flex-start" }}
     >
-      <div className="eyebrow">
-        {tr(locale, "NFT REWARD DETAIL", "NFT 보상 상세")}
-      </div>
+     
       <h2 className="title nft-reward-detail-title">{reward.title}</h2>
-      <div className="sub nft-reward-detail-sub">
-        {tr(
-          locale,
-          "The shared commission model totals 30%. Rewards now span every NFT level from 1 through 19, with higher tiers unlocking larger commission bands.",
-          "공유 수수료 모델의 총합은 30%입니다. 보상은 이제 1레벨부터 19레벨까지 모든 NFT 레벨에 적용되며, 상위 티어일수록 더 큰 수수료 구간이 열립니다.",
-        )}
-      </div>
+     
 
-      <div className="nft-commission-band-grid">
-        {commissionBands.map((band, index) => {
-          const BandIcon = band.icon;
+      
 
-          return (
-            <div
-              key={band.title}
-              className="nft-commission-band-card"
-              data-stagger-item
-              style={stagger(index + 4)}
-            >
-              <div className="nft-commission-band-top">
-                <div>
-                  <div className="nft-commission-band-title">{band.title}</div>
-                  <div className="nft-commission-band-meta">
-                    {tr(locale, "NFT Levels", "NFT 레벨")} {band.levels[0]}-
-                    {band.levels[band.levels.length - 1]}
-                  </div>
-                </div>
-                <div className="nft-commission-band-icon">
-                  <BandIcon size={24} strokeWidth={2.1} />
-                </div>
-              </div>
-              <div className="nft-commission-band-share">{band.share}</div>
-              <div className="nft-commission-band-detail">{band.detail}</div>
-              <div className="nft-commission-level-list">
-                {band.levels.map((level) => (
-                  <span key={level} className="nft-commission-level-pill">
-                    L{level}
-                  </span>
-                ))}
-              </div>
-              <ul className="nft-commission-band-list">
-                {band.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
+      <div
+        className="nft-reward-panel nft-commission-table-shell"
+        data-stagger-item
+        style={stagger(1)}
+      >
+        <table className="nft-commission-rate-table">
+          <thead>
+            <tr>
+              <th>{tr(locale, "NFT Level", "NFT 레벨")}</th>
+              <th>{tr(locale, "Rate", "비율")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {nftCommissionRateRows.map(({ level, rate }) => (
+              <tr key={level}>
+                <td>{level}</td>
+                <td className={rate ? undefined : "nft-commission-rate-empty"}>
+                  {rate || "\u00A0"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );
@@ -3740,6 +3881,7 @@ export const slides = [
   Slide03WhyHumansFail,
   Slide04WhyBotsFail,
   Slide05Solution,
+  Slide00Origin,
   Slide06AgentSwarms,
   Slide06Vs,
   Slide13Performance,
@@ -3757,4 +3899,31 @@ export const slides = [
   Slide27Faq,
   Slide29Legal,
   Slide31ThankYou,
+] as const;
+
+export const slideTitles = [
+  { en: "Cover", kr: "표지" },
+  { en: "Market Opportunity", kr: "시장 기회" },
+  { en: "The Problem", kr: "문제" },
+  { en: "Why Humans Fail", kr: "인간이 실패하는 이유" },
+  { en: "Why Bots Fail", kr: "기존 봇이 실패하는 이유" },
+  { en: "The Solution", kr: "해결책" },
+  { en: "Origin of Symoria", kr: "Symoria의 기원" },
+  { en: "AI Agent Swarms", kr: "AI 에이전트 스웜" },
+  { en: "Symoria vs The Rest", kr: "Symoria vs 기존 솔루션" },
+  { en: "Performance", kr: "성과" },
+  { en: "Capital Simulation", kr: "자본 시뮬레이션" },
+  { en: "Social Proof", kr: "소셜 지표" },
+  { en: "NFT Overview", kr: "NFT 개요" },
+  { en: "Why Hold Symoria NFT", kr: "왜 Symoria NFT를 보유해야 하는가" },
+  { en: "Referral Direct Reward", kr: "직접 추천 보상" },
+  { en: "Free Trading Subscription", kr: "무료 트레이딩 구독권" },
+  { en: "Referral Trading Commission", kr: "추천 트레이딩 수수료 보상" },
+  { en: "Token Airdrop", kr: "토큰 에어드롭" },
+  { en: "How NFT Works", kr: "NFT 작동 방식" },
+  { en: "How Trading Works", kr: "트레이딩 작동 방식" },
+  { en: "Roadmap", kr: "로드맵" },
+  { en: "FAQ", kr: "자주 묻는 질문" },
+  { en: "Legal", kr: "법적 고지" },
+  { en: "Thank You", kr: "감사합니다" },
 ] as const;
