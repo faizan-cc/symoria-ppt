@@ -1211,7 +1211,7 @@ export function Slide00Origin({ isActive, locale }: SlideComponentProps) {
       className={slideClassName(isActive)}
       id="s39-origin"
     >
-      <div className="eyebrow">{tr(locale, "THE ORIGIN", "이름의 기원")}</div>
+      <div className="eyebrow">{tr(locale, "Fun Fact", "꿀팁")}</div>
       <h2 className="title">
         {tr(locale, "Symoria, Rooted in Symmoria", "Symmoria에서 온 Symoria")}
       </h2>
@@ -3881,7 +3881,7 @@ export const slides = [
   Slide03WhyHumansFail,
   Slide04WhyBotsFail,
   Slide05Solution,
-  Slide00Origin,
+  
   Slide06AgentSwarms,
   Slide06Vs,
   Slide13Performance,
@@ -3896,8 +3896,10 @@ export const slides = [
   Slide06HowNftWorks,
   Slide06HowTradingWorks,
   Slide17Roadmap,
+   Slide00Origin,
   Slide27Faq,
   Slide29Legal,
+ 
   Slide31ThankYou,
 ] as const;
 
@@ -3908,7 +3910,7 @@ export const slideTitles = [
   { en: "Why Humans Fail", kr: "인간이 실패하는 이유" },
   { en: "Why Bots Fail", kr: "기존 봇이 실패하는 이유" },
   { en: "The Solution", kr: "해결책" },
-  { en: "Origin of Symoria", kr: "Symoria의 기원" },
+  
   { en: "AI Agent Swarms", kr: "AI 에이전트 스웜" },
   { en: "Symoria vs The Rest", kr: "Symoria vs 기존 솔루션" },
   { en: "Performance", kr: "성과" },
@@ -3923,6 +3925,7 @@ export const slideTitles = [
   { en: "How NFT Works", kr: "NFT 작동 방식" },
   { en: "How Trading Works", kr: "트레이딩 작동 방식" },
   { en: "Roadmap", kr: "로드맵" },
+  { en: "Fun Fact", kr: "꿀팁" },
   { en: "FAQ", kr: "자주 묻는 질문" },
   { en: "Legal", kr: "법적 고지" },
   { en: "Thank You", kr: "감사합니다" },
