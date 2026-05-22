@@ -2446,7 +2446,7 @@ export function Slide13Performance({ isActive, locale }: SlideComponentProps) {
     <section data-slide-idx={13} className={slideClassName(isActive)} id="s13">
       <div className="eyebrow">{tr(locale, "TRACK RECORD", "트랙 레코드")}</div>
       <h2 className="title">
-        {tr(locale, "Six Months. Consistent Alpha.", "6개월, 일관된 알파.")}
+        {tr(locale, "Symoria Trading Six-Month Results.", "Symoria 트레이딩 6개월 성과.")}
       </h2>
       <div className="perf-grid">
         {performanceSeries.map(({ month, value }, index) => (
